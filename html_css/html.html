@@ -35,12 +35,12 @@
         <section>
             <div class="slide-show">
                 <div class="slide-control">
-                    <div class="array-left">left</div>
+                    <img class="arrow-left" src="arrow-left.svg" viewBox="0 0 50 50">
                     <header class="slide-header">
                         <span class="slide-title">Slide Name</span>
                         <span class="slide-subtitle">Slide Subname</span>
                     </header>
-                    <div class="array-right">right</div>
+                    <img class="arrow-right" src="arrow-right.svg">
                 </div>
             </div>
         </section>
@@ -53,7 +53,7 @@
                 <p class="post-content">
                     There are other WAI-ARIA roles with required children for which this situation is applicable (e.g., radiogroups and listboxes), but tables and lists are the most common real-world cases in which the presentation inheritance is likely to apply.
                 </p>
-                <button class="more">more</button>
+                <button class="more-btn">more</button>
             </article>
             <div class="icon"></div>
             <article class="post shorten">
@@ -63,7 +63,7 @@
                 <div class="post-content">
                     There are other WAI-ARIA roles with required children for which this situation is applicable (e.g., radiogroups and listboxes), but tables and lists are the most common real-world cases in which the presentation inheritance is likely to apply.
                 </div>
-                <button class="more">more</button>
+                <button class="more-btn">more</button>
             </article>
             <div class="icon"></div>
             <article class="post shorten">
@@ -73,7 +73,7 @@
                 <div class="post-content">
                     There are other WAI-ARIA roles with required children for which this situation is applicable (e.g., radiogroups and listboxes), but tables and lists are the most common real-world cases in which the presentation inheritance is likely to apply.
                 </div>
-                <button class="more">more</button>
+                <button class="more-btn">more</button>
             </article>
         </section>
         <section class="search-posts">
@@ -88,93 +88,115 @@
         </section>
         <section class="media-info">
             <article>
-                <ul>
-                    <li class="media-header active">headaw awd aw</li>
-                    <li class="media-header">Morbi adawdaw</li>
-                    <li class="media-header">awdaw awd awd </li>
+                <ul class="media-headers">
+                    <li class="media-header  active"><img class="media-header-icon" src="flag-solid.svg"> headaw awd aw</li>
+                    <li class="media-header"><img class="media-header-icon" src="tint-solid.svg"> Morbi adawdaw</li>
+                    <li class="media-header"><img class="media-header-icon" src="magnet-solid.svg">awdaw awd awd </li>
                 </ul>
-                <div class="half-info">
-                    <div class="image"></div>
-                    <p class="article-text">
-                        ladwad
-                    </p>
-                </div>
-                <div class="half-info">
-                    <div class="image"></div>
-                    <p class="article-text">
-                        ladwad
-                    </p>
+                <div class="info">
+                    <div class="half-info">
+                        <div class="image"></div>
+                        <p class="article-text">
+                            ladwad
+                        </p>
+                    </div>
+                    <div class="half-info">
+                        <div class="image"></div>
+                        <p class="article-text">
+                            ladwad
+                        </p>
+                    </div>
                 </div>
             </article>
         </section>
         <footer>
-            <section class="blog-posts">
-                <header class="footer-headers">blog posts</header>
-                <div class="blog-post">
-                    <time>Aug/27/2013</time>
-                    <span class="blog-user-name">Cohn Doe</span>
-                    <p class="blog-user-feedback">
-                        awdefwef d qdqdq
-                    </p>
-                </div>
-                <div class="blog-post">
-                    <time>Aug/27/2013</time>
-                    <span class="blog-user-name">Cohn Doe</span>
-                    <p class="blog-user-feedback">
-                        awdefwef d qdqdq
-                    </p>
-                </div>
-                <div class="blog-post">
-                    <time>Aug/27/2013</time>
-                    <span class="blog-user-name">Cohn Doe</span>
-                    <p class="blog-user-feedback">
-                        awdefwef d qdqdq
-                    </p>
-                </div>
-            </section>
-            <section>
-                <header class="footer-headers">
-                    twitter posts
-                </header>
-                <div class="blog-post">
-                    <span class="blog-user-name">Cohn Doe</span>
-                    <p class="blog-user-feedback">
-                        awdefwef d qdqdq
-                    </p>
-                </div>
-                <header class="footer-headers">
-                    twitter posts
-                </header>
-                <div class="blog-post">
-                    <span class="blog-user-name">Cohn Doe</span>
-                    <p class="blog-user-feedback">
-                        awdefwef d qdqdq
-                    </p>
-                </div>
-                <header class="footer-headers">
-                    twitter posts
-                </header>
-                <div class="blog-post">
-                    <span class="blog-user-name">Cohn Doe</span>
-                    <p class="blog-user-feedback">
-                        awdefwef d qdqdq
-                    </p>
-                </div>
-            </section>
-            <section>
-                <header class="footer-headers">
-                    Quick contact
-                </header>
-                <div class="map"></div>
-                <span class="subtitle">Adress</span>
-                <address>
-                    <a href="mailto:info@sitename.com">info@sitename.com</a><br>
-                    <a href="tel:+000888888888">(000) 888 888 8888</a>
-                </address>
-            </section>
-            <span class="copyright">
+            <div class="footer-info">
+                <section class="blog-posts">
+                    <header class="footer-headers rm-border">blog posts</header>
+                    <div class="blog-post">
+                        <div class="blog-content">
+                            <div class="blog-avatar"></div>
+                            <time datetime="2013-08-27" class="blog-post-date">Aug/27/2013</time>
+                            <div class="blog-user-title">
+                                <span class="blog-user-name">Cohn Doe</span>
+                            </div>
+                            <p class="blog-user-feedback">
+                                awdefwef d qdqdq awd awd awda wdawd qwd awda wda wdawdawd awda wd awdaw daw awd awd awd awdawda wd awd awd
+                            </p>
+                        </div>
+                    </div>
+                    <div class="blog-post">
+                        <div class="blog-avatar"></div>
+                        <time datetime="2013-08-27" class="blog-post-date">Aug/27/2013</time>
+                        <div class="blog-user-title">
+                            <span class="blog-user-name">Cohn Doe</span>
+                        </div>
+                        <p class="blog-user-feedback">
+                            awdefwef d qdqdq
+                        </p>
+                    </div>
+                    <div class="blog-post">
+                        <div class="blog-avatar"></div>
+                        <time datetime="2013-08-27" class="blog-post-date">Aug/27/2013</time>
+                        <div class="blog-user-title">
+                            <span class="blog-user-name">Cohn Doe</span>
+                        </div>
+                        <p class="blog-user-feedback">
+                            awdefwef d qdqdq
+                        </p>
+                    </div>
+                </section>
+                <section class="twitter-posts">
+                    <header class="footer-headers">
+                        twitter posts
+                    </header>
+                    <div class="twitter-post">
+                        <img class="twitter-avatar" src="twitter-brands.svg"></img>
+                        <span class="twitter-user-name">@CohnDoe</span>
+                        <p class="twitter-user-feedback">
+                            awdefwef d qdqdq
+                        </p>
+                    </div>
+                    <div class="twitter-post">
+                        <img class="twitter-avatar" src="twitter-brands.svg"></img>
+                        <span class="twitter-user-name">@CohnDoe</span>
+                        <p class="twitter-user-feedback">
+                            awdefwef d qdqdq
+                        </p>
+                    </div>
+                    <div class="twitter-post">
+                        <img class="twitter-avatar" src="twitter-brands.svg"></img>
+                        <span class="twitter-user-name">@CohnDoe</span>
+                        <p class="twitter-user-feedback">
+                            awdefwef d qdqdq
+                        </p>
+                    </div>
+                    <div class="twitter-post">
+                        <img class="twitter-avatar" src="twitter-brands.svg"></img>
+                        <span class="twitter-user-name">@CohnDoe</span>
+                        <p class="twitter-user-feedback">
+                            awdefwef d qdqdq
+                        </p>
+                    </div>
+                </section>
+                <section class="contact-info">
+                    <header class="footer-headers">
+                        Quick contact
+                    </header>
+                    <div class="map"></div>
+                    <span class="subtitle">Adress</span>
+                    <address>
+                        <a href="mailto:info@sitename.com">info@sitename.com</a><br>
+                        <a href="tel:+000888888888">(000) 888 888 8888</a>
+                    </address>
+                </section>
+            </div>
+            <div class="footer-copyright">
+                <span class="copyright">
                     Copyright(c) website name.
-            </span>
+                </span>
+            </div>
+
         </footer>
     </div>
 </body>
