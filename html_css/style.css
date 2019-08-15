@@ -1,30 +1,38 @@
         body {
-            padding: 5% 20%;
+            padding: 5.45% 0;
             background-image: url(back.png);
-            font-family: Calibri, Arial Rounded MT;
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         .content {
+            min-width: 500px;
+            width: 64%;
+            margin: 0 auto;
             background-color: white;
             border-radius: 5px;
         }
         
+        .page-header {
+            font-size: 1em;
+        }
+        
         .site-title {
             display: inline-block;
-            font-size: 2vw;
-            color: rgb(113, 106, 114);
-            border-bottom: 1px solid rgb(195, 188, 196);
-            padding: 1.5em 0 0.5em 0;
-            font-weight: 900;
+            font-size: 2.7em;
+            letter-spacing: 8px;
+            color: rgba(113, 106, 114);
+            border-bottom: 1px solid rgba(195, 188, 196, 0.356);
+            padding: 1.28em 0 0.5em 0;
         }
         
         .page-nav {
-            padding: 20px 0;
-            font-size: 1vw;
-            width: 60%;
-            margin: 1.3em auto;
+            font-size: 1em;
+            font-size: 0.8em;
+            letter-spacing: 3px;
+            width: 66%;
+            margin: 3.4em auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
         }
         
         nav {
@@ -51,7 +59,7 @@
         
         .slide-show {
             background: rgb(113, 106, 114) url(rope.jfif) no-repeat;
-            padding-bottom: 40%;
+            padding-bottom: 44%;
             position: relative;
             background-size: cover;
             background-position: 50%;
@@ -67,15 +75,15 @@
         .slide-show {
             text-align: center;
             position: relative;
+            font-size: 1em;
         }
         
         .slide-control {
-            padding: 0 5%;
-            height: 100px;
+            padding: 2em 2em;
             width: 100%;
             box-sizing: border-box;
             color: rgb(254, 251, 239);
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.45);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -86,12 +94,14 @@
         .slide-title {
             display: block;
             font-weight: 900;
-            font-size: 1.5vw;
+            text-transform: uppercase;
+            font-size: 1.875em;
+            letter-spacing: 3px;
         }
         
         .slide-subtitle {
             display: block;
-            font-size: 1vw;
+            font-size: 1vmax;
         }
         
         .posts {
@@ -107,7 +117,7 @@
         
         .post-title {
             line-height: 2em;
-            font-size: 1.2vw;
+            font-size: 1.2vmax;
             border-bottom: 1px solid;
             color: rgb(113, 106, 114);
             text-transform: uppercase;
@@ -115,13 +125,13 @@
         }
         
         .post-content {
-            padding-top: 20px;
+            padding-top: 2em;
             color: grey;
-            height: 150px;
-            line-height: 25px;
+            height: 4.5em;
+            line-height: 1.5em;
             width: 100%;
             overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 0.8vmax;
         }
         
         .more-btn {
@@ -131,18 +141,18 @@
             text-transform: uppercase;
             border-radius: 5px;
             font-weight: 900;
-            font-size: 1vw;
+            font-size: 1vmax;
             padding: 0.25em;
             margin-top: 1.5em;
         }
         
         .icon {
-            height: 2.5vw;
-            width: 2.5vw;
-            height: 2.5vw;
-            background-color: rgb(113, 106, 114);
-            margin-top: 2.5vw;
-            border-radius: 1.25vw;
+            height: 3vmax;
+            width: 3vmax;
+            background-color: white;
+            box-shadow: 1px 1px 3px 1px rgb(226, 226, 226);
+            margin-top: 1.1vmax;
+            border-radius: 3vmax;
         }
         
         .search-posts {
@@ -218,7 +228,7 @@
             color: rgb(255, 219, 76);
             text-transform: uppercase;
             font-weight: 900;
-            font-size: 1vw;
+            font-size: 1vmax;
             padding: 1em 2em;
             background-color: #f2f2f2;
             display: inline-block;
@@ -228,7 +238,7 @@
         }
         
         .image {
-            height: 200px;
+            padding-bottom: 50%;
             background-color: rgb(170, 163, 172);
             border-radius: 5px;
             margin-bottom: 30px;
@@ -239,7 +249,7 @@
             position: relative;
             top: 1px;
             border-right: 2px solid rgba(182, 181, 181, 0.3);
-            border-left: 1px solid rgba(214, 214, 214, 0.3);
+            border-left: 1px solid rgba(77, 61, 61, 0.3);
             border-top: 1px solid rgba(214, 214, 214, 0.3);
         }
         
@@ -271,9 +281,9 @@
         
         .arrow-left,
         .arrow-right {
-            width: 50px;
+            width: 1.7vmax;
             height: auto;
-            filter: invert(1);
+            color: white;
         }
         
         .flag::before {
@@ -311,20 +321,16 @@
         .contact-info {
             display: inline-block;
             vertical-align: top;
-            width: 20%;
-        }
-        
-        .contact-info {
-            width: 45%;
         }
         
         .footer-headers {
             color: white;
             font-weight: 900;
-            font-size: 1.5vw;
+            font-size: 1.2vmax;
             text-transform: uppercase;
-            padding-bottom: 30px;
+            padding-bottom: 1.2em;
             border-bottom: 1px solid grey;
+            letter-spacing: 1px;
             white-space: nowrap;
         }
         
@@ -333,7 +339,7 @@
             background-color: rgb(255, 208, 22);
             color: rgb(255, 254, 247);
             font-weight: 700;
-            font-size: 0.8vw;
+            font-size: 0.8vmax;
             text-transform: capitalize;
             padding: 30px 0;
         }
@@ -368,12 +374,13 @@
         .blog-user-name {
             border-bottom: 1px solid grey;
             line-height: 25px;
-            font-size: 17px;
+            font-size: 1em;
             font-weight: 900;
         }
         
         .blog-user-feedback {
             height: 100%;
+            width: 10vmax;
             box-sizing: border-box;
         }
         
@@ -410,4 +417,94 @@
             border-radius: 6px;
             background-color: grey;
             margin: 30px 0;
+        }
+        
+        .introduction {
+            display: flex;
+            justify-content: space-between;
+            padding: 5em 0;
+            box-shadow: 0px 1px 2px rgba(131, 131, 131, 0.219);
+            border-bottom: 1px solid rgba(100, 100, 100, 0.219);
+            font-size: 1em;
+        }
+        
+        .introduction-header {
+            text-align: right;
+            width: 49%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .introduction-title {
+            font-size: 1.7em;
+            font-weight: 800;
+            line-height: 1.4em;
+            width: 19em;
+            letter-spacing: 1px;
+            height: 2.8em;
+            overflow: hidden;
+            text-transform: uppercase;
+            color: #f1c40f;
+        }
+        
+        .introduction-subtitle {
+            font-size: 1.5em;
+            line-height: 1.3em;
+            width: 20em;
+            text-transform: uppercase;
+            color: #9d9d9d;
+        }
+        
+        .introduction-btn {
+            background-color: #f1c40f;
+            border: none;
+            border-radius: 5px;
+            padding: 0.6em;
+            text-transform: uppercase;
+            color: white;
+            margin-top: 1.8em;
+        }
+        
+        .introduction-short {
+            text-align: left;
+            width: 49%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 15em;
+            line-height: 1.3em;
+        }
+        
+        .introduction-main {
+            text-decoration: underline;
+            font-style: italic;
+            color: #8b8181;
+        }
+        
+        .shape-outline {
+            float: left;
+            height: 100%;
+            width: 100%;
+            shape-outside: polygon(0 0, 9em 0%, 0 50%);
+            clip-path: polygon(0 0, 7em 0%, 0 50%);
+            background-color: lightgray;
+        }
+        
+        .title {
+            font-weight: 900;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .subtitle {
+            font-family: 'Source Sans Pro', sans-serif;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+        
+        .text-content {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+            color: #9d9d9d;
         }

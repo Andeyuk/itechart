@@ -9,7 +9,7 @@
 <body>
     <div class="content">
         <header class="page-header">
-            <h1 class="site-title">
+            <h1 class="site-title title">
                 sitename
             </h1>
             <nav>
@@ -35,42 +35,62 @@
         <section>
             <div class="slide-show">
                 <div class="slide-control">
-                    <img class="arrow-left" src="arrow-left.svg" viewBox="0 0 50 50">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-circle-left" class="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z">
+                        </path>
+                    </svg>
                     <header class="slide-header">
-                        <span class="slide-title">Slide Name</span>
-                        <span class="slide-subtitle">Slide Subname</span>
+                        <span class="slide-title title">ipsum dolor sit amet lat</span>
+                        <span class="slide-subtitle subtitle">Aliquam tincidunt mauris eu risus</span>
                     </header>
-                    <img class="arrow-right" src="arrow-right.svg">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-circle-right" class="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z">
+                        </path>
+                    </svg>
                 </div>
+            </div>
+        </section>
+        <section class="introduction">
+            <header class="introduction-header">
+                <div class="introduction-title">
+                    <p>Morbi in sem lorem placerat ornare Pellente</p>
+                </div>
+                <p class="introduction-subtitle"> euismod in, pharetra Ultriciees Crasonsequat Vavimus sup SompuRKOi Vrsit</p>
+                <button class="introduction-btn title">More Info</button>
+            </header>
+            <div class="introduction-short">
+                <p class="introduction-main subtitle"><em>Euis In, Phareta Ultriciees Crasonsequat Vavimus .Euis In, Phareta Ultriciees Crasonsequat Vavimus.Euis In, Phareta Ultriciees Crasonsequat Vavimus </em></p>
+                <p class="introduction-middle text-content">Euis In, Phareta Ultriciees Crasonsequat Vavimus Euis In, Phareta Ultriciees Crasonsequat Vavimus Euis In, Phareta Ultriciees Crasonsequat Vavimus </p>
+                <p class="introduction-footer text-content">Euis In, Phareta Ultriciees Crasonsequat Vavimus Euis In, Phareta Ultriciees Crasonsequat Vavimus Euis In, Phareta Ultriciees Crasonsequat Vavimus </p>
             </div>
         </section>
         <section class="posts">
             <div class="icon"></div>
             <article class="post shorten">
-                <header class="post-title">
+                <header class="post-title title">
                     post one
                 </header>
-                <p class="post-content">
+                <p class="post-content text-content">
                     There are other WAI-ARIA roles with required children for which this situation is applicable (e.g., radiogroups and listboxes), but tables and lists are the most common real-world cases in which the presentation inheritance is likely to apply.
                 </p>
-                <button class="more-btn">more</button>
+                <button class="more-btn title">more</button>
             </article>
             <div class="icon"></div>
             <article class="post shorten">
-                <header class="post-title">
+                <header class="post-title title">
                     post one
                 </header>
-                <div class="post-content">
+                <div class="post-content text-content">
                     There are other WAI-ARIA roles with required children for which this situation is applicable (e.g., radiogroups and listboxes), but tables and lists are the most common real-world cases in which the presentation inheritance is likely to apply.
                 </div>
-                <button class="more-btn">more</button>
+                <button class="more-btn title">more</button>
             </article>
             <div class="icon"></div>
             <article class="post shorten">
-                <header class="post-title">
+                <header class="post-title title">
                     post one
                 </header>
-                <div class="post-content">
+                <div class="post-content text-content">
                     There are other WAI-ARIA roles with required children for which this situation is applicable (e.g., radiogroups and listboxes), but tables and lists are the most common real-world cases in which the presentation inheritance is likely to apply.
                 </div>
                 <button class="more-btn">more</button>
@@ -78,31 +98,31 @@
         </section>
         <section class="search-posts">
             <header class="search-header">
-                <span class="search-title">Search title</span>
-                <span class="search-subtitle">subtitle</span>
+                <span class="search-title title">Search title</span>
+                <span class="search-subtitle subtitle">subtitle</span>
             </header>
             <div class="input-wraper">
                 <input type="text" name="post" id="search-posts" class="search-inp" placeholder="search ...">
-                <label for="post" class="seach-label">search</label>
+                <label for="post" class="seach-label title">search</label>
             </div>
         </section>
         <section class="media-info">
             <article>
                 <ul class="media-headers">
-                    <li class="media-header  active"><img class="media-header-icon" src="flag-solid.svg"> headaw awd aw</li>
+                    <li class="media-header active"><img class="media-header-icon" src="flag-solid.svg"> headaw awd aw</li>
                     <li class="media-header"><img class="media-header-icon" src="tint-solid.svg"> Morbi adawdaw</li>
                     <li class="media-header"><img class="media-header-icon" src="magnet-solid.svg">awdaw awd awd </li>
                 </ul>
                 <div class="info">
                     <div class="half-info">
                         <div class="image"></div>
-                        <p class="article-text">
+                        <p class="text-content">
                             ladwad
                         </p>
                     </div>
                     <div class="half-info">
                         <div class="image"></div>
-                        <p class="article-text">
+                        <p class="text-content">
                             ladwad
                         </p>
                     </div>
