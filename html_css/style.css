@@ -33,6 +33,20 @@
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url('fonts/SourceSansPro-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url('fonts/SourceSansPro-SemiBold.ttf') format('truetype');
+}
+
 body {
     padding: 5.45% 0;
     background-image: url(../img/back.png);
@@ -40,11 +54,11 @@ body {
 }
 
 .content {
-    min-width: 1000px;
     width: 64%;
     margin: 0 auto;
     background-color: white;
     border-radius: 5px;
+    min-width: 536px;
 }
 
 .page-header {
@@ -54,6 +68,7 @@ body {
 .site-title {
     display: inline-block;
     font-size: 2.75em;
+    min-height: 6px;
     letter-spacing: 6px;
     color: rgba(113, 106, 114);
     border-bottom: 1px solid rgba(195, 188, 196, 0.356);
@@ -61,10 +76,11 @@ body {
 }
 
 .page-nav {
-    font-size: 0.95em;
+    font-size: 0.91em;
     letter-spacing: 3px;
     width: 66%;
     margin: 2.8em auto;
+    margin-bottom: 3.1em;
     display: flex;
     justify-content: space-evenly;
 }
@@ -134,8 +150,8 @@ nav {
 .posts {
     display: flex;
     justify-content: space-evenly;
-    padding: 4.9em 0 5em 0;
-    ;
+    flex-wrap: wrap;
+    padding: 4.9em 0 2.55em 0;
     background-color: rgb(250, 250, 250);
     box-shadow: inset 0px 1px 2px rgba(182, 182, 182, 0.219);
     border-top: 1px solid rgba(100, 100, 100, 0.116);
@@ -145,15 +161,17 @@ nav {
     display: flex;
     justify-content: space-between;
     width: 30%;
+    min-width: 300px;
+    margin-bottom: 3em;
 }
 
 .post-shorten {
     box-sizing: border-box;
-    width: 70%;
+    width: 75%;
 }
 
 .post-title {
-    padding-bottom: 1.4em;
+    padding-bottom: 1.29em;
     font-size: 1.3em;
     border-bottom: 1px solid rgba(189, 189, 189, 0.384);
     color: rgb(114, 114, 114);
@@ -162,13 +180,13 @@ nav {
 }
 
 .post-content {
-    padding-top: 1.7em;
-    margin-bottom: 2em;
+    padding-top: 1.45em;
+    margin-bottom: 1.3em;
     color: grey;
-    height: 5.7em;
-    line-height: 1.9em;
+    height: 5.1em;
+    line-height: 1.7em;
     overflow: hidden;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .more-btn {
@@ -187,15 +205,14 @@ nav {
     width: 4.5em;
     background-color: white;
     box-shadow: 1px 1px 3px 1px rgb(226, 226, 226);
-    margin-top: .3em;
-    border-radius: 50%;
+    margin: .3em 1em;
+    border-radius: 100%;
 }
 
 .search-posts {
     background-color: rgb(241, 196, 15);
     font-size: 1em;
     padding: 3.15em 0 3em 0;
-    ;
     text-align: center;
     color: rgb(254, 251, 239);
 }
@@ -255,11 +272,12 @@ nav {
 }
 
 .media-info {
-    margin: 3.6em 2em;
+    padding: 3.6em 2em 3.8em 2em;
+    background: rgb(250, 250, 250);
 }
 
 .media-headers {
-    border-bottom: 1px solid rgba(182, 182, 182, 0.3);
+    border-bottom: 1px solid rgba(202, 202, 202, 0.096);
     font-size: 1em;
 }
 
@@ -268,7 +286,7 @@ nav {
     text-transform: uppercase;
     font-weight: 900;
     padding: 1.4em 3.2em 1.3em 2em;
-    background-color: #f7f7f7;
+    background-color: #f2f2f2;
     display: inline-block;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -276,27 +294,26 @@ nav {
 }
 
 .image {
-    padding-bottom: 38%;
+    padding-bottom: 38.2%;
     background-color: rgb(170, 163, 172);
     border-radius: 7px;
-    margin-bottom: 30px;
     position: relative;
     overflow: hidden;
     z-index: 20;
 }
 
 .girl {
-    background: url('../img/girl.jpg');
-    background-size: cover;
+    background: url('/img/girl.jpg');
+    background-size: 150% auto;
+    background-position: 38% 11%;
     max-width: 100%;
 }
 
 .girl-2 {
-    background: url('../img/girl2.jpg');
-    max-width: 100%;
-    max-height: 100%;
-    position: absolute;
-    z-index: 110;
+    background: linear-gradient(105deg, #f1f0ecf8 20%, transparent 53%, transparent 100%), url('/img/girl2.jpg');
+    background-size: 150% auto;
+    background-position: 8% 34%;
+    background-repeat: none;
 }
 
 .active {
@@ -304,22 +321,30 @@ nav {
     position: relative;
     top: 1px;
     padding: 1.4em 2em 1.3em 2em;
-    border-right: 2px solid rgba(182, 181, 181, 0.3);
-    border-left: 1px solid rgba(77, 61, 61, 0.3);
-    border-top: 1px solid rgba(214, 214, 214, 0.3);
+    box-shadow: 1px -1px 2px rgba(201, 201, 201, 0.377);
 }
 
 .info {
     display: flex;
     justify-content: space-between;
-    padding: 2em 0;
-    border-left: 1px solid rgba(196, 196, 196, 0.3);
-    box-shadow: 2px 2px 2px rgba(141, 141, 141, 0.3);
+    flex-wrap: wrap;
+    background: #fff;
+    padding: 0em 0 1.4em 0;
+    box-shadow: 2px 2px 3px 1px rgba(141, 141, 141, 0.137);
+}
+
+.info-text {
+    line-height: 1.5em;
+    margin-top: 1.5em;
 }
 
 .half-info {
     width: 50%;
+    flex-grow: 1;
+    margin: 0 auto;
+    margin-top: 2em;
     padding: 0 1.7em;
+    min-width: 300px;
     display: inline-block;
     box-sizing: border-box;
     position: relative;
@@ -357,9 +382,11 @@ nav {
 .footer-info {
     background-color: rgb(58, 58, 58);
     color: rgb(136, 136, 136);
-    padding: 5% 0;
+    padding: 3.6em 0 1.7em 0;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-content: stretch;
 }
 
 .blog-posts,
@@ -367,42 +394,72 @@ nav {
 .contact-info {
     display: inline-block;
     vertical-align: top;
+    padding: 0 1em;
+    box-sizing: border-box;
+}
+
+.blog-posts,
+.twitter-posts {
+    width: 25%;
+    min-width: 300px;
+    max-width: 400px;
+    flex-shrink: 2;
+    flex-grow: 1;
+}
+
+.twitter-posts {
+    padding-bottom: 1.63em;
+}
+
+.contact-info {
+    width: 50%;
+    min-width: 400px;
+    flex-shrink: 1;
+    flex-grow: 2;
 }
 
 .footer-headers {
     color: white;
     font-weight: 900;
-    font-size: 1.2vmax;
+    font-size: 1.3em;
     text-transform: uppercase;
-    padding-bottom: 1.2em;
-    border-bottom: 1px solid grey;
-    letter-spacing: 1px;
+    padding-bottom: 1.3em;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.151);
     white-space: nowrap;
 }
 
 .footer-copyright {
     text-align: center;
-    background-color: rgb(255, 208, 22);
+    background-color: #f1c40f;
     color: rgb(255, 254, 247);
     font-weight: 700;
-    font-size: 0.8vmax;
-    text-transform: capitalize;
-    padding: 30px 0;
+    font-size: 1em;
+    padding: 2.2em 1em;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: 'Source Sans Pro';
+}
+
+.dev-link {
+    text-decoration: none;
+    color: rgba(39, 39, 39, 0.829);
 }
 
 .blog-avatar {
-    width: 60px;
-    height: 60px;
-    background-color: #f2f2f2;
+    width: 4.2em;
+    margin-top: 0.2em;
+    height: 4.4em;
+    background-color: lightgray;
     float: left;
-    margin-right: 20px;
+    margin-right: 1.35em;
     border-radius: 5px;
 }
 
 .blog-post {
-    border-top: 1px solid grey;
-    padding: 30px 0;
-    height: 60px;
+    border-top: 1px solid rgba(128, 128, 128, 0.151);
+    padding: 1.63em 0 1.5em 0;
+    ;
+    color: #9d9d9d;
 }
 
 .blog-post::after {
@@ -414,90 +471,130 @@ nav {
 
 .blog-post-date {
     color: rgb(241, 196, 15);
-    font-size: 16px
+    font-size: 0.75em;
+    font-family: 'Source Sans Pro';
 }
 
 .blog-user-name {
     border-bottom: 1px solid grey;
-    line-height: 25px;
-    font-size: 1em;
-    font-weight: 900;
+    line-height: 1em;
+    font-size: 0.8em;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.blog-user-title {
+    padding-bottom: 0.5em;
+    padding-top: 0.15em;
 }
 
 .blog-user-feedback {
-    height: 100%;
-    width: 10vmax;
-    box-sizing: border-box;
-}
-
-.blog-content {
-    height: 100%;
+    font-size: 0.8em;
+    line-height: 1.45em;
+    height: 2.9em;
     box-sizing: border-box;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .twitter-avatar {
-    height: 40px;
-    width: 40px;
-    float: left;
-    margin-right: 20px;
+    height: 1.75em;
+    margin-right: 1.4em;
+    color: #f1c40f;
 }
 
 .twitter-post {
-    padding: 30px 0;
+    padding: 1.75em 0 0.45em 0;
+    color: #acacac;
 }
 
 .twitter-user-name {
     color: rgb(241, 196, 15);
     font-weight: 900;
+    font-size: 0.8em;
 }
 
-.rm-border {
-    border: none;
+.twitter-user-feedback {
+    line-height: 1.5em;
+    font-size: 0.8em;
+}
+
+.twitter-avatar-wrap {
+    float: left;
+    height: 3em;
 }
 
 .map {
     width: 100%;
-    padding-bottom: 35%;
+    padding-bottom: 37.5%;
     border-radius: 6px;
-    background-color: grey;
-    margin: 30px 0;
+    background-color: lightgray;
+    margin: 1.875em 0;
+    background-image: url('/img/map.png');
+    background-size: cover;
+}
+
+.address-title {
+    font-size: 0.8em;
+    color: #9d9d9d;
+    line-height: 1.5em;
+}
+
+.address {
+    font-size: 0.8em;
+    color: #9d9d9d;
+}
+
+.address-link-wrap {
+    color: #f1c40f;
+}
+
+.address-link {
+    color: #f1c40f;
+    font-size: 0.8em;
+    text-decoration: none;
+}
+
+.address-link-wrap {
+    margin-top: 1.25em;
 }
 
 .introduction {
     display: flex;
-    justify-content: space-between;
-    padding: 4.46em 0 4em 0;
-    ;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 4.46em 1em 3em 1em;
     font-size: 1em;
 }
 
 .introduction-header {
     text-align: right;
-    width: 48.5%;
+    width:48.5%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    min-width: 462px;
+    margin-left: auto;
+    margin-bottom: 2em;
+    padding-right: 0.75em;
+
 }
 
 .introduction-title {
     font-size: 1.7em;
     font-weight: 800;
     line-height: 1.3em;
-    width: 18em;
-    height: 2.6em;
     overflow: hidden;
     text-transform: uppercase;
     color: #f1c40f;
+    white-space: pre-line;
 }
 
 .introduction-subtitle {
     font-size: 1.4em;
     line-height: 1.3em;
-    width: 20em;
     text-transform: uppercase;
     color: #9d9d9d;
+    white-space: pre-line;
 }
 
 .introduction-btn {
@@ -514,15 +611,17 @@ nav {
 .introduction-short {
     text-align: left;
     width: 48.5%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 15em;
     line-height: 1.3em;
     box-sizing: border-box;
-    padding-right: 10%;
     margin-top: 0.35em;
+    min-width: 462px;
+    margin-right: auto;
+    padding-left: 0.75em;
+    padding-right:10%;
 }
 
 .introduction-main {
@@ -533,7 +632,7 @@ nav {
 
 .introduction-middle,
 .introduction-footer {
-    font-size: 0.8em;
+    font-size: 1em;
     font-weight: 900;
 }
 
@@ -558,6 +657,7 @@ nav {
 
 .text-content {
     font-family: 'DejaVu Sans';
-    font-weight: 500;
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
     color: #9d9d9d;
 }
