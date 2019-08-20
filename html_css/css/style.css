@@ -404,6 +404,7 @@ nav {
     background-color: rgb(58, 58, 58);
     color: rgb(136, 136, 136);
     padding: 3.6em 0 1.7em 0;
+    display:flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
     align-items: stretch;
@@ -412,10 +413,16 @@ nav {
 .blog-posts,
 .twitter-posts,
 .contact-info {
-    display: inline-block;
-    vertical-align: top;
     padding: 0 1rem;
     box-sizing: border-box;
+    min-width:350px;
+    width:25%;
+}
+
+
+.contact-info{
+    flex-grow:2;
+    width:50%;
 }
 
 
