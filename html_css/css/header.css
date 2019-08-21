@@ -1,0 +1,89 @@
+
+body {
+    padding: 5.45% 0;
+    background-image: url(../img/back.png);
+    font-family: 'Dejavu Sans';
+}
+
+.content {
+    width: 64%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.title {
+    font-weight: 900;
+    font-family: 'DejaVu Sans';
+}
+
+.subtitle {
+    font-family: 'DejaVu Sans';
+    font-weight: 300;
+}
+
+.text-content {
+    font-family: 'DejaVu Sans';
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
+    color: #9d9d9d;
+}
+
+.page-header {
+    font-size: 1em;
+}
+
+.site-title {
+    display: inline-block;
+    font-size: 2.75em;
+    min-height: 6px;
+    letter-spacing: 6px;
+    color: rgba(113, 106, 114);
+    border-bottom: 1px solid rgba(195, 188, 196, 0.356);
+    padding: 1.30em 0 0.5em 0;
+}
+
+.page-nav {
+    font-size: 0.91em;
+    letter-spacing: 3px;
+    width: 66%;
+    margin: 2.8em auto;
+    margin-bottom: 3.1em;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav {
+    overflow: hidden;
+}
+
+.page-nav li {
+    display: inline-block;
+    padding: 0 0.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: rgb(113, 106, 114);
+}
+
+.close-menu {
+    display: none;
+    position: absolute;
+    width: 1em;
+}
+
+.page-header {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.current {
+    color: #f1c40f;
+}
+
+.nav-icon{
+    width:2em;
+    height:2em;
+    display:none;
+}

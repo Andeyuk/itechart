@@ -1,0 +1,61 @@
+.search-posts {
+    background-color: rgb(241, 196, 15);
+    font-size: 1em;
+    padding: 3.15em 0 3em 0;
+    text-align: center;
+    color: rgb(254, 251, 239);
+}
+
+.search-inp {
+    border: none;
+    background-color: rgb(241, 196, 15);
+    line-height: 1.875em;
+    width: 16.375em;
+    color: rgb(254, 251, 239);
+    padding: 0 1.25em;
+    box-sizing: border-box;
+}
+
+.search-inp::placeholder {
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.input-wraper {
+    border: 2px solid rgb(255, 219, 76);
+    display: inline-block;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 1.63em 0px 1.875em 0px;
+}
+
+.seach-label {
+    background-color: rgb(255, 219, 76);
+    display: inline-block;
+    font-size: 0.8em;
+    letter-spacing: 2px;
+    font-weight: 900;
+    padding: .9em 1.5em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.search-title {
+    font-size: 1.65em;
+    line-height: 1.5em;
+    font-weight: 900;
+    display: block;
+    text-transform: uppercase;
+}
+
+.search-subtitle {
+    font-size: 1.3em;
+    display: block;
+    text-transform: uppercase;
+}
+
+.search-header {
+    line-height: 1.5em;
+}

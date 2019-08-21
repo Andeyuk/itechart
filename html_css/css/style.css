@@ -97,11 +97,13 @@ nav {
     text-decoration: none;
     color: rgb(113, 106, 114);
 }
-.close-menu{
+
+.close-menu {
     display: none;
     position: absolute;
-    width:1em;
+    width: 1em;
 }
+
 .page-header {
     text-align: center;
     text-transform: uppercase;
@@ -150,6 +152,13 @@ nav {
     font-size: 1rem;
 }
 
+.arrow-left,
+.arrow-right {
+    width: 2em;
+    height: auto;
+    color: white;
+}
+
 .posts {
     display: flex;
     flex-wrap: wrap;
@@ -163,21 +172,19 @@ nav {
 .post {
     display: flex;
     justify-content: space-around;
-    width:30%;
-    min-width:300px;
-    flex-grow:1;
+    width: 30%;
+    min-width: 300px;
+    flex-grow: 1;
     margin-bottom: 3em;
-    margin-left:auto;
-    margin-right:auto;
-    max-width:450px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 450px;
 }
 
 .post-shorten {
     box-sizing: border-box;
-    width:65%;
+    width: 65%;
 }
-
-
 
 .post-title {
     padding-bottom: 1.29em;
@@ -212,11 +219,22 @@ nav {
 .icon {
     height: 4.5em;
     width: 4.5em;
-    min-width:4.5em;
+    min-width: 4.5em;
     background-color: white;
     box-shadow: 1px 1px 3px 1px rgb(226, 226, 226);
     margin: 0.1em 0;
     border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-user,
+.icon-clock,
+.icon-tag {
+    width: 1.5em;
+    height:1.5em;
+    color: #f1c40f;
 }
 
 .search-posts {
@@ -289,22 +307,25 @@ nav {
 .media-headers {
     border-bottom: 1px solid rgba(202, 202, 202, 0.096);
     font-size: 1em;
-    width:100%;
-    overflow: hidden;
+    width: 100%;
+    display: flex;
+    white-space: nowrap;
+    height:3.92em;
 }
-
-
 
 .media-header {
     color: #f1c40f;
     text-transform: uppercase;
     font-weight: 900;
-    padding: 1.4em 3.2em 1.3em 2em;
+    padding: 0 3.2em 0em 2em;
     background-color: #f2f2f2;
     display: inline-block;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     margin-right: 5px;
+    display:flex;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .image {
@@ -376,12 +397,6 @@ nav {
     display: block;
 }
 
-.arrow-left,
-.arrow-right {
-    width: 2em;
-    height: auto;
-    color: white;
-}
 
 .media-header-icon {
     display: inline-block;
@@ -391,15 +406,17 @@ nav {
     margin-right: 0.5em;
     position: relative;
     top: 0.1em;
-    width:1rem;
-    height:1rem;
+    width: 1rem;
+    height: 1rem;
+    min-width:1rem;
 }
 
 .footer-info {
     background-color: rgb(58, 58, 58);
     color: rgb(136, 136, 136);
     padding: 3.5em 0 1.7em 0;
-    display:flex;
+    padding: 0 0 1.7em 0;
+    display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
 }
@@ -408,16 +425,17 @@ nav {
 .twitter-posts,
 .contact-info {
     padding: 0 1.5rem;
+    margin-top: 3.5em;
     box-sizing: border-box;
 }
 
 .blog-posts,
-.twitter-posts{
+.twitter-posts {
     flex-basis: 24%;
-    min-width:300px;
+    min-width: 300px;
 }
 
-.contact-info{
+.contact-info {
     flex-basis: 50%;
 }
 
@@ -570,14 +588,13 @@ nav {
 
 .introduction-header {
     text-align: right;
-    width:48.5%;
+    width: 48.5%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin-bottom: 2em;
     padding-right: 0.8em;
     white-space: pre-line;
-
 }
 
 .introduction-title {
@@ -606,7 +623,7 @@ nav {
     color: white;
     letter-spacing: 1px;
     margin-top: 2em;
-    margin-top:auto;
+    margin-top: auto;
 }
 
 .introduction-short {
@@ -634,7 +651,7 @@ nav {
     font-size: 1em;
 }
 
-.introduction-middle{
+.introduction-middle {
     margin: 2em 0;
 }
 
@@ -647,19 +664,3 @@ nav {
     background-color: lightgray;
 }
 
-.title {
-    font-weight: 900;
-    font-family: 'DejaVu Sans';
-}
-
-.subtitle {
-    font-family: 'DejaVu Sans';
-    font-weight: 300;
-}
-
-.text-content {
-    font-family: 'DejaVu Sans';
-    font-family: 'Source Sans Pro';
-    font-weight: 400;
-    color: #9d9d9d;
-}

@@ -1,153 +1,183 @@
-@media  (max-width:1900px){
-
-    .content{
-        min-width:1200px;
+@media (max-width: 1900px) {
+    .content {
+        min-width: 1200px;
     }
-
 }
 
-@media (max-width:1420px){
-
-    .content{
-        min-width:800px;
+@media (max-width: 1420px) {
+    .content {
+        min-width: 800px;
     }
 
-    .page-header{
-        font-size:0.9em;
-
+    .page-header {
+        font-size: 0.9em;
     }
 
-    .page-nav{
+    .page-nav {
         font-size: 1rem;
     }
 
-    .slide-show{
+    .slide-show {
         font-size: 0.7em;
     }
 
-    .search-posts{
-        font-size:0.8em;
+    .search-posts {
+        font-size: 0.8em;
     }
 
     .introduction-short,
-    .introduction-header{
+    .introduction-header {
         white-space: normal;
     }
-}
 
-@media (max-width:888px){
-
-    body{
-        padding:0;
+    .media-header:not(.active) {
+       width:0;
+       flex-grow:1;
+       padding: 0 2em 0em 1em;
     }
 
-    .content{
+    .media-header span{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 888px) {
+    body {
+        padding: 0;
+    }
+
+    .content {
         border-radius: 0;
     }
 }
 
-@media (max-width:800px){
-
-    .content{
-        width:100%;
-        min-width:300px;
+@media (max-width: 800px) {
+    .content {
+        width: 100%;
+        min-width: 300px;
     }
 }
 
-@media (max-width:888px){
-    body{
-        padding:0;
+@media (max-width: 888px) {
+    body {
+        padding: 0;
     }
-    .content{
+
+    .content {
         border-radius: 0;
     }
 }
 
-@media (max-width:660px){
-
-    .introduction{
+@media (max-width: 660px) {
+    .introduction {
         flex-direction: column;
-        align-items:center;
-
+        align-items: center;
     }
-    .introduction-header{
-        width:80%;
+
+    .introduction-header {
+        width: 80%;
         white-space: pre-line;
         text-align: center;
         align-items: center;
+    }
 
-    }
-    .introduction-subtitle{
-    }
-    .introduction-short{
-        width:100%;
+    .introduction-short {
+        width: 80%;
         white-space: pre-line;
     }
 }
 
-@media  (max-width:497px){
+@media (max-width: 497px) {
+
     .introduction-header,
-    .introduction-short{
-        min-width:300px;
-        text-align:center;
-        width:100%;
+    .introduction-short {
+        min-width: 300px;
+        text-align: center;
+        width: 100%;
         white-space: normal;
         align-items: center;
-        padding:0;
+        padding: 0;
     }
 
-    .introduction-header{
-        font-size:0.9em;
+    .introduction-header {
+        font-size: 0.9em;
     }
 
-    .input-wraper{
-        width:80%;
-        margin-left:auto;
-        margin-right:auto;
-        display:flex;
+    .input-wraper {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
         justify-content: space-between;
     }
 
-    .media-info{
-        padding-left:0;
-        padding-right:0;
+    .media-info {
+        padding-left: 0;
+        padding-right: 0;
     }
 
-    .slide-control{
+    .slide-control {
         display: none;
     }
-    
-    .media-header:not(.active){
-        color:transparent;
-        font-size:0;
-    }
-    
+
 }
 
-@media (max-width:460px){
-    .page-nav{
+@media (max-width: 460px) {
+    .site-title{
+        padding:0;
+        margin-left:auto;
+        color:white;
+    }
+
+    .introducion{
+        order:10;
+    }
+    
+    .page-header{
+        display:flex;
+        align-content: center;
+        background-color: #252525;
+    }
+    .page-nav {
         flex-direction: column;
         justify-content: stretch;
-        margin:0;
-        width:50%;
-        height:100%;
+        margin: 0;
+        width: 50%;
+        height: 100%;
         position: absolute;
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
         z-index: 1000;
-        background-color:rgb(58, 58, 58);
+        display:none;
     }
 
-    .close-menu{
+    .nav-icon{
         display:block;
+        margin-top:auto;
+        margin-bottom:auto;
+        color:white;
     }
 
-    .page-nav li{
-        padding:1em;
+
+    .close-menu {
+        display: block;
     }
 
-    .nav-link{
-        color:#acacac;
+    .page-nav li {
+        padding: 1em;
+    }
+
+    .nav-link {
+        color: #acacac;
         font-weight: 900;
     }
+}
+
+@media (max-width: 355px){
+    .active {
+        width:0;
+        flex-grow:1;
+        padding: 0 2em 0em 1em;
+     }
 }
