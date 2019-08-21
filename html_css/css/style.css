@@ -58,7 +58,6 @@ body {
     margin: 0 auto;
     background-color: white;
     border-radius: 5px;
-    min-width: 536px;
 }
 
 .page-header {
@@ -114,7 +113,7 @@ nav {
 
 .slide-show {
     background: rgb(113, 106, 114) url(../img/rope.jfif) no-repeat;
-    padding-bottom: 45%;
+    padding-bottom: 44.5%;
     position: relative;
     background-size: cover;
     background-position: right;
@@ -294,10 +293,6 @@ nav {
     overflow: hidden;
 }
 
-.media-header:not(.active){
-    color:transparent;
-    font-size:0;
-}
 
 
 .media-header {
@@ -403,28 +398,28 @@ nav {
 .footer-info {
     background-color: rgb(58, 58, 58);
     color: rgb(136, 136, 136);
-    padding: 3.6em 0 1.7em 0;
+    padding: 3.5em 0 1.7em 0;
     display:flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
-    align-items: stretch;
 }
 
 .blog-posts,
 .twitter-posts,
 .contact-info {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
     box-sizing: border-box;
-    min-width:350px;
-    width:25%;
 }
 
+.blog-posts,
+.twitter-posts{
+    flex-basis: 24%;
+    min-width:300px;
+}
 
 .contact-info{
-    flex-grow:2;
-    width:50%;
+    flex-basis: 50%;
 }
-
 
 .footer-headers {
     color: white;
@@ -455,7 +450,7 @@ nav {
 
 .blog-avatar {
     width: 4.2em;
-    margin-top: 0.2em;
+    margin-top: 0em;
     height: 4.4em;
     background-color: lightgray;
     float: left;
@@ -466,7 +461,6 @@ nav {
 .blog-post {
     border-top: 1px solid rgba(128, 128, 128, 0.151);
     padding: 1.63em 0 1.5em 0;
-    ;
     color: #9d9d9d;
 }
 
@@ -580,29 +574,27 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    min-width: 462px;
-    margin-left: auto;
     margin-bottom: 2em;
-    padding-right: 0.75em;
+    padding-right: 0.8em;
+    white-space: pre-line;
 
 }
 
 .introduction-title {
-    font-size: 1.7em;
+    font-size: 1.6em;
     font-weight: 800;
-    line-height: 1.3em;
+    line-height: 1.4em;
     overflow: hidden;
     text-transform: uppercase;
     color: #f1c40f;
-    white-space: pre-line;
 }
 
 .introduction-subtitle {
-    font-size: 1.4em;
+    font-size: 1.3em;
     line-height: 1.3em;
     text-transform: uppercase;
     color: #9d9d9d;
-    white-space: pre-line;
+    box-sizing: border-box;
 }
 
 .introduction-btn {
@@ -614,6 +606,7 @@ nav {
     color: white;
     letter-spacing: 1px;
     margin-top: 2em;
+    margin-top:auto;
 }
 
 .introduction-short {
@@ -622,26 +615,27 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 15em;
     line-height: 1.3em;
     box-sizing: border-box;
     margin-top: 0.35em;
-    min-width: 462px;
-    margin-right: auto;
-    padding-left: 0.75em;
-    padding-right:10%;
+    padding-left: 0.8em;
+    white-space: pre-line;
 }
 
 .introduction-main {
     text-decoration: underline;
     font-style: italic;
-    color: #8b8181;
+    color: #857d7d;
+    line-height: 1.4em;
 }
 
 .introduction-middle,
 .introduction-footer {
     font-size: 1em;
-    font-weight: 900;
+}
+
+.introduction-middle{
+    margin: 2em 0;
 }
 
 .shape-outline {
