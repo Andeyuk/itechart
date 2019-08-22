@@ -136,7 +136,7 @@
 
 }
 
-@media (max-width: 460px) {
+@media (max-width: 500px) {
     .site-title {
         padding:0;
         margin-left: auto;
@@ -167,11 +167,6 @@
     .nav-icon {
         display: block;
         color: rgba(113, 106, 114);
-    }
-
-
-    .close-menu {
-        display: block;
     }
 
     .page-nav li {

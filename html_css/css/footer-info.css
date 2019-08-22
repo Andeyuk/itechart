@@ -11,6 +11,7 @@
     padding: 0 0 1.7em 0;
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-around;
     justify-content: space-evenly;
 }
 
@@ -64,10 +65,14 @@
     width: 4.2em;
     margin-top: 0em;
     height: 4.4em;
-    background-color: lightgray;
+    box-shadow:inset 0px 0px 10px 3px rgba(0, 0, 0, 0.342);
+    background-color: lightgrey;
     float: left;
     margin-right: 1.35em;
     border-radius: 5px;
+    background-image: url('../img/user-avatar.png');
+    background-size: 150% auto;
+    background-position: center;
 }
 
 .blog-post {
@@ -95,6 +100,7 @@
     font-size: 0.8em;
     font-weight: 600;
     box-sizing: border-box;
+    cursor:pointer;
 }
 
 .blog-user-title {

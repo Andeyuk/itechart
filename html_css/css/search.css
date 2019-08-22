@@ -31,7 +31,7 @@
     margin: 1.63em 0px 1.875em 0px;
 }
 
-.seach-label {
+.seach-btn {
     background-color: rgb(255, 219, 76);
     display: inline-block;
     font-size: 0.8em;
@@ -39,7 +39,8 @@
     font-weight: 900;
     padding: .9em 1.5em;
     text-transform: uppercase;
-    cursor: pointer;
+    border:none;
+    color:white;
 }
 
 .search-title {
