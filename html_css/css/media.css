@@ -57,7 +57,7 @@
 @media (max-width: 800px) {
     .page {
         width: 100%;
-        min-width: 330px;
+        min-width: 300px;
     }
 }
 
@@ -94,7 +94,7 @@
 
     .introduction__header,
     .introduction-content {
-        min-width: 300px;
+        min-width: auto;
         text-align: center;
         width: 100%;
         white-space: normal;
@@ -133,6 +133,10 @@
         order:10;
     }
 
+    .half-info{
+	min-width: 250px;
+    }
+
 }
 
 @media (max-width: 500px) {
@@ -166,6 +170,7 @@
     .page__nav-icon {
         display: block;
         color: rgba(113, 106, 114);
+        min-width:2em;
     }
 
     .nav-list li {
@@ -176,4 +181,11 @@
         color: #acacac;
         font-weight: 900;
     }
+}
+
+@media (max-width: 330px){
+    .page__title{
+        font-size: 2em;
+    }
+    
 }
