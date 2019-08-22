@@ -5,7 +5,7 @@ body {
     font-family: 'Dejavu Sans';
 }
 
-.content {
+.page {
     width: 64%;
     margin: 0 auto;
     background-color: white;
@@ -29,11 +29,11 @@ body {
     color: #9d9d9d;
 }
 
-.page-header {
+.page__header {
     font-size: 1em;
 }
 
-.site-title {
+.page__title {
     display: inline-block;
     font-size: 2.75em;
     min-height: 6px;
@@ -43,7 +43,7 @@ body {
     padding: 1.30em 0 0.5em 0;
 }
 
-.page-nav {
+.nav-list {
     font-size: 0.91em;
     letter-spacing: 3px;
     width: 66%;
@@ -53,12 +53,12 @@ body {
     justify-content: space-evenly;
 }
 
-.page-nav li {
+.nav-list li {
     display: inline-block;
     padding: 0 0.5rem;
 }
 
-.nav-link {
+.nav__link {
     text-decoration: none;
     color: rgb(113, 106, 114);
 }
@@ -69,21 +69,17 @@ body {
     width: 1em;
 }
 
-.page-header {
+.page__header {
     text-align: center;
     text-transform: uppercase;
 }
 
-.current {
+.nav__link--current {
     color: #f1c40f;
 }
 
-.nav-icon{
+.page__nav-icon{
     width:2em;
     height:2em;
     display:none;
-}
-
-.nav-icon:hover nav .page-nav{
-   display:block;
 }

@@ -6,7 +6,7 @@
     font-size: 1em;
 }
 
-.introduction-header {
+.introduction__header {
     text-align: right;
     width: 48.5%;
     display: flex;
@@ -17,7 +17,7 @@
     white-space: pre-line;
 }
 
-.introduction-title {
+.introduction__title {
     font-size: 1.6em;
     font-weight: 800;
     line-height: 1.4em;
@@ -26,7 +26,7 @@
     color: #f1c40f;
 }
 
-.introduction-subtitle {
+.introduction__subtitle {
     font-size: 1.3em;
     line-height: 1.3em;
     text-transform: uppercase;
@@ -34,7 +34,7 @@
     box-sizing: border-box;
 }
 
-.introduction-btn {
+.introduction__btn {
     background-color: #f1c40f;
     border: none;
     border-radius: 5px;
@@ -46,7 +46,7 @@
     margin-top: auto;
 }
 
-.introduction-short {
+.introduction-content {
     text-align: left;
     width: 48.5%;
     display: flex;
@@ -59,18 +59,18 @@
     white-space: pre-line;
 }
 
-.introduction-main {
+.introduction-content__text-top {
     text-decoration: underline;
     font-style: italic;
     color: #857d7d;
     line-height: 1.4em;
 }
 
-.introduction-middle,
-.introduction-footer {
+.introduction-content__text-middle,
+.introduction-content__text-bottom {
     font-size: 1em;
 }
 
-.introduction-middle {
+.introduction-content__text-middle {
     margin: 2em 0;
 }

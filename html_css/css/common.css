@@ -63,8 +63,3 @@
     font-weight: 400;
     color: #9d9d9d;
 }
-
-.flex-wrap{
-    display:flex;
-    flex-direction:column;
-}

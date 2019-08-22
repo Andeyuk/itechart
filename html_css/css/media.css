@@ -1,19 +1,19 @@
 @media (max-width: 1900px) {
-    .content {
+    .page {
         min-width: 1200px;
     }
 }
 
 @media (max-width: 1420px) {
-    .content {
+    .page {
         min-width: 800px;
     }
 
-    .page-header {
+    .page__header {
         font-size: 0.9em;
     }
 
-    .page-nav {
+    .nav-list {
         font-size: 1rem;
     }
 
@@ -25,8 +25,8 @@
         font-size: 0.8em;
     }
 
-    .introduction-short,
-    .introduction-header {
+    .introduction-content,
+    .introduction__header {
         white-space: normal;
     }
 
@@ -49,13 +49,13 @@
         padding: 0;
     }
 
-    .content {
+    .page {
         border-radius: 0;
     }
 }
 
 @media (max-width: 800px) {
-    .content {
+    .page {
         width: 100%;
         min-width: 330px;
     }
@@ -66,7 +66,7 @@
         padding: 0;
     }
 
-    .content {
+    .page {
         border-radius: 0;
     }
 }
@@ -77,14 +77,14 @@
         align-items: center;
     }
 
-    .introduction-header {
+    .introduction__header {
         width: 80%;
         white-space: pre-line;
         text-align: center;
         align-items: center;
     }
 
-    .introduction-short {
+    .introduction-content {
         width: 80%;
         white-space: pre-line;
     }
@@ -92,8 +92,8 @@
 
 @media (max-width: 497px) {
 
-    .introduction-header,
-    .introduction-short {
+    .introduction__header,
+    .introduction-content {
         min-width: 300px;
         text-align: center;
         width: 100%;
@@ -102,7 +102,7 @@
         padding: 0;
     }
 
-    .introduction-header {
+    .introduction__header {
         font-size: 0.9em;
     }
 
@@ -124,33 +124,32 @@
         height:100%;
     }
 
-    .slide-header {
+    .slide__header {
         width: 100%;
         order: 5;
     }
 
-    .arrow-left,
-    .arrow-right {
+    .slide-control__icon {
         order:10;
     }
 
 }
 
 @media (max-width: 500px) {
-    .site-title {
+    .page__title {
         padding:0;
         margin-left: auto;
         border-bottom: none;
     }
 
-    .page-header {
+    .page__header {
         display: flex;
         align-items: center;
         height:10em;
         padding: 0 1em  0;
     }
 
-    .page-nav {
+    .nav-list {
         flex-direction: column;
         justify-content: stretch;
         margin: 0;
@@ -164,16 +163,16 @@
         background-color: rgb(58, 58, 58);
     }
 
-    .nav-icon {
+    .page__nav-icon {
         display: block;
         color: rgba(113, 106, 114);
     }
 
-    .page-nav li {
+    .nav-list li {
         padding: 1em;
     }
 
-    .nav-link {
+    .nav__link {
         color: #acacac;
         font-weight: 900;
     }

@@ -18,33 +18,33 @@
 </head>
 
 <body>
-    <div class="content">
-        <header class="page-header">
-            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="align-justify" class="nav-icon"
-                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <div class="page">
+        <header class="header page__header">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="align-justify" class="page__nav-icon"
+                id="nav-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path fill="currentColor"
                     d="M432 416H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z">
                 </path>
             </svg>
-            <h1 class="site-title title">
+            <h1 class="title  page__title">
                 sitename
             </h1>
-            <nav>
-                <ul class="page-nav">
-                    <li>
-                        <a href="#" class="nav-link current">home</a>
+            <nav class="page-nav">
+                <ul class="nav-list" id="nav-list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link nav__link--current">home</a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link">about</a>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">about</a>
                     </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">services</a>
+                    </li class="nav__item">
                     <li>
-                        <a href="#" class="nav-link">services</a>
+                        <a href="#" class="nav__link">projects</a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link">projects</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link">contact</a>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">contact</a>
                     </li>
                 </ul>
             </nav>
@@ -53,17 +53,17 @@
             <div class="slide-show">
                 <div class="slide-control">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-circle-left"
-                        class="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        class="slide-control__icon slide-control_icon_left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path fill="currentColor"
                             d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z">
                         </path>
                     </svg>
-                    <header class="slide-header">
-                        <span class="slide-title title">ipsum dolor sit amet lat</span>
-                        <span class="slide-subtitle subtitle">Aliquam tincidunt mauris eu risus</span>
+                    <header class="slide__header">
+                        <span class="title slide__title">ipsum dolor sit amet lat</span>
+                        <span class="subtitle slide__subtitle ">Aliquam tincidunt mauris eu risus</span>
                     </header>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-circle-right"
-                        class="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        class="slide-control__icon slide-control_icon_right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path fill="currentColor"
                             d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z">
                         </path>
@@ -72,22 +72,22 @@
             </div>
         </section>
         <section class="introduction">
-            <header class="introduction-header">
-                <p class="introduction-title title">Morbi in sem lorem placerat ornare Pellente
+            <header class="introduction__header">
+                <p class="title introduction__title ">Morbi in sem lorem placerat ornare Pellente
                 </p>
-                <p class="introduction-subtitle subtitle"> euismod in, pharetra ultricies Crasconsequat vavimus sup
+                <p class="subtitle introduction__subtitle "> euismod in, pharetra ultricies Crasconsequat vavimus sup
                     sompurkoi varsit</p>
-                <button class="introduction-btn title">More Info</button>
+                <button class="title introduction__btn ">More Info</button>
             </header>
-            <div class="introduction-short">
-                <p class="introduction-main subtitle"><em>Morbi interdum mollis sapien. Sed ac risus. Phasellus
+            <div class="introduction-content">
+                <p class="subtitle introduction-content__text-top "><em>Morbi interdum mollis sapien. Sed ac risus. Phasellus
                         lacinia, magna a ullamcorper laoreet, lectus arcu
                         pulvinar risus lorem ipsum dolor </em></p>
-                <p class="introduction-middle text-content">vitae facilisis libero dolor a purus. Sed vel lacus.
+                <p class="text-content introduction-content__text-middle ">vitae facilisis libero dolor a purus. Sed vel lacus.
                     Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna.
                     Etiam pellentesque mauris ut lectus.
                 </p>
-                <p class="introduction-footer text-content">Suspendisse mauris. Fusce accumsan mollis eros.
+                <p class="text-content introduction-content__text-bottom ">Suspendisse mauris. Fusce accumsan mollis eros.
                     Pellentesque a diam sit amet mi ullamcorper vehicula. Integeralesuada. </p>
             </div>
         </section>
@@ -365,6 +365,7 @@
             </div>
         </footer>
     </div>
+    <script src='js/header.js'></script>
 </body>
 
 </html>
