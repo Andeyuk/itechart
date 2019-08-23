@@ -17,7 +17,7 @@
         font-size: 1rem;
     }
 
-    .slide-show {
+    .slide {
         font-size: 0.7em;
     }
 
@@ -167,7 +167,7 @@
         background-color: rgb(58, 58, 58);
     }
 
-    .header__nav-icon {
+    .page__nav-icon {
         display: block;
         color: rgba(113, 106, 114);
         min-width: 2em;
