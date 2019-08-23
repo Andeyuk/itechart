@@ -1,0 +1,9 @@
+.page__title {
+    display: inline-block;
+    font-size: 2.75em;
+    min-height: 6px;
+    letter-spacing: 6px;
+    color: rgba(113, 106, 114);
+    border-bottom: 1px solid rgba(195, 188, 196, 0.356);
+    padding: 1.30em 0 0.5em 0;
+}

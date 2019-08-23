@@ -1,26 +1,23 @@
 
 
-.footer-info {
+.footer {
     background-color: rgb(58, 58, 58);
     color: rgb(136, 136, 136);
     padding: 3.5em 0 1.7em 0;
     padding: 0 0 1.7em 0;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
     justify-content: space-evenly;
 }
 
-.blog-posts,
-.twitter-posts,
-.contact-info {
+.footer__column {
     padding: 0 1.5rem;
     margin-top: 3.5em;
     box-sizing: border-box;
 }
 
-.blog-posts,
-.twitter-posts {
+.blog,
+.twitter-blog {
     flex-basis: 24%;
     min-width: 300px;
 }
@@ -30,7 +27,7 @@
     flex-grow:1;
 }
 
-.footer-headers {
+.footer_title {
     color: white;
     font-weight: 900;
     font-size: 1.3em;
@@ -40,35 +37,36 @@
     white-space: nowrap;
 }
 
-.footer-copyright {
+.copyright {
     text-align: center;
     background-color: #f1c40f;
     color: rgb(255, 254, 247);
     font-weight: 700;
-    font-size: 1em;
     padding: 2.2em 1em;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     font-family: 'Source Sans Pro';
 }
 
-.dev-link {
+.copyright__dev-link {
     text-decoration: none;
     color: rgba(39, 39, 39, 0.829);
 }
 
-.blog-avatar {
+.post-avatar {
     width: 4.2em;
-    margin-top: 0em;
     height: 4.4em;
     box-shadow:inset 0px 0px 10px 3px rgba(0, 0, 0, 0.342);
     background-color: lightgrey;
+    background-image: url('../img/user-avatar.png');
+    background-position: center;
+    background-size: 150% auto;
+}
+
+.blog-post__avatar{
     float: left;
     margin-right: 1.35em;
     border-radius: 5px;
-    background-image: url('../img/user-avatar.png');
-    background-size: 150% auto;
-    background-position: center;
 }
 
 .blog-post {
@@ -77,20 +75,17 @@
     color: #9d9d9d;
 }
 
-.blog-post::after {
-    content: '';
-    clear: both;
-    width: 100%;
-    display: block;
+.blog-post:nth-of-type(2){
+    border-top: none;
 }
 
-.blog-post-date {
+.blog-post__date {
     color: rgb(241, 196, 15);
     font-size: 0.75em;
     font-family: 'Source Sans Pro';
 }
 
-.blog-user-name {
+.post__user-name {
     border-bottom: 1px solid grey;
     line-height: 1em;
     font-size: 0.8em;
@@ -99,12 +94,12 @@
     cursor:pointer;
 }
 
-.blog-user-title {
+.post__user-name-wrap {
     padding-bottom: 0.5em;
     padding-top: 0.15em;
 }
 
-.blog-user-feedback {
+.user-feedback {
     font-size: 0.8em;
     line-height: 1.45em;
     height: 2.9em;
@@ -112,7 +107,7 @@
     overflow: hidden;
 }
 
-.twitter-avatar {
+.twitter-post__avatar {
     height: 1.75em;
     margin-right: 1.4em;
     color: #f1c40f;
@@ -123,18 +118,18 @@
     color: #acacac;
 }
 
-.twitter-user-name {
+.twitter-post__user-name {
     color: rgb(241, 196, 15);
     font-weight: 900;
     font-size: 0.8em;
 }
 
-.twitter-user-feedback {
+.twitter-post__feedback {
     line-height: 1.5em;
     font-size: 0.8em;
 }
 
-.twitter-avatar-wrap {
+.twitter-post__avatar-wrap {
     float: left;
     height: 3em;
 }

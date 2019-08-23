@@ -4,13 +4,11 @@
     position: relative;
     background-size: cover;
     background-position: right;
-}
-
-.slide-show {
     text-align: center;
     position: relative;
     font-size: 1em;
 }
+
 
 .slide-control {
     padding: 2.39em 2em;
@@ -27,7 +25,6 @@
 
 .slide__title {
     display: block;
-    font-weight: 900;
     text-transform: uppercase;
     font-size: 1.875em;
 }
