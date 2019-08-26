@@ -1,0 +1,11 @@
+.introduction__header {
+    text-align: right;
+    width: 48.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 2em;
+    padding-right: 0.8em;
+    white-space: pre-line;
+    box-sizing:border-box;
+}

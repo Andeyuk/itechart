@@ -1,0 +1,12 @@
+.introduction-content {
+    text-align: left;
+    width: 48.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.3em;
+    box-sizing: border-box;
+    margin-top: 0.35em;
+    padding-left: 0.8em;
+    white-space: pre-line;
+}

@@ -1,0 +1,11 @@
+.introduction__btn {
+    background-color: #f1c40f;
+    border: none;
+    border-radius: 5px;
+    padding: 0.7em;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    margin-top: 2em;
+    margin-top: auto;
+}

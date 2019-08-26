@@ -1,0 +1,9 @@
+.footer {
+    background-color: rgb(58, 58, 58);
+    color: rgb(136, 136, 136);
+    padding: 3.5em 0 1.7em 0;
+    padding: 0 0 1.7em 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}

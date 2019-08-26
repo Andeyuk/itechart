@@ -1,0 +1,22 @@
+.media-info__part {
+    width: 50%;
+    flex-grow: 1;
+    margin: 0 auto;
+    margin-top: 2em;
+    padding: 0 1.7em;
+    min-width: 350px;
+    display: inline-block;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.media-info__part:first-of-type::after {
+    content: "";
+    background-color: rgba(141, 141, 141, 0.3);
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0px;
+    left: 100%;
+    display: block;
+}

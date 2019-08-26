@@ -1,0 +1,18 @@
+.search-form__input {
+    border: none;
+    background-color: rgb(241, 196, 15);
+    line-height: 1.875em;
+    color: rgb(254, 251, 239);
+    padding: 0 1.25em;
+    box-sizing: border-box;
+    width:0;
+    flex-grow:100;
+    flex-shrink: 100;
+}
+
+.search-form__input::placeholder {
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    font-style: italic;
+    font-size: 0.9em;
+}

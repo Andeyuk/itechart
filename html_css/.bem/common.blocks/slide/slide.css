@@ -1,0 +1,10 @@
+.slide{
+    background: rgb(113, 106, 114) url(../img/rope.jfif) no-repeat;
+    padding-bottom: 44.5%;
+    position: relative;
+    background-size: cover;
+    background-position: right;
+    text-align: center;
+    position: relative;
+    font-size: 1em;
+}

@@ -1,0 +1,12 @@
+.blog__avatar {
+    width: 4.2em;
+    height: 4.4em;
+    box-shadow:inset 0px 0px 10px 3px rgba(0, 0, 0, 0.342);
+    background-color: lightgrey;
+    background-image: url('../img/user-avatar.png');
+    background-position: center;
+    background-size: 150% auto;
+    float: left;
+    margin-right: 1.35em;
+    border-radius: 5px;
+}

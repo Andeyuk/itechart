@@ -1,0 +1,8 @@
+.introduction__title {
+    font-size: 1.6em;
+    font-weight: 800;
+    line-height: 1.4em;
+    overflow: hidden;
+    text-transform: uppercase;
+    color: #f1c40f;
+}

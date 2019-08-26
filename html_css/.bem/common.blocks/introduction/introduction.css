@@ -1,0 +1,7 @@
+.introduction {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 4.46em 1em 3em 1em;
+    font-size: 1em;
+}

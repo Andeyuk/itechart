@@ -12,22 +12,6 @@ body {
     border-radius: 5px;
 }
 
-.title {
-    font-weight: 900;
-    font-family: 'DejaVu Sans';
-}
-
-.subtitle {
-    font-family: 'DejaVu Sans';
-    font-weight: 300;
-}
-
-.text-content {
-    font-family: 'DejaVu Sans';
-    font-family: 'Source Sans Pro';
-    font-weight: 400;
-    color: #9d9d9d;
-}
 
 .page__header {
     font-size: 1em;
@@ -43,7 +27,7 @@ body {
     padding: 1.30em 0 0.5em 0;
 }
 
-.nav-list {
+.nav {
     font-size: 0.91em;
     letter-spacing: 3px;
     width: 66%;
@@ -53,7 +37,7 @@ body {
     justify-content: space-evenly;
 }
 
-.nav-list li {
+.nav__item {
     display: inline-block;
     padding: 0 0.5rem;
 }
@@ -81,5 +65,9 @@ body {
 .page__nav-icon{
     width:2em;
     height:2em;
+    display:none;
+}
+
+.nav__close-btn{
     display:none;
 }

@@ -4,7 +4,7 @@
     background: rgb(250, 250, 250);
 }
 
-.media-headers {
+.media-tabs {
     border-bottom: 1px solid rgba(202, 202, 202, 0.096);
     font-size: 1em;
     width: 100%;
@@ -13,7 +13,7 @@
     height:3.92em;
 }
 
-.media-header {
+.media-tabs__item  {
     color: #f1c40f;
     text-transform: uppercase;
     font-weight: 900;
@@ -26,10 +26,11 @@
     display:flex;
     align-items: center;
     box-sizing: border-box;
+    cursor: pointer;
     overflow: hidden;
 }
 
-.image {
+.media-info__image {
     padding-bottom: 38.2%;
     background-color: rgb(170, 163, 172);
     border-radius: 7px;
@@ -38,20 +39,19 @@
     z-index: 20;
 }
 
-.girl {
+.media-info__image_back_girl-1 {
     background: url('../img/girl.jpg');
-    background-size: 150% auto;
     background-position: 38% 11%;
-    max-width: 100%;
-}
-
-.girl-2 {
-    background: linear-gradient(105deg, #f1f0ecf8 20%, transparent 53%, transparent 100%), url('../img/girl2.jpg');
     background-size: 150% auto;
-    background-position: 8% 34%;
 }
 
-.active {
+.media-info__image_back_girl-2 {
+    background: linear-gradient(105deg, #f1f0ecf8 20%, transparent 53%, transparent 100%), url('../img/girl2.jpg');
+    background-position: 8% 34%;
+    background-size: 150% auto;
+}
+
+.media-tabs__item--active {
     background-color: white;
     position: relative;
     top: 1px;
@@ -59,21 +59,22 @@
     box-shadow: 1px -1px 2px rgba(201, 201, 201, 0.377);
 }
 
-.info {
+.media-info__inner {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     background: #fff;
     padding: 0em 0 1.4em 0;
     box-shadow: 2px 2px 3px 1px rgba(141, 141, 141, 0.137);
+    overflow: hidden;
 }
 
-.info-text {
+.media-info__text {
     line-height: 1.5em;
     margin-top: 1.5em;
 }
 
-.half-info {
+.media-info__part {
     width: 50%;
     flex-grow: 1;
     margin: 0 auto;
@@ -83,10 +84,9 @@
     display: inline-block;
     box-sizing: border-box;
     position: relative;
-    overflow: hidden;
 }
 
-.half-info:first-of-type::after {
+.media-info__part:first-of-type::after {
     content: "";
     background-color: rgba(141, 141, 141, 0.3);
     position: absolute;
@@ -98,7 +98,7 @@
 }
 
 
-.media-header-icon {
+.media-tabs__icon {
     display: inline-block;
     height: 1em;
     color: #8b8181;

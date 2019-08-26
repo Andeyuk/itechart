@@ -1,0 +1,8 @@
+.media-info__image {
+    padding-bottom: 38.2%;
+    background-color: rgb(170, 163, 172);
+    border-radius: 7px;
+    position: relative;
+    overflow: hidden;
+    z-index: 20;
+}

@@ -47,17 +47,20 @@
     src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url('../fonts/SourceSansPro-SemiBold.ttf') format('truetype');
 }
 
-.title {
+
+
+/**/
+.text_title{
     font-weight: 900;
     font-family: 'DejaVu Sans';
 }
 
-.subtitle {
+.text_subtitle {
     font-family: 'DejaVu Sans';
     font-weight: 300;
 }
 
-.text-content {
+.text_common {
     font-family: 'DejaVu Sans';
     font-family: 'Source Sans Pro';
     font-weight: 400;

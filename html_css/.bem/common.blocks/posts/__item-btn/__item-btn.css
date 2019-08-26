@@ -1,0 +1,10 @@
+.posts__item-btn {
+    border: none;
+    background-color: rgb(241, 196, 15);
+    color: rgb(254, 251, 239);
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    padding: 0.5em;
+}
