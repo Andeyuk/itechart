@@ -1,0 +1,10 @@
+.media-info__image_back_girl-2 {
+    background: linear-gradient(
+        105deg,
+      #f1f0ecf8 20%,
+        transparent 53%,
+        transparent 100%),
+        url('../img/girl2.jpg');
+    background-position: 38% 11%;
+    background-size: 150% auto;
+}

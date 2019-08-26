@@ -1,0 +1,16 @@
+.media-tabs__item  {
+    color #f1c40f;
+    text-transform uppercase;
+    font-weight 900;
+    padding 0 3.2em 0em 2em;
+    background-color #f2f2f2;
+    display inline-block;
+    border-top-left-radius 6px;
+    border-top-right-radius 6px;
+    margin-right 5px;
+    displayflex;
+    align-items center;
+    box-sizing border-box;
+    cursor pointer;
+    overflow hidden;
+}

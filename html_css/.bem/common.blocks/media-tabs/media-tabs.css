@@ -1,0 +1,8 @@
+.media-tabs {
+    border-bottom: 1px solid rgba(202, 202, 202, 0.096);
+    font-size: 1em;
+    width: 100%;
+    display: flex;
+    white-space: nowrap;
+    height:3.92em;
+}

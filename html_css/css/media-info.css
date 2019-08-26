@@ -30,7 +30,7 @@
     overflow: hidden;
 }
 
-.content-part__image {
+.media-info__image {
     padding-bottom: 38.2%;
     background-color: rgb(170, 163, 172);
     border-radius: 7px;
@@ -39,13 +39,13 @@
     z-index: 20;
 }
 
-.content-part__image_back_girl-1 {
+.media-info__image_back_girl-1 {
     background: url('../img/girl.jpg');
     background-position: 38% 11%;
     background-size: 150% auto;
 }
 
-.content-part__image_back_girl-2 {
+.media-info__image_back_girl-2 {
     background: linear-gradient(105deg, #f1f0ecf8 20%, transparent 53%, transparent 100%), url('../img/girl2.jpg');
     background-position: 8% 34%;
     background-size: 150% auto;
@@ -59,7 +59,7 @@
     box-shadow: 1px -1px 2px rgba(201, 201, 201, 0.377);
 }
 
-.media-content {
+.media-info__inner {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -69,12 +69,12 @@
     overflow: hidden;
 }
 
-.content-part__text {
+.media-info__text {
     line-height: 1.5em;
     margin-top: 1.5em;
 }
 
-.content-part {
+.media-info__part {
     width: 50%;
     flex-grow: 1;
     margin: 0 auto;
@@ -86,7 +86,7 @@
     position: relative;
 }
 
-.content-part:first-of-type::after {
+.media-info__part:first-of-type::after {
     content: "";
     background-color: rgba(141, 141, 141, 0.3);
     position: absolute;
@@ -98,7 +98,7 @@
 }
 
 
-.media-tab__icon {
+.media-tabs__icon {
     display: inline-block;
     height: 1em;
     color: #8b8181;

@@ -108,10 +108,6 @@
 
     .input-wrap {
         width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        justify-content: space-between;
     }
 
     .media-info {
@@ -124,7 +120,7 @@
         height: 100%;
     }
 
-    .slide-header {
+    .slide-control__header {
         width: 100%;
         order: 5;
     }
@@ -133,7 +129,7 @@
         order: 10;
     }
 
-    .content-part {
+    .media-info__part {
         min-width: 250px;
     }
 

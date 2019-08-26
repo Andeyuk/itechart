@@ -14,7 +14,6 @@ if (navigationIcon && navigationBlock) {
     })
 
     addEventListener('click', (e) => {
-        console.log(e.target);
         if (!e.target.closest('.nav')
             && !e.target.closest('.page__nav-icon')
             && triggered) {

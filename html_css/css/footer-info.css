@@ -16,8 +16,7 @@
     box-sizing: border-box;
 }
 
-.blog,
-.twitter-blog {
+.blog{
     flex-basis: 24%;
     min-width: 300px;
 }
@@ -37,7 +36,7 @@
     white-space: nowrap;
 }
 
-.copyright {
+.footer__copyright {
     text-align: center;
     background-color: #f1c40f;
     color: rgb(255, 254, 247);
@@ -48,12 +47,12 @@
     font-family: 'Source Sans Pro';
 }
 
-.copyright__dev-link {
+.footer__dev-link {
     text-decoration: none;
     color: rgba(39, 39, 39, 0.829);
 }
 
-.post-avatar {
+.blog__avatar {
     width: 4.2em;
     height: 4.4em;
     box-shadow:inset 0px 0px 10px 3px rgba(0, 0, 0, 0.342);
@@ -63,19 +62,19 @@
     background-size: 150% auto;
 }
 
-.blog-post__avatar{
+.blog__avatar{
     float: left;
     margin-right: 1.35em;
     border-radius: 5px;
 }
 
-.blog-post {
+.blog__post {
     border-top: 1px solid rgba(128, 128, 128, 0.151);
     padding: 1.63em 0 1.5em 0;
     color: #9d9d9d;
 }
 
-.blog-post:nth-of-type(2){
+.blog__post:nth-of-type(2){
     border-top: none;
 }
 
@@ -85,7 +84,7 @@
     font-family: 'Source Sans Pro';
 }
 
-.post__user-name {
+.blog__user-name {
     border-bottom: 1px solid grey;
     line-height: 1em;
     font-size: 0.8em;
@@ -94,12 +93,12 @@
     cursor:pointer;
 }
 
-.post__user-name-wrap {
+.blog__user-name-wrap {
     padding-bottom: 0.5em;
     padding-top: 0.15em;
 }
 
-.user-feedback {
+.blog__user-feedback {
     font-size: 0.8em;
     line-height: 1.45em;
     height: 2.9em;

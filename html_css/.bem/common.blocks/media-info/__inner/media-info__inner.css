@@ -1,0 +1,10 @@
+
+.media-info__inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background: #fff;
+    padding: 0em 0 1.4em 0;
+    box-shadow: 2px 2px 3px 1px rgba(141, 141, 141, 0.137);
+    overflow: hidden;
+}

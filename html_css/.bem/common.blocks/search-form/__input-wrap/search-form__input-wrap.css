@@ -1,0 +1,11 @@
+.search-form__input-wrap{
+    border: 2px solid rgb(255, 219, 76);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    height:2.6em;
+    box-sizing: border-box;
+    margin: 1.63em auto 1.875em auto;
+    width:30%;
+    min-width:255px;
+}

@@ -1,0 +1,10 @@
+.footer__copyright {
+    text-align: center;
+    background-color: #f1c40f;
+    color: rgb(255, 254, 247);
+    font-weight: 700;
+    padding: 2.2em 1em;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: 'Source Sans Pro';
+}
