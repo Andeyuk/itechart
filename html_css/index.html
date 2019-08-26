@@ -17,7 +17,7 @@
   </head>
 
   <body>
-    <div class="page">
+    <div class="page" id="page">
       <header class="page__header">
         <svg
           class="page__nav-icon"
@@ -42,6 +42,21 @@
           <ul class="nav" id="nav">
             <li class="nav__item">
               <a href="#" class="nav__link nav__link--current">home</a>
+              <svg
+                class="nav__close-btn"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="times"
+                role="img"
+                viewBox="0 0 352 512"
+              >
+                <path
+                  d="M242.7 256l100.1-100.1c12.3-12.3 12.3-32.2 0-44.5l-22.2-22.2c-12.3-12.3-32.2-12.3-44.5 0L176 189.3 75.9 89.2c-12.3-12.3-32.2-12.3-44.5 0L9.2 111.5c-12.3 12.3-12.3 32.2 0 44.5L109.3 256 9.2 356.1c-12.3 12.3-12.3 32.2 0 44.5l22.2 22.2c12.3 12.3 32.2 12.3 44.5 0L176 322.7l100.1 100.1c12.3 12.3 32.2 12.3 44.5 0l22.2-22.2c12.3-12.3 12.3-32.2 0-44.5L242.7 256z"
+                  fill="#acacac"
+                />
+              </svg>
             </li>
             <li class="nav__item">
               <a href="#" class="nav__link">about</a>
@@ -256,7 +271,7 @@
 
       <!--section-->
       <section class="media-info">
-        <ul class="media-tabs">
+        <ul class="media-tabs" id="media-tabs">
           <li class="media-tabs__item media-tabs__item--active">
             <p>
               <svg
@@ -320,9 +335,7 @@
         </ul>
         <div class="media-info__inner">
           <div class="media-info__part">
-            <div
-              class="media-info__image media-info__image_back_girl-1"
-            ></div>
+            <div class="media-info__image media-info__image_back_girl-1"></div>
             <p class="media-info__text text_common">
               Sed egestas, ante et vulputate volutpat, eros pede semper est, Sed
               egestas, ante et vulputaadawte volutpat, awd awd a awd eros pede
@@ -332,9 +345,7 @@
             </p>
           </div>
           <div class="media-info__part">
-            <div
-              class="media-info__image media-info__image_back_girl-2"
-            ></div>
+            <div class="media-info__image media-info__image_back_girl-2"></div>
             <p class="media-info__text text_common">
               Sed egestas, ante et vulputate volutpat, eros pede semper est, Sed
               egestas, ante et vulputate volutpat, eros pede semper est, awd awd
@@ -529,5 +540,6 @@
       </footer>
     </div>
     <script src="js/header.js"></script>
+    <script src="js/tabs.js"></script>
   </body>
 </html>

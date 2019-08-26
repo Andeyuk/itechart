@@ -9,16 +9,20 @@ if (navigationIcon && navigationBlock) {
         if (!navigationBlock.hidden){
             navigationBlock.style.display = 'flex';
             triggered = true;
+
         }
 
     })
 
     addEventListener('click', (e) => {
+        console.log(e.target);
         if (!e.target.closest('.nav')
             && !e.target.closest('.page__nav-icon')
-            && triggered) {
-            navigationBlock.style.display = 'none';
-            triggered = false
+            && triggered
+            || e.target.closest('.nav__close-btn')) {
+
+                navigationBlock.style.display = 'none';
+                triggered = false
         }
     })
 }

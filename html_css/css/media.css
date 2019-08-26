@@ -153,14 +153,25 @@
         flex-direction: column;
         justify-content: stretch;
         margin: 0;
-        width: 80%;
+        width: 70%;
         height: 100%;
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 1000;
+        z-index: 10000;
         display: none;
         background-color: rgb(58, 58, 58);
+        padding-top:1em;
+    }
+
+    .nav__close-btn {
+        display: block;
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
     }
 
     .page__nav-icon {
@@ -176,6 +187,10 @@
     .nav__link {
         color: #acacac;
         font-weight: 900;
+    }
+
+    .nav__link--current{
+        color: #eedd49;
     }
 }
 

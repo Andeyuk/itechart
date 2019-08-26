@@ -67,3 +67,7 @@ body {
     height:2em;
     display:none;
 }
+
+.nav__close-btn{
+    display:none;
+}
