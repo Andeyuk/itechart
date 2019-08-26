@@ -88,7 +88,7 @@
 
 .media-info__part:first-of-type::after {
     content: "";
-    background-color: rgba(141, 141, 141, 0.3);
+    background-color: rgba(141, 141, 141, 0.13);
     position: absolute;
     width: 1px;
     height: 100%;
