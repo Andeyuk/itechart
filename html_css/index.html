@@ -76,8 +76,14 @@
 
       <!--section-->
       <section>
-        <div class="slide">
-          <div class="slide-control">
+        <div class="slide" id="slide">
+          <ul class="slide-row" id="slide-row">
+             <li class="sub-slide"></li>
+             <li class="sub-slide"></li>
+             <li class="sub-slide"></li>
+             <li class="sub-slide"></li>
+          </ul>
+          <div class="slide-control" id="slide-control">
             <svg
               class="slide-control__icon slide-control__icon_direction_left"
               aria-hidden="true"
@@ -87,6 +93,8 @@
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
+              data-direction = "left"
+              data-boolean-direction = "-1"
             >
               <path
                 fill="currentColor"
@@ -110,6 +118,8 @@
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
+              data-direction = "right"
+              data-boolean-direction= "1"
             >
               <path
                 fill="currentColor"
@@ -541,5 +551,6 @@
     </div>
     <script src="js/header.js"></script>
     <script src="js/tabs.js"></script>
+    <script src="js/slide.js"></script>
   </body>
 </html>
