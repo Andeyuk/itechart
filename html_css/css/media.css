@@ -14,7 +14,7 @@
     }
 
     .nav-list {
-        font-size: 1rem;
+        font-size: 16px;
     }
 
     .slide {
@@ -161,7 +161,7 @@
         z-index: 10000;
         display: none;
         background-color: rgb(58, 58, 58);
-        padding-top:1em;
+        padding-top: 1em;
     }
 
     .nav__close-btn {
@@ -185,12 +185,12 @@
     }
 
     .nav__link {
-        color: #acacac;
+        color: rgba(172,172,172,1.0);
         font-weight: 900;
     }
 
-    .nav__link--current{
-        color: #eedd49;
+    .nav__link--current {
+        color: rgba(238,221,73,1.0);
     }
 }
 

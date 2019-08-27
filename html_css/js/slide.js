@@ -4,10 +4,10 @@ let slide = document.getElementById('slide-row');
 let slideControl = document.getElementById('slide-control');
 console.log(slide,slideControl);
 
-if(slide && slideControl)
-        slideControl.addEventListener('click',(e)=>{
+if (slide && slideControl)
+    slideControl.addEventListener('click',(e)=>{
         console.log(e);
-        if(e.target.closest('svg')){
+        if (e.target.closest('svg')){
             console.log(e.target.closest('svg').dataset.booleanDirection)
             let boolDirection = e.target.closest('svg').dataset.booleanDirection;
             slide.firstElementChild.style.transitionDuration = '2s';
@@ -15,7 +15,7 @@ if(slide && slideControl)
         }
     })
 
-    function moveSlide(slideNode, modifier, duration = '2s'){
-        slideNode.style.transitionDuration = duration;
-        slideNode.style.transform = `translateX(${modifier*100}%)`; 
-    }
+function moveSlide(slideNode, modifier, duration = '2s'){
+    slideNode.style.transitionDuration = duration;
+    slideNode.style.transform = `translateX(${modifier*100}%)`; 
+}
