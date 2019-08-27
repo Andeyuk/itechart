@@ -9,7 +9,7 @@
 }
 
 .footer__column {
-    padding: 0 1.5rem;
+    padding: 0 24px;
     margin-top: 3.5em;
     box-sizing: border-box;
 }
@@ -159,6 +159,6 @@
 
 .address__link {
     color: rgba(241,196,15,1.0);
-    font-size: 0.8rem;
+    font-size: 13px;
     text-decoration: none;
 }
