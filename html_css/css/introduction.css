@@ -15,7 +15,7 @@
     margin-bottom: 2em;
     padding-right: 0.8em;
     white-space: pre-line;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 .introduction__title {
@@ -24,7 +24,7 @@
     line-height: 1.4em;
     overflow: hidden;
     text-transform: uppercase;
-    color: #f1c40f;
+    color: rgb(241, 196, 15);
 }
 
 .introduction__subtitle {
@@ -36,12 +36,9 @@
 }
 
 .introduction__btn {
-    background-color: #f1c40f;
-    border: none;
-    border-radius: 5px;
     padding: 0.7em;
     text-transform: uppercase;
-    color: white;
+    color: rgb(255, 255, 255);
     letter-spacing: 1px;
     margin-top: 2em;
     margin-top: auto;
@@ -63,7 +60,7 @@
 .introduction-content__text-top {
     text-decoration: underline;
     font-style: italic;
-    color: #857d7d;
+    color: rgba(133,125,125,1.0);
     line-height: 1.4em;
 }
 

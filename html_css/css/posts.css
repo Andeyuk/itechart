@@ -44,11 +44,8 @@
 }
 
 .posts__item-btn {
-    border: none;
-    background-color: rgb(241, 196, 15);
     color: rgb(254, 251, 239);
     text-transform: uppercase;
-    border-radius: 5px;
     font-size: 0.9em;
     letter-spacing: 1px;
     padding: 0.5em;
@@ -58,7 +55,7 @@
     height: 4.5em;
     width: 4.5em;
     min-width: 4.5em;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     box-shadow: 1px 1px 3px 1px rgb(226, 226, 226);
     margin: 0.1em 0;
     border-radius: 100%;
@@ -69,6 +66,6 @@
 
 .posts__icon {
     width: 1.5em;
-    height:1.5em;
-    color: #f1c40f;
+    height: 1.5em;
+    color: rgba(241,196,15,1.0);
 }

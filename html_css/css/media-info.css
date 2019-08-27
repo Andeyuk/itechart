@@ -1,4 +1,3 @@
-
 .media-info {
     padding: 3.6em 2em 3.8em 2em;
     background: rgb(250, 250, 250);
@@ -10,20 +9,20 @@
     width: 100%;
     display: flex;
     white-space: nowrap;
-    height:3.92em;
+    height: 3.92em;
 }
 
-.media-tabs__item  {
-    color: #f1c40f;
+.media-tabs__item {
+    color: rgba(241,196,15,1.0);
     text-transform: uppercase;
     font-weight: 900;
     padding: 0 3.2em 0em 2em;
-    background-color: #f2f2f2;
+    background-color: rgba(242,242,242,1.0);
     display: inline-block;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     margin-right: 5px;
-    display:flex;
+    display: flex;
     align-items: center;
     box-sizing: border-box;
     cursor: pointer;
@@ -46,13 +45,13 @@
 }
 
 .media-info__image_back_girl-2 {
-    background: linear-gradient(105deg, #f1f0ecf8 20%, transparent 53%, transparent 100%), url('../img/girl2.jpg');
+    background: linear-gradient(105deg, rgba(241,240,236,0.97) 20%, transparent 53%, transparent 100%), url('../img/girl2.jpg');
     background-position: 8% 34%;
     background-size: 150% auto;
 }
 
 .media-tabs__item--active {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     position: relative;
     top: 1px;
     padding: 1.4em 2em 1.3em 2em;
@@ -63,7 +62,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    background: #fff;
+    background: rgba(255,255,255,1.0);
     padding: 0em 0 1.4em 0;
     box-shadow: 2px 2px 3px 1px rgba(141, 141, 141, 0.137);
     overflow: hidden;
@@ -97,16 +96,15 @@
     display: block;
 }
 
-
 .media-tabs__icon {
     display: inline-block;
     height: 1em;
-    color: #8b8181;
+    color: rgba(139,129,129,1.0);
     width: auto;
     margin-right: 0.5em;
     position: relative;
     top: 0.1em;
     width: 1rem;
     height: 1rem;
-    min-width:1rem;
+    min-width: 1rem;
 }
