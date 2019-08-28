@@ -2,7 +2,6 @@
 
 let slideRow = document.getElementById('slide-row');
 let slideControl = document.getElementById('slide-control');
-console.log(slide,slideControl);
 
 let CircledList={
     last:null,
@@ -22,7 +21,7 @@ let CircledList={
         this.last = newObj;
     },
     getTop(){
-        return this.first.obj;
+        return this.first;
     },
     moveNext(){
         this.first = this.first.next;
@@ -47,37 +46,43 @@ function slideWorker(slideNodes){
 }
 slideWorker(slideRow.children);
 
-if(slide && slideControl)
-        slideControl.addEventListener('click',(e)=>{
-        if(e.target.closest('svg')){
+if(slide && slideControl){
+    let transitionEnded = true;
+
+    poseSlides();
+
+    slideControl.addEventListener('click',(e)=>{
+        console.log(window.event);
+        if(e.target.closest('svg') && transitionEnded){
             let boolDirection = e.target.closest('svg').dataset.booleanDirection;
-            if (boolDirection > 0){
-                CircledList.nextToTop();
-                moveSlide(CircledList.getTop(), boolDirection);
+
+            if (boolDirection>0){
+                moveSlide(CircledList.getTop().pre.obj, boolDirection);
                 CircledList.moveNext();
             }
             else {
-                CircledList.preToTop()
-                moveSlide(CircledList.getTop(), boolDirection);
+                moveSlide(CircledList.getTop().next.obj, boolDirection);
                 CircledList.movePre();
             }
-            
 
+            poseSlides();
+            transitionEnded = false;
         }
     })
 
+    slideRow.addEventListener('transitionend',(e)=>{
+        if(e.target.matches('.sub-slide')) 
+        transitionEnded = true;
+    })
+}
     function moveSlide(slideNode, modifier, duration = '2s'){
-        slideNode.style.transitionDuration += duration;
+        slideNode.style.transitionDuration = duration;
         slideNode.style.transform += `translateX(${modifier*100}%)`; 
     }
 
-    function toLeft(slideNode){
-        slideNode.style = {};
-        slideNode.style.left = '100%';
+    function poseSlides(){
+        CircledList.getTop().next.obj.style={};
+        CircledList.getTop().next.obj.style.left='100%';
+        CircledList.getTop().pre.obj.style={};
+        CircledList.getTop().pre.obj.style.left='-100%';
     }
-
-    function toRight(slideNode){
-        slideNode.style = {};
-        slideNode.style.left = '-100%';
-    }
-
