@@ -22,7 +22,7 @@ let CircledList={
         this.last = newObj;
     },
     getTop(){
-        return this.last;
+        return this.first.obj;
     },
     moveNext(){
         this.first = this.first.next;
@@ -31,6 +31,12 @@ let CircledList={
     movePre(){
         this.first = this.first.pre;
         this.last = this.last.pre;
+    },
+    nextToTop(){
+        return this.first.next.obj
+    },
+    preToTop(){
+        return this.first.pre.obj
     }
 }
 
@@ -43,16 +49,35 @@ slideWorker(slideRow.children);
 
 if(slide && slideControl)
         slideControl.addEventListener('click',(e)=>{
-        console.log(e);
         if(e.target.closest('svg')){
-            console.log(e.target.closest('svg').dataset.booleanDirection)
             let boolDirection = e.target.closest('svg').dataset.booleanDirection;
-            slideRow.firstElementChild.style.transitionDuration = '2s';
-            slideRow.firstElementChild.style.transform = `translateX(${boolDirection*100}%)`; 
+            if (boolDirection > 0){
+                CircledList.nextToTop();
+                moveSlide(CircledList.getTop(), boolDirection);
+                CircledList.moveNext();
+            }
+            else {
+                CircledList.preToTop()
+                moveSlide(CircledList.getTop(), boolDirection);
+                CircledList.movePre();
+            }
+            
+
         }
     })
 
     function moveSlide(slideNode, modifier, duration = '2s'){
-        slideNode.style.transitionDuration +='0s,' + duration;
+        slideNode.style.transitionDuration += duration;
         slideNode.style.transform += `translateX(${modifier*100}%)`; 
     }
+
+    function toLeft(slideNode){
+        slideNode.style = {};
+        slideNode.style.left = '100%';
+    }
+
+    function toRight(slideNode){
+        slideNode.style = {};
+        slideNode.style.left = '-100%';
+    }
+
