@@ -62,42 +62,45 @@ let ArrayProcessor = {
         else  
             return arrSorted[(len - 1)/2];
     },
-    getMaxSubSeq(arr, isIncreasing = true){
+    getMaxSubSeq(arr, isIncreasing){
         let seqIncr = [];
         let seqDecr = [];
         let tmpSequence = [arr[0]];
         let curEl = arr[0];
         for (let i = 1; i < arr.length;){
-            console.log('compare',curEl , arr[i] )
             while (curEl <= arr[i] && i < arr.length){
-                console.log('compare',curEl , arr[i] )
+                console.log('compare inc',curEl , arr[i] )
                 tmpSequence.push(arr[i]);
                 curEl = arr[i];
                 i++;
+                console.log('iter');
             }
 
-            console.log('compare inc', tmpSequence, seqIncr)
+            console.log('compare inc seq', tmpSequence, seqIncr)
             if (seqIncr.length < tmpSequence.length){
                 seqIncr = [...tmpSequence];
             }
             tmpSequence = [curEl];
             console.log('reslt inc', tmpSequence, seqIncr, curEl, arr[i]);
 
-            console.log('compare decr', curEl, arr[i] )
+            //I need to skip decreasing seq, though i'd like to save it
             while (curEl >= arr[i] && i < arr.length){
+                console.log('compare decr', curEl, arr[i] )
                 tmpSequence.push(arr[i]);
                 curEl = arr[i];
                 i++;
-                console.log('decr', curEl, arr[i])
+                console.log('iter');
             }
 
-            console.log('compare dec', tmpSequence, seqDecr)
+            console.log('compare dec seq', tmpSequence, seqDecr)
             if (seqDecr.length < tmpSequence.length){
                 seqDecr = [...tmpSequence];
             }
             tmpSequence = [curEl];
             console.log('reslt dec', tmpSequence, seqDecr, curEl, arr[i])
+            console.log('iter');
         }
+
         if (seqIncr.length == 1) seqIncr.pop();
         if (seqDecr.length == 1) seqDecr.pop();
         return isIncreasing ? seqIncr : seqDecr;
