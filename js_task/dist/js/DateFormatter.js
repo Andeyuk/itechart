@@ -18,26 +18,24 @@ class DateFormatter extends Date{
             if (!regStr) regStr = "MMDDYYYY";
             console.log('reg work');
 
-            let matched = [];
-            let vaues = [];
-            
-            matched.push(regStr.match(/Y+/));
-            matched.push(regStr.match(/D+/));
-            matched.push(regStr.match(/M+/));
+            let matchedYear = regStr.match(/Y+/);
+            let matchedDay = regStr.match(/D+/);
+            let matchedMonth = regStr.match(/M+/);
 
-           
-            if (convertRegStr){
-                for (let i of [...OrderedMatch]){
-                    let dateParam = getValue(i);
-                    convertRegStr = convertRegStr.replace(i[0], dateParam);
-                }
-                let OrderedMatch= [...matched].sort((a,b) => a.index - b.index);
-            }
+            let matched = [matchedYear, matchedDay, matchedMonth];
 
-            let [year, day, month] = [...matched];
+            let values = [
+                getValue(matchedYear),
+                getValue(matchedDay),
+                getValue(matchedMonth)
+            ];
 
-            super(year, day, month);
+            if (convertRegStr)
+                convertRegStr = formatDate(matched, convertRegStr);
+
+            super(...values);
             this.formatted = convertRegStr;
+
         } else {
             if (!regStr) regStr = "MM/DD/YYYY";
             
@@ -59,15 +57,13 @@ class DateFormatter extends Date{
             );
             return val;
         }
-
-        function getIndex(match){
-            return regStr.match(match).index;
-        }
-        function getParams(...matches){
-            let reslts = [];
-            for (let i of [...matches])
-                reslts.push(getDateParam(i));
-            return reslts
+        function formatDate(matched, convertRegStr){
+            let OrderedMatch = [...matched].sort((a,b) => a.index - b.index);
+            for (let i of [...OrderedMatch]){
+                let dateParam = getValue(i);
+                convertRegStr = convertRegStr.replace(i[0], dateParam);
+            }
+            return convertRegStr
         }
     }
    /* getYear(){
