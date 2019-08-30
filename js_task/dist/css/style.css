@@ -1,0 +1,59 @@
+body {
+    background-color: rgb(95, 107, 121);
+}
+
+.task {
+    width: 60%;
+    margin: 30px auto;
+    padding: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.13);
+    background: rgb(244, 249, 255);
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+
+}
+
+.task__title {
+    text-align: center;
+}
+
+.task__content {
+    white-space: pre-wrap;
+}
+
+.task__work-space {
+    display: flex;
+    width: 80%;
+    margin: 40px auto;
+}
+
+.work-space__output-wrap {
+    margin-left: auto;
+    min-width: 300px;
+}
+
+.work-space__output {
+    border: 1px solid rgb(148, 148, 148);
+    background-color: rgb(244, 249, 255);
+    text-align: center;
+    line-height: 32px;
+    padding : 16px;
+    white-space: pre-line;
+}
+
+.work-space__input{
+    background-color:rgb(244, 249, 255);
+    border: 1px solid rgb(148, 148, 148);
+    height:2em;
+    padding: 0 0.5em;
+    min-width: 300px;
+    width:100%;
+    box-sizing: border-box;
+}
+
+.text__title {
+    font-weight: 600;
+    font-size: 1.3em;
+    color: black;
+    font-family: 'Arial Narrow', Arial;
+}
