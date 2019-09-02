@@ -229,13 +229,18 @@ var ArrayProcessor = {
 /*!*********************************!*\
   !*** ./src/js/DateFormatter.js ***!
   \*********************************/
-/*! exports provided: DateFormatter */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter", function() { return DateFormatter; });
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -266,58 +271,111 @@ var DateFormatter =
 function (_Date) {
   _inherits(DateFormatter, _Date);
 
-  function DateFormatter(dateStr) {
+  function DateFormatter(dateStr, regStr, convertRegStr) {
     var _this;
-
-    var regStr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "MMDDYYYY";
 
     _classCallCheck(this, DateFormatter);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr));
-    var matchYear = regStr.match(/Y+/);
-    _this.year = dateStr.toString().slice(matchYear.index, matchYear.index + matchYear[0].length);
-    var matchDay = regStr.match(/D+/);
-    _this.day = dateStr.toString().slice(matchDay.index, matchDay.index + matchDay[0].length);
-    var matchMonth = regStr.match(/M+/);
-    _this.month = dateStr.toString().slice(matchMonth.index, matchMonth.index + matchMonth[0].length);
-    return _this;
+    //case for numbers and not valid args
+    if (!dateStr.length) return _possibleConstructorReturn(_this, _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr)));
+
+    if (!regStr) {
+      var separator = dateStr.match(/[^a-zA-Z0-9]/) || '-';
+      console.log(separator);
+      regStr = "MM".concat(separator, "DD").concat(separator, "YYYY");
+    }
+
+    console.log('regex', regStr); //year month day - ordere params for new Date()
+
+    var matched = [regStr.match(/Y+/), regStr.match(/M+/), regStr.match(/D+/)];
+    var values = matched.map(function (el) {
+      if (el[0] == "MM") return getValue(el, dateStr) - 1;
+      return getValue(el, dateStr);
+    });
+    console.log(values);
+    console.log(matched);
+
+    if (convertRegStr) {
+      convertRegStr = formatDate(matched, convertRegStr, dateStr);
+    }
+
+    dateStr = dateStr.toString();
+    var matchedWord = dateStr.match(/[a-zA-Z]+/); //don't realy wont to deal with month names
+
+    if (matchedWord) {
+      console.log('word detected', matchedWord);
+      return _possibleConstructorReturn(_this, _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr)));
+    }
+
+    dateStr = dateStr.match(/\d+/g);
+    console.log(dateStr); //length 1 => no separator
+
+    if (dateStr.length == 1) {
+      var _console, _getPrototypeOf2;
+
+      console.log('reg work');
+
+      (_console = console).log.apply(_console, ['parsed vals'].concat(_toConsumableArray(values)));
+
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
+      _this.formattedDate = convertRegStr;
+    } else {
+      if (dateStr.length > 3) {
+        var _getPrototypeOf3;
+
+        _this = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf3, [this].concat(_toConsumableArray(dateStr))));
+      } else {
+        var _getPrototypeOf4;
+
+        _this = _possibleConstructorReturn(this, (_getPrototypeOf4 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf4, [this].concat(_toConsumableArray(values))));
+        _this.formattedDate = convertRegStr;
+      }
+    }
+
+    function getValue(matched, dateStr) {
+      var val = dateStr.toString().slice(matched.index, matched.index + matched[0].length);
+      return val;
+    }
+
+    function formatDate(matched, convertRegStr, dateStr) {
+      var OrderedMatch = _toConsumableArray(matched).sort(function (a, b) {
+        return a.index - b.index;
+      });
+
+      for (var _i = 0, _arr = _toConsumableArray(OrderedMatch); _i < _arr.length; _i++) {
+        var i = _arr[_i];
+        var dateParam = getValue(i, dateStr);
+        convertRegStr = convertRegStr.replace(i[0], dateParam);
+      }
+
+      return convertRegStr;
+    }
+
+    return _possibleConstructorReturn(_this);
   }
 
   _createClass(DateFormatter, [{
-    key: "getYear",
-    value: function getYear() {
-      return parseInt(this.year);
-    }
-  }, {
-    key: "getDay",
-    value: function getDay() {
-      return parseInt(this.day);
-    }
-  }, {
-    key: "getMonth",
-    value: function getMonth() {
-      return parseInt(this.month);
-    }
-  }, {
-    key: "getStrMonth",
-    value: function getStrMonth() {
-      return this.month;
-    }
-  }, {
     key: "getFormattedMonth",
     value: function getFormattedMonth() {
-      var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      return month[parseInt(this.month - 1)];
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      return months[this.getMonth()];
     }
   }, {
-    key: "getDate",
-    value: function getDate() {
-      return "".concat(this.getStrMonth(), "-").concat(this.getDay(), "-").concat(this.getYear());
+    key: "getStringDate",
+    value: function getStringDate() {
+      if (this.formattedDate) return this.formattedDate;
+      return "".concat(this.getFullYear(), "-").concat(this.getMonth(), "-").concat(this.getDate());
     }
   }, {
     key: "getFormattedDate",
     value: function getFormattedDate() {
-      return "".concat(this.getFormattedMonth(), " ").concat(this.getDay(), " ").concat(this.getYear());
+      return "".concat(this.getDate(), " ").concat(this.getFormattedMonth(), " ").concat(this.getFullYear());
+    }
+  }, {
+    key: "getFormattedDay",
+    value: function getFormattedDay() {
+      var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      return days[this.getUTCDay()];
     }
   }]);
 
@@ -375,13 +433,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_ArrayProcessor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/ArrayProcessor */ "./src/js/ArrayProcessor.js");
 /* harmony import */ var _js_Helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/Helper */ "./src/js/Helper.js");
 /* harmony import */ var _js_DateFormatter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/DateFormatter */ "./src/js/DateFormatter.js");
+/* harmony import */ var _js_DateFormatter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_DateFormatter__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 'use strict';
 
-var input = document.getElementById('work-space__input');
-var output = document.getElementById('work-space__output');
+var input = document.getElementById('APT__input');
+var output = document.getElementById('APT__output');
 input.addEventListener('change', function () {
   var numbers = this.value.match(/-?\d+/g);
   console.log('lol');
