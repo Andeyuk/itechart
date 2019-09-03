@@ -1,6 +1,9 @@
+/** 
+ * @param {number = 1, 2, 3, 4 | string = "symbol", "word", "sentence", "nowrap"} whiteSpace  
+ */ 
 function textFormatter(string, maxLength, maxRows, whiteSpace) {
     if (
-        (!maxLength && (whiteSpace != 3 || whiteSpace != 'line')) ||
+        (!maxLength && (whiteSpace != 3 || whiteSpace != 'sentence')) ||
         (whiteSpace == 4 || whiteSpace == 'nowrap')
     )
         return string;
@@ -9,7 +12,7 @@ function textFormatter(string, maxLength, maxRows, whiteSpace) {
 
     let rows = [];
     let shift = 0;
-    //ignore max length coz it wouild be wrapped by symbol or word not line
+    //ignore max length coz it wouild be wrapped by symbol or word not sentence
     if (whiteSpace == 3 || whiteSpace == 'line')
         return string.match(/[^\.]+[\.]?[\ ]?/g);
 
