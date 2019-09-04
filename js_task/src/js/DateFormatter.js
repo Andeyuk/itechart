@@ -11,7 +11,7 @@ class DateFormatter extends Date{
 
         console.log('regex',regStr);
 
-        //year month day - ordere params for new Date()
+        //year month day - ordered params for new Date()
         let matched = [
             regStr.match(/Y+/), 
             regStr.match(/M+/),

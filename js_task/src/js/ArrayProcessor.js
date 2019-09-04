@@ -27,14 +27,17 @@ export let ArrayProcessor = {
         }
         return curSum;
     },
+
     getMax(arr) {
         let arrSorted = [...arr].sort();
         return arrSorted[arrSorted.length - 1];
     },
+
     getMin(arr) {
         let arrSorted = [...arr].sort();
         return arrSorted[0];
     },
+
     getMedium(arr) {
         let arrSorted = [...arr].sort();
         let len = arr.length;
@@ -42,6 +45,7 @@ export let ArrayProcessor = {
             return (arrSorted[len / 2] + arrSorted[len / 2 - 1]) / 2;
         else return arrSorted[(len - 1) / 2];
     },
+
     getMaxSubSeq(arr) {
         let seqIncr = [];
         let seqDecr = [];
@@ -83,6 +87,7 @@ export let ArrayProcessor = {
         if (seqDecr.length == 1) seqDecr.pop();
         return {seqIncr, seqDecr}
     },
+    
     getMaxIncSubSeq(arr) {
         let seqIncr = [];
         let tmpSequence = [arr[0]];
