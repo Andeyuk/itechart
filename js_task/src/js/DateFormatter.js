@@ -1,4 +1,4 @@
-class DateFormatter extends Date{
+export class DateFormatter extends Date{
     constructor(dateStr, regStr, convertRegStr) {
         //case for numbers and not valid args
         if (!dateStr.length) return super(dateStr);
@@ -36,7 +36,7 @@ class DateFormatter extends Date{
 
         let matchedWord = dateStr.match(/[a-zA-Z]+/);
 
-        //don't realy wont to deal with month names
+        //don't realy want to deal with month names
         if(matchedWord){
             console.log('word detected', matchedWord);
 

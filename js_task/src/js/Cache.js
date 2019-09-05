@@ -1,9 +1,5 @@
-function doSomething(name) {
-    console.log('Hello, ' + name);
-    return name;
-}
 
-let Cache = {
+export let Cache = {
     register: [],
 
     find(func){
@@ -65,7 +61,7 @@ let Cache = {
 
     getCache(func){
         let f = this.find(func);
-        
+
         if (f)
             return f.getCache();
     },

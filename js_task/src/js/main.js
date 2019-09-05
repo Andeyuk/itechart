@@ -2,7 +2,6 @@ import { ArrayProcessor as APT } from '../js/ArrayProcessor'
 import { Helper } from '../js/Helper'
 import {DateFormatter as DF} from '../js/DateFormatter'
 
-'use strict';
 
 let input = document.getElementById('APT__input');
 let output = document.getElementById('APT__output');
