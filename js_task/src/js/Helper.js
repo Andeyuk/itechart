@@ -10,6 +10,7 @@ export let Helper = {
             console.error('Helpers.funcPerformance error: ' + err.message);
         }
     },
+    
     functionOutput(func, ...params) {
         return `${func.name} result: ${func(...params)}\n`;
     }

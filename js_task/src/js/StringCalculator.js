@@ -3,16 +3,15 @@
 export let Calculator = {
     exec(str='111.2222 + 2222.3333 * 3'){ //just test example
         getMethod = getMethod.bind(this);
+
         let arr = str.match(/([\d.]+)?[+*-/%]?/g);
         arr = arr.filter((el)=>el.length)
         let result = arr[0];
 
         for (let i = 1; i < arr.length - 1; i+=2){
-            console.log(arr[i],result,arr[i+1])
-            console.log(getMethod(arr[i]));
-
             result = getMethod(arr[i])(result, arr[i+1]);
         }
+
         return result;
 
         function getMethod(operator){

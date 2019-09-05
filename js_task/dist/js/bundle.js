@@ -225,13 +225,151 @@ var ArrayProcessor = {
 
 /***/ }),
 
+/***/ "./src/js/Cache.js":
+/*!*************************!*\
+  !*** ./src/js/Cache.js ***!
+  \*************************/
+/*! exports provided: Cache */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cache", function() { return Cache; });
+var Cache = {
+  register: [],
+  find: function find(func) {
+    try {
+      var a = this.register.find(function (el) {
+        return el.origin.name == func.name;
+      });
+      if (a) return a;
+    } catch (err) {
+      console.error(err);
+    }
+  },
+  reg: function reg(func) {
+    var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Infinity;
+    var unitedStorage = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+    var cache;
+    var data = {};
+    var counter = 0;
+
+    if (unitedStorage) {
+      var registredFunc = this.find(func);
+
+      if (!registredFunc) {
+        cache = {};
+        data.origin = func;
+        data.cached = f;
+        this.register.unshift(data);
+      } else {
+        cache = registredFunc.cached.getCache();
+      }
+    } else {
+      cache = {};
+      data.origin = func;
+      data.cached = f;
+      this.register.unshift(data);
+    }
+
+    function f() {
+      var sortedArgs = Array.prototype.slice.call(arguments).sort();
+
+      if (sortedArgs in cache) {
+        console.log('got from cache');
+        return cache[sortedArgs];
+      }
+
+      if (counter <= limit) {
+        cache[sortedArgs] = func.apply(void 0, arguments);
+        counter++;
+        return cache[sortedArgs];
+      }
+
+      return func.apply(this, arguments);
+    }
+
+    ;
+
+    f.getCache = function () {
+      return cache;
+    };
+
+    f.clearCache = function () {
+      Object.keys(cache).forEach(function (el) {
+        delete cache[el];
+      });
+    };
+
+    return f;
+  },
+  getCache: function getCache(func) {
+    var f = this.find(func);
+    if (f) return f.getCache();
+  },
+  clearCache: function clearCache(func) {
+    var f = this.find(func);
+
+    if (f) {
+      f.clearCache();
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/CachingCalculator.js":
+/*!*************************************!*\
+  !*** ./src/js/CachingCalculator.js ***!
+  \*************************************/
+/*! exports provided: CachingCalculator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CachingCalculator", function() { return CachingCalculator; });
+/* harmony import */ var _js_Cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/Cache */ "./src/js/Cache.js");
+/* harmony import */ var _js_StringCalculator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/StringCalculator */ "./src/js/StringCalculator.js");
+
+
+var CachingCalculator = {};
+var calcProps = Object.getOwnPropertyNames(_js_StringCalculator__WEBPACK_IMPORTED_MODULE_1__["Calculator"]);
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  for (var _iterator = calcProps[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    var i = _step.value;
+    CachingCalculator[i] = _js_Cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].reg(_js_StringCalculator__WEBPACK_IMPORTED_MODULE_1__["Calculator"][i].bind(CachingCalculator));
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+      _iterator["return"]();
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/DateFormatter.js":
 /*!*********************************!*\
   !*** ./src/js/DateFormatter.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: DateFormatter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter", function() { return DateFormatter; });
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -280,35 +418,34 @@ function (_Date) {
     if (!dateStr.length) return _possibleConstructorReturn(_this, _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr)));
 
     if (!regStr) {
-      var separator = dateStr.match(/[^a-zA-Z0-9]/) || '-';
-      console.log(separator);
-      regStr = "MM".concat(separator, "DD").concat(separator, "YYYY");
-    }
+      var separator = dateStr.match(/[^a-zA-Z0-9]/) || '-'; //console.log(separator);
 
-    console.log('regex', regStr); //year month day - ordere params for new Date()
+      regStr = "MM".concat(separator, "DD").concat(separator, "YYYY");
+    } //console.log('regex',regStr);
+    //year month day - ordered params for new Date()
+
 
     var matched = [regStr.match(/Y+/), regStr.match(/M+/), regStr.match(/D+/)];
     var values = matched.map(function (el) {
       if (el[0] == "MM") return getValue(el, dateStr) - 1;
       return getValue(el, dateStr);
-    });
-    console.log(values);
-    console.log(matched);
+    }); //console.log(values);
+    //console.log(matched);
 
     if (convertRegStr) {
       convertRegStr = formatDate(matched, convertRegStr, dateStr);
     }
 
     dateStr = dateStr.toString();
-    var matchedWord = dateStr.match(/[a-zA-Z]+/); //don't realy wont to deal with month names
+    var matchedWord = dateStr.match(/[a-zA-Z]+/); //don't realy want to deal with month names
 
     if (matchedWord) {
       console.log('word detected', matchedWord);
       return _possibleConstructorReturn(_this, _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr)));
     }
 
-    dateStr = dateStr.match(/\d+/g);
-    console.log(dateStr); //length 1 => no separator
+    dateStr = dateStr.match(/\d+/g); //console.log(dateStr)
+    //length 1 => no separator
 
     if (dateStr.length == 1) {
       var _console, _getPrototypeOf2;
@@ -421,6 +558,112 @@ var Helper = {
 
 /***/ }),
 
+/***/ "./src/js/StringCalculator.js":
+/*!************************************!*\
+  !*** ./src/js/StringCalculator.js ***!
+  \************************************/
+/*! exports provided: Calculator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Calculator", function() { return Calculator; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+var Calculator = {
+  exec: function exec() {
+    var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '111.2222 + 2222.3333 * 3';
+    //just test example
+    getMethod = getMethod.bind(this);
+    var arr = str.match(/([\d.]+)?[+*-/%]?/g);
+    arr = arr.filter(function (el) {
+      return el.length;
+    });
+    var result = arr[0];
+
+    for (var i = 1; i < arr.length - 1; i += 2) {
+      result = getMethod(arr[i])(result, arr[i + 1]);
+    }
+
+    return result;
+
+    function getMethod(operator) {
+      switch (operator) {
+        case '+':
+          return this.sum;
+
+        case '-':
+          return this.dif;
+
+        case '*':
+          return this.mult;
+
+        case '/':
+          return this.div;
+
+        case '%':
+          return this.divr;
+      }
+    }
+  },
+  sum: function sum(a, b) {
+    return a - -b;
+  },
+  dif: function dif(a, b) {
+    return a - b;
+  },
+  mult: function mult(a, b) {
+    return a * b;
+  },
+  div: function div(a, b) {
+    return a / b;
+  },
+  divr: function divr(a, b) {
+    return a % b;
+  }
+};
+var mathProps = Object.getOwnPropertyNames(Math);
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  for (var _iterator = mathProps[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    var i = _step.value;
+    Calculator[i] = castFloatDecorator(Math[i]);
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+      _iterator["return"]();
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}
+
+function castFloatDecorator(func) {
+  return function () {
+    var args = Array.prototype.slice.call(arguments).map(function (el) {
+      return parseFloat(el);
+    });
+    return func.apply(void 0, _toConsumableArray(args));
+  };
+}
+
+/***/ }),
+
 /***/ "./src/js/main.js":
 /*!************************!*\
   !*** ./src/js/main.js ***!
@@ -433,11 +676,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_ArrayProcessor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/ArrayProcessor */ "./src/js/ArrayProcessor.js");
 /* harmony import */ var _js_Helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/Helper */ "./src/js/Helper.js");
 /* harmony import */ var _js_DateFormatter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/DateFormatter */ "./src/js/DateFormatter.js");
-/* harmony import */ var _js_DateFormatter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_DateFormatter__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_Cache__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../js/Cache */ "./src/js/Cache.js");
+/* harmony import */ var _js_CachingCalculator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../js/CachingCalculator */ "./src/js/CachingCalculator.js");
+/* harmony import */ var _js_StringCalculator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../js/StringCalculator */ "./src/js/StringCalculator.js");
 
 
 
-'use strict';
+
+
 
 var input = document.getElementById('APT__input');
 var output = document.getElementById('APT__output');

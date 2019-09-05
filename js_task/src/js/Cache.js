@@ -3,9 +3,15 @@ export let Cache = {
     register: [],
 
     find(func){
-        let a = this.register.find((el)=>el.origin.name == func.name);
-        if (a)
-            return a;
+        try{
+            let a = this.register.find((el)=>el.origin.name == func.name);
+            if (a)
+                return a;
+        }
+        catch(err){
+            console.error(err);
+        }
+
     },
 
     reg (func, limit = Infinity, unitedStorage = true){
@@ -46,7 +52,7 @@ export let Cache = {
                 return cache[sortedArgs]
             }
 
-            return func(...arguments);
+            return func.apply(this,arguments);
         };
 
         f.getCache = () => cache;

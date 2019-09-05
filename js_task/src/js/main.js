@@ -1,6 +1,9 @@
 import { ArrayProcessor as APT } from '../js/ArrayProcessor'
 import { Helper } from '../js/Helper'
 import {DateFormatter as DF} from '../js/DateFormatter'
+import {Cache as Cacher} from '../js/Cache'
+import {CachingCalculator as CCalc} from '../js/CachingCalculator'
+import {Calculator as calc} from '../js/StringCalculator'
 
 
 let input = document.getElementById('APT__input');
