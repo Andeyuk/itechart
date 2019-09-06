@@ -1,45 +1,48 @@
-import { ArrayProcessor as APT } from '../js/ArrayProcessor'
-import { Helper } from '../js/Helper'
-import {DateFormatter as DF} from '../js/DateFormatter'
-import {Cache as Cacher} from '../js/Cache'
-import {CachingCalculator as CCalc} from '../js/CachingCalculator'
-import {Calculator as calc} from '../js/StringCalculator'
+
+import { Helper } from './modules/Helper'
+import { DateFormatter as DF} from './modules/DateFormatter'
+import { Cache as Cacher} from './modules/Cache'
+import { CachingCalculator as CCalc} from './modules/CachingCalculator'
+import { Calculator as calc} from './modules/StringCalculator'
+
+import {APT_input_handler as APT_handler} from './EventHandlers/ArrayProcessorHandler'
+import {
+    DateFormatter_input as DF_input_input,
+    DateFormatter_input_change as DF_input_change
+} from './EventHandlers/DateFromatterHandler'
 
 
-let input = document.getElementById('APT__input');
-let output = document.getElementById('APT__output');
+let APT_input = document.getElementById('APT__input');
+let APT_output = document.getElementById('APT__output');
 
-input.addEventListener('change', function() {
-    let numbers = this.value.match(/-?\d+/g);
+let DF_input = document.getElementById('DateFormatter__input');
+let DF_output = document.getElementById('DateFormaatter__output');
+let DF_outputs = document.getElementsByClassName('DateFormatter__props');
 
-    console.log('lol');
+window.addEventListener('change', (event)=>{
+    switch(true){
+        case controller(event, '#APT__input', true): return APT_handler(APT_input, APT_output)
+        case controller(event, '#DateFormatter__input', true): return DF_input_change(DF_input, DF_output)
+    };
+})
 
-    for (let i = 0; i < numbers.length; i++) {
-        numbers[i] = parseInt(numbers[i]);
-    }
-    output.textContent = '';
-    output.textContent += Helper.functionOutput(
-        APT.subSum,
-        numbers
-    );
+window.addEventListener('input', (event)=>{
+    switch(true){
+        case controller(event, '#DateFormatter__input', true): DF_input_input(DF_input, DF_outputs)
+    };
+})
+    
 
-    output.textContent += Helper.functionOutput(
-        APT.getMaxIncSubSeq,
-        numbers
-    );
 
-    output.textContent += Helper.functionOutput(
-        APT.getMax,
-        numbers
-    );
+function controller(event, selector, strict = false){
 
-    output.textContent += Helper.functionOutput(
-        APT.getMin,
-        numbers
-    );
+    let checker;
 
-    output.textContent += Helper.functionOutput(
-        APT.getMedium,
-        numbers
-    );
-});
+    if (strict) checker = Element.prototype.matches.bind(event.target)
+    else checker = Element.prototype.closest.bind(event.target)
+
+    console.log(checker, selector);
+
+    if (checker(selector))
+        return true;
+}

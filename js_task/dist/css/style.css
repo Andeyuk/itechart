@@ -23,14 +23,24 @@ body {
 
 .task__work-space {
     display: flex;
-    width: 80%;
     margin: 40px auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap-reverse;
 }
 
 .work-space__output-wrap {
-    margin-left: auto;
     min-width: 300px;
 }
+
+.work-space__input-wrap {
+    min-width: 300px;
+}
+
+.DateFormatter__input-wrap{
+    min-width: 450px;
+    max-width: 500px;
+}
+
 
 .work-space__output {
     border: 1px solid rgb(148, 148, 148);
@@ -54,6 +64,30 @@ body {
 .text__title {
     font-weight: 600;
     font-size: 1.3em;
+    white-space: nowrap;
     color: black;
     font-family: 'Arial Narrow', Arial;
+}
+
+.work-space_inline{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input_short{
+    min-width:0;
+    flex-grow: 1;
+}
+
+.DateFormatter__props{
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+.DateFormatter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

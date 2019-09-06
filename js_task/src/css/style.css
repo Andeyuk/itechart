@@ -57,3 +57,7 @@ body {
     color: black;
     font-family: 'Arial Narrow', Arial;
 }
+
+.DateFormatter__input-wrap{
+    min-width: 450px;
+}

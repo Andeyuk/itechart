@@ -86,10 +86,140 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/js/ArrayProcessor.js":
-/*!**********************************!*\
-  !*** ./src/js/ArrayProcessor.js ***!
-  \**********************************/
+/***/ "./src/js/EventHandlers/ArrayProcessorHandler.js":
+/*!*******************************************************!*\
+  !*** ./src/js/EventHandlers/ArrayProcessorHandler.js ***!
+  \*******************************************************/
+/*! exports provided: APT_input_handler */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APT_input_handler", function() { return APT_input_handler; });
+/* harmony import */ var _modules_Helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Helper */ "./src/js/modules/Helper.js");
+/* harmony import */ var _modules_ArrayProcessor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/ArrayProcessor */ "./src/js/modules/ArrayProcessor.js");
+
+
+function APT_input_handler(input, output) {
+  var numbers = input.value.match(/-?\d+/g);
+
+  for (var i = 0; i < numbers.length; i++) {
+    numbers[i] = parseInt(numbers[i]);
+  }
+
+  output.textContent = '';
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArrayProcessor__WEBPACK_IMPORTED_MODULE_1__["ArrayProcessor"].subSum, numbers);
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArrayProcessor__WEBPACK_IMPORTED_MODULE_1__["ArrayProcessor"].getMaxIncSubSeq, numbers);
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArrayProcessor__WEBPACK_IMPORTED_MODULE_1__["ArrayProcessor"].getMax, numbers);
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArrayProcessor__WEBPACK_IMPORTED_MODULE_1__["ArrayProcessor"].getMin, numbers);
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArrayProcessor__WEBPACK_IMPORTED_MODULE_1__["ArrayProcessor"].getMedium, numbers);
+}
+
+/***/ }),
+
+/***/ "./src/js/EventHandlers/DateFromatterHandler.js":
+/*!******************************************************!*\
+  !*** ./src/js/EventHandlers/DateFromatterHandler.js ***!
+  \******************************************************/
+/*! exports provided: DateFormatter_input, DateFormatter_input_change, DateFormatter_FullDate_click */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter_input", function() { return DateFormatter_input; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter_input_change", function() { return DateFormatter_input_change; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter_FullDate_click", function() { return DateFormatter_FullDate_click; });
+/* harmony import */ var _modules_DateFormatter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/DateFormatter */ "./src/js/modules/DateFormatter.js");
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+function DateFormatter_input(input, outputs) {
+  _toConsumableArray(outputs).forEach(function (el) {
+    el.textContent = input.value;
+  });
+}
+function DateFormatter_input_change(input, output) {
+  var vals = input.value.replace(/[“,]?/, '').split(',');
+  output.textContent = _construct(_modules_DateFormatter__WEBPACK_IMPORTED_MODULE_0__["DateFormatter"], _toConsumableArray(vals)).toString();
+}
+function DateFormatter_FullDate_click(output) {}
+
+/***/ }),
+
+/***/ "./src/js/main.js":
+/*!************************!*\
+  !*** ./src/js/main.js ***!
+  \************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_Helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Helper */ "./src/js/modules/Helper.js");
+/* harmony import */ var _modules_DateFormatter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/DateFormatter */ "./src/js/modules/DateFormatter.js");
+/* harmony import */ var _modules_Cache__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Cache */ "./src/js/modules/Cache.js");
+/* harmony import */ var _modules_CachingCalculator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/CachingCalculator */ "./src/js/modules/CachingCalculator.js");
+/* harmony import */ var _modules_StringCalculator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/StringCalculator */ "./src/js/modules/StringCalculator.js");
+/* harmony import */ var _EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EventHandlers/ArrayProcessorHandler */ "./src/js/EventHandlers/ArrayProcessorHandler.js");
+/* harmony import */ var _EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EventHandlers/DateFromatterHandler */ "./src/js/EventHandlers/DateFromatterHandler.js");
+
+
+
+
+
+
+
+var APT_input = document.getElementById('APT__input');
+var APT_output = document.getElementById('APT__output');
+var DF_input = document.getElementById('DateFormatter__input');
+var DF_output = document.getElementById('DateFormaatter__output');
+var DF_outputs = document.getElementsByClassName('DateFormatter__props');
+window.addEventListener('change', function (event) {
+  switch (true) {
+    case controller(event, '#APT__input', true):
+      return Object(_EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_5__["APT_input_handler"])(APT_input, APT_output);
+
+    case controller(event, '#DateFormatter__input', true):
+      return Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_6__["DateFormatter_input_change"])(DF_input, DF_output);
+  }
+
+  ;
+});
+window.addEventListener('input', function (event) {
+  switch (true) {
+    case controller(event, '#DateFormatter__input', true):
+      Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_6__["DateFormatter_input"])(DF_input, DF_outputs);
+  }
+
+  ;
+});
+
+function controller(event, selector) {
+  var strict = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  var checker;
+  if (strict) checker = Element.prototype.matches.bind(event.target);else checker = Element.prototype.closest.bind(event.target);
+  console.log(checker, selector);
+  if (checker(selector)) return true;
+}
+
+/***/ }),
+
+/***/ "./src/js/modules/ArrayProcessor.js":
+/*!******************************************!*\
+  !*** ./src/js/modules/ArrayProcessor.js ***!
+  \******************************************/
 /*! exports provided: ArrayProcessor */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -225,10 +355,10 @@ var ArrayProcessor = {
 
 /***/ }),
 
-/***/ "./src/js/Cache.js":
-/*!*************************!*\
-  !*** ./src/js/Cache.js ***!
-  \*************************/
+/***/ "./src/js/modules/Cache.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/Cache.js ***!
+  \*********************************/
 /*! exports provided: Cache */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -318,22 +448,22 @@ var Cache = {
 
 /***/ }),
 
-/***/ "./src/js/CachingCalculator.js":
-/*!*************************************!*\
-  !*** ./src/js/CachingCalculator.js ***!
-  \*************************************/
+/***/ "./src/js/modules/CachingCalculator.js":
+/*!*********************************************!*\
+  !*** ./src/js/modules/CachingCalculator.js ***!
+  \*********************************************/
 /*! exports provided: CachingCalculator */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CachingCalculator", function() { return CachingCalculator; });
-/* harmony import */ var _js_Cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/Cache */ "./src/js/Cache.js");
-/* harmony import */ var _js_StringCalculator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/StringCalculator */ "./src/js/StringCalculator.js");
+/* harmony import */ var _Cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cache */ "./src/js/modules/Cache.js");
+/* harmony import */ var _StringCalculator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StringCalculator */ "./src/js/modules/StringCalculator.js");
 
 
 var CachingCalculator = {};
-var calcProps = Object.getOwnPropertyNames(_js_StringCalculator__WEBPACK_IMPORTED_MODULE_1__["Calculator"]);
+var calcProps = Object.getOwnPropertyNames(_StringCalculator__WEBPACK_IMPORTED_MODULE_1__["Calculator"]);
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
 var _iteratorError = undefined;
@@ -341,7 +471,7 @@ var _iteratorError = undefined;
 try {
   for (var _iterator = calcProps[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
     var i = _step.value;
-    CachingCalculator[i] = _js_Cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].reg(_js_StringCalculator__WEBPACK_IMPORTED_MODULE_1__["Calculator"][i].bind(CachingCalculator));
+    CachingCalculator[i] = _Cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].reg(_StringCalculator__WEBPACK_IMPORTED_MODULE_1__["Calculator"][i].bind(CachingCalculator));
   }
 } catch (err) {
   _didIteratorError = true;
@@ -360,10 +490,10 @@ try {
 
 /***/ }),
 
-/***/ "./src/js/DateFormatter.js":
-/*!*********************************!*\
-  !*** ./src/js/DateFormatter.js ***!
-  \*********************************/
+/***/ "./src/js/modules/DateFormatter.js":
+/*!*****************************************!*\
+  !*** ./src/js/modules/DateFormatter.js ***!
+  \*****************************************/
 /*! exports provided: DateFormatter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -409,110 +539,121 @@ var DateFormatter =
 function (_Date) {
   _inherits(DateFormatter, _Date);
 
-  function DateFormatter(dateStr, regStr, convertRegStr) {
+  function DateFormatter(dateStr, format, toFormat) {
+    var _getPrototypeOf3;
+
     var _this;
 
     _classCallCheck(this, DateFormatter);
 
-    //case for numbers and not valid args
-    if (!dateStr.length) return _possibleConstructorReturn(_this, _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr)));
+    var matchedWord = dateStr.match(/[a-zA-Z]+/); //handle numbers, not valid args and Month names to Date
 
-    if (!regStr) {
-      var separator = dateStr.match(/[^a-zA-Z0-9]/) || '-'; //console.log(separator);
+    if (!dateStr.length || matchedWord) {
+      var defaultSuper = _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr));
 
-      regStr = "MM".concat(separator, "DD").concat(separator, "YYYY");
-    } //console.log('regex',regStr);
-    //year month day - ordered params for new Date()
+      initProps.apply(_assertThisInitialized(_this));
+      return _possibleConstructorReturn(_this, defaultSuper);
+    } //default format
 
 
-    var matched = [regStr.match(/Y+/), regStr.match(/M+/), regStr.match(/D+/)];
+    if (!format) {
+      var separator = dateStr.match(/[^a-zA-Z0-9]/) || '';
+      format = "DD".concat(separator, "MM").concat(separator, "YYYY");
+    } //parse format
+
+
+    var matched = [format.match(/Y+/), format.match(/M+/), format.match(/D+/)];
     var values = matched.map(function (el) {
       if (el[0] == "MM") return getValue(el, dateStr) - 1;
       return getValue(el, dateStr);
-    }); //console.log(values);
-    //console.log(matched);
-
-    if (convertRegStr) {
-      convertRegStr = formatDate(matched, convertRegStr, dateStr);
-    }
-
+    });
     dateStr = dateStr.toString();
-    var matchedWord = dateStr.match(/[a-zA-Z]+/); //don't realy want to deal with month names
-
-    if (matchedWord) {
-      console.log('word detected', matchedWord);
-      return _possibleConstructorReturn(_this, _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr)));
-    }
-
-    dateStr = dateStr.match(/\d+/g); //console.log(dateStr)
-    //length 1 => no separator
+    dateStr = dateStr.match(/\d+/g); //length 1 => no separator
 
     if (dateStr.length == 1) {
-      var _console, _getPrototypeOf2;
+      var _getPrototypeOf2;
 
-      console.log('reg work');
+      var _super2 = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
 
-      (_console = console).log.apply(_console, ['parsed vals'].concat(_toConsumableArray(values)));
-
-      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
-      _this.formattedDate = convertRegStr;
-    } else {
-      if (dateStr.length > 3) {
-        var _getPrototypeOf3;
-
-        _this = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf3, [this].concat(_toConsumableArray(dateStr))));
-      } else {
-        var _getPrototypeOf4;
-
-        _this = _possibleConstructorReturn(this, (_getPrototypeOf4 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf4, [this].concat(_toConsumableArray(values))));
-        _this.formattedDate = convertRegStr;
-      }
+      initProps.apply(_assertThisInitialized(_this));
+      return _possibleConstructorReturn(_this, _super2);
     }
+
+    var _super = _this = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf3, [this].concat(_toConsumableArray(dateStr))));
+
+    initProps.apply(_assertThisInitialized(_this));
+    return _possibleConstructorReturn(_this, _super); //helper-block
 
     function getValue(matched, dateStr) {
       var val = dateStr.toString().slice(matched.index, matched.index + matched[0].length);
       return val;
     }
 
-    function formatDate(matched, convertRegStr, dateStr) {
-      var OrderedMatch = _toConsumableArray(matched).sort(function (a, b) {
-        return a.index - b.index;
-      });
+    function getMonthFixer(func) {
+      return function getMonth() {
+        return func.apply(this) + 1;
+      };
+    }
 
-      for (var _i = 0, _arr = _toConsumableArray(OrderedMatch); _i < _arr.length; _i++) {
-        var i = _arr[_i];
-        var dateParam = getValue(i, dateStr);
-        convertRegStr = convertRegStr.replace(i[0], dateParam);
-      }
-
-      return convertRegStr;
+    function initProps() {
+      this.toFormat = toFormat;
+      this.constructor.prototype.getMonth = getMonthFixer(this.getMonth); //Date indicates month from 0, but task requares from 1
     }
 
     return _possibleConstructorReturn(_this);
   }
 
   _createClass(DateFormatter, [{
-    key: "getFormattedMonth",
-    value: function getFormattedMonth() {
-      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      return months[this.getMonth()];
-    }
-  }, {
-    key: "getStringDate",
-    value: function getStringDate() {
-      if (this.formattedDate) return this.formattedDate;
-      return "".concat(this.getFullYear(), "-").concat(this.getMonth(), "-").concat(this.getDate());
+    key: "getFullDate",
+    value: function getFullDate() {
+      var separator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ' ';
+      var date = [this.getDate(), this.getMonth(), this.getFullYear()];
+      return date.join(separator);
     }
   }, {
     key: "getFormattedDate",
     value: function getFormattedDate() {
+      var day = this.getDate().toString().length == 1 ? '0' + this.getDate() : this.getDate();
+      var year = this.getMonth().toString().length == 1 ? '0' + this.getMonth() : this.getMonth();
+      if (this.toFormat) return this.toFormat.replace(/Y+/, this.getFullYear()).replace(/D+/, day).replace(/M+/, year);
       return "".concat(this.getDate(), " ").concat(this.getFormattedMonth(), " ").concat(this.getFullYear());
     }
   }, {
     key: "getFormattedDay",
     value: function getFormattedDay() {
       var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      return days[this.getUTCDay()];
+      return days[this.getDay()];
+    }
+  }, {
+    key: "getFormattedMonth",
+    value: function getFormattedMonth() {
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      return months[this.getMonth() - 1];
+    }
+  }, {
+    key: "fromNow",
+    value: function fromNow() {
+      var curDate = new Date();
+      var hasDate = this;
+      var diff = new Date(curDate - hasDate);
+      var diffYear = diff.getFullYear() - 1970;
+      var diffProps = [DiffProp(diffYear, 'years'), DiffProp(diff.getMonth(), 'month'), DiffProp(diff.getDate(), 'days')];
+      var diffStrs = diffProps.map(function (el) {
+        return diffTostr(el.val, el.descr);
+      });
+      return diffYear > 0 ? diffStrs.join(' ') + ' ago' : diffStrs.join(' '); //helper-block
+
+      function diffTostr(diffPar, discription) {
+        if (diffPar > 0) return diffPar + ' ' + discription;
+        return '';
+      }
+
+      function DiffProp(val, descr) {
+        return {
+          val: val,
+          descr: descr
+        };
+      }
     }
   }]);
 
@@ -521,10 +662,10 @@ function (_Date) {
 
 /***/ }),
 
-/***/ "./src/js/Helper.js":
-/*!**************************!*\
-  !*** ./src/js/Helper.js ***!
-  \**************************/
+/***/ "./src/js/modules/Helper.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/Helper.js ***!
+  \**********************************/
 /*! exports provided: Helper */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -558,10 +699,10 @@ var Helper = {
 
 /***/ }),
 
-/***/ "./src/js/StringCalculator.js":
-/*!************************************!*\
-  !*** ./src/js/StringCalculator.js ***!
-  \************************************/
+/***/ "./src/js/modules/StringCalculator.js":
+/*!********************************************!*\
+  !*** ./src/js/modules/StringCalculator.js ***!
+  \********************************************/
 /*! exports provided: Calculator */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -661,47 +802,6 @@ function castFloatDecorator(func) {
     return func.apply(void 0, _toConsumableArray(args));
   };
 }
-
-/***/ }),
-
-/***/ "./src/js/main.js":
-/*!************************!*\
-  !*** ./src/js/main.js ***!
-  \************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _js_ArrayProcessor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/ArrayProcessor */ "./src/js/ArrayProcessor.js");
-/* harmony import */ var _js_Helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/Helper */ "./src/js/Helper.js");
-/* harmony import */ var _js_DateFormatter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/DateFormatter */ "./src/js/DateFormatter.js");
-/* harmony import */ var _js_Cache__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../js/Cache */ "./src/js/Cache.js");
-/* harmony import */ var _js_CachingCalculator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../js/CachingCalculator */ "./src/js/CachingCalculator.js");
-/* harmony import */ var _js_StringCalculator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../js/StringCalculator */ "./src/js/StringCalculator.js");
-
-
-
-
-
-
-var input = document.getElementById('APT__input');
-var output = document.getElementById('APT__output');
-input.addEventListener('change', function () {
-  var numbers = this.value.match(/-?\d+/g);
-  console.log('lol');
-
-  for (var i = 0; i < numbers.length; i++) {
-    numbers[i] = parseInt(numbers[i]);
-  }
-
-  output.textContent = '';
-  output.textContent += _js_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(_js_ArrayProcessor__WEBPACK_IMPORTED_MODULE_0__["ArrayProcessor"].subSum, numbers);
-  output.textContent += _js_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(_js_ArrayProcessor__WEBPACK_IMPORTED_MODULE_0__["ArrayProcessor"].getMaxIncSubSeq, numbers);
-  output.textContent += _js_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(_js_ArrayProcessor__WEBPACK_IMPORTED_MODULE_0__["ArrayProcessor"].getMax, numbers);
-  output.textContent += _js_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(_js_ArrayProcessor__WEBPACK_IMPORTED_MODULE_0__["ArrayProcessor"].getMin, numbers);
-  output.textContent += _js_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(_js_ArrayProcessor__WEBPACK_IMPORTED_MODULE_0__["ArrayProcessor"].getMedium, numbers);
-});
 
 /***/ })
 

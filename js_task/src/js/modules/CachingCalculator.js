@@ -1,5 +1,5 @@
-import {Cache as Cacher} from '../js/Cache';
-import {Calculator as calc} from '../js/StringCalculator';
+import {Cache as Cacher} from './Cache';
+import {Calculator as calc} from './StringCalculator';
 
 export let CachingCalculator = {};
 

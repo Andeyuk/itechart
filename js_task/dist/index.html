@@ -74,25 +74,55 @@
                 
             Реализовать как можно больше прикладных конверсий.
         </div>
-        <div class="work-space task__work-space">
-            <div class="work-space__input-wrap">
-                <div class="work-space__tilte">
-                    <h2 class="text__title">
-                        Ввод последовательно чисел и Enter: </h2>
+        <div class="work-space task__work-space DateFormatter">
+            <div class="work-space__input-wrap DateFormatter__input-wrap">
+                <div class="work-space__input-wrap work-space_inline">
+                    <div class="work-space__tilte">
+                        <h2 class="text__title">
+                            new DateFormatter( 
+                        </h2>
+                    </div>
+                    <input class="work-space__input DateFormatter__input" placeholder="20130431, YYYYMMDD, MM-DD-YYYY" id="DateFormatter__input">
+                    <span class="text__title">)</span>
                 </div>
-                <input class="work-space__input" id="work-space__input">
+                <div class="work-space__input-wrap work-space_inline">
+                    <div class="work-space__tilte">
+                        <h2 class="text__title">
+                            getFullDate(<span class="DateFormatter__props"></span>) 
+                        </h2>
+                    </div>
+                    <button id="FullDateBtn">Ok</button> 
+                </div>
+
+                <div class="work-space__input-wrap work-space_inline">
+                    <div class="work-space__tilte">
+                        <h2 class="text__title">
+                            getFormattedDate(<span class="DateFormatter__props"></span>) 
+                        </h2>
+                    </div>
+                    <button id="FormattedDateBtn">Ok</button>
+                </div>
+
+                <div class="work-space__input-wrap work-space_inline">
+                    <div class="work-space__tilte">
+                        <h2 class="text__title">
+                            getFullDate(<span class="DateFormatter__props"></span>) 
+                        </h2>
+                    </div>
+                    <button id="fullDateBtn">Ok</button> <!--adawdawdawdwdawdawda-->
+                </div>
             </div>
+
 
             <div class="work-space__output-wrap">
                 <div class="work-space__tilte">
                     <h2 class="text__title">Вывод: </h2>
                 </div>
-                <div class="work-space__output" id="work-space__output">empty
+                <div class="work-space__output" id="DateFormaatter__output">empty
                 </div>
             </div>
         </div>
     </div>
     <script src="js/bundle.js"></script>
-    <script src="js/DateFormatter.js"></script>
   </body>
 </html>
