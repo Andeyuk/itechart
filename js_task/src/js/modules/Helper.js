@@ -12,6 +12,6 @@ export let Helper = {
     },
     
     functionOutput(func, ...params) {
-        return `${func.name} result: ${func(...params)}\n`;
+        return `${func.name.replace("bound", '')} result: ${func(...params)}\n`;
     }
 };

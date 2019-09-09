@@ -130,7 +130,10 @@ export class DateFormatter extends Date{
                 if (diffPar > 0)
                     return  diffPar + ' ' + discription;
 
-            return '';
+                if (diffPar < 0)
+                    return  -diffPar + ' ' + discription;
+                    
+                return ''
             }
 
             function DiffProp(val, descr){

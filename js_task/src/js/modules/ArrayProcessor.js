@@ -53,18 +53,15 @@ export let ArrayProcessor = {
         let curEl = arr[0];
         for (let i = 1; i < arr.length; ) {
             while (curEl <= arr[i] && i < arr.length) {
-                //console.log('compare inc', curEl, arr[i]);
                 tmpSequence.push(arr[i]);
                 curEl = arr[i];
                 i++;
             }
 
-            //console.log('compare inc seq', tmpSequence, seqIncr);
             if (seqIncr.length < tmpSequence.length) {
                 seqIncr = [...tmpSequence];
             }
             tmpSequence = [curEl];
-            //console.log('reslt inc', tmpSequence, seqIncr, curEl, arr[i]);
 
             //I need to skip decreasing seq, though i'd like to save it
             while (curEl >= arr[i] && i < arr.length) {
@@ -74,13 +71,10 @@ export let ArrayProcessor = {
                 i++;
             }
 
-            //console.log('compare dec seq', tmpSequence, seqDecr);
             if (seqDecr.length < tmpSequence.length) {
                 seqDecr = [...tmpSequence];
             }
             tmpSequence = [curEl];
-            //console.log('reslt dec', tmpSequence, seqDecr, curEl, arr[i]);
-            //console.log('iter');
         }
 
         if (seqIncr.length == 1) seqIncr.pop();
@@ -93,12 +87,9 @@ export let ArrayProcessor = {
         let tmpSequence = [arr[0]];
         let curEl = arr[0];
         for (let i = 1; i < arr.length; i++) {
-            console.log('compare inc', curEl, arr[i]);
             if (curEl <= arr[i] ) {
                 tmpSequence.push(arr[i]);
-                console.log('com', tmpSequence, seqIncr);
             } else {
-                console.log('compare inc seq', tmpSequence, seqIncr,(seqIncr.length < tmpSequence.length ));
                 if (seqIncr.length < tmpSequence.length) {
                     seqIncr = [...tmpSequence];
                 }

@@ -1,7 +1,7 @@
 /** 
- * @param {number = 1, 2, 3, 4 | string = "symbol", "word", "sentence", "nowrap"} whiteSpace  
+ * @param {number = 1, 2, 3, 4 | string = "symbol", "word", "sentence", "nowrap" , "none" or any other string} whiteSpace  
  */ 
-function textFormatter(string, maxLength, maxRows, whiteSpace) {
+export function textFormatter(string, maxLength, maxRows, whiteSpace) {
     if (
         (!maxLength && (whiteSpace != 3 || whiteSpace != 'sentence')) ||
         (whiteSpace == 4 || whiteSpace == 'nowrap')
@@ -13,7 +13,7 @@ function textFormatter(string, maxLength, maxRows, whiteSpace) {
     let rows = [];
     let shift = 0;
     //ignore max length coz it wouild be wrapped by symbol or word not sentence
-    if (whiteSpace == 3 || whiteSpace == 'line')
+    if (whiteSpace == 3 || whiteSpace == 'sentence')
         return string.match(/[^\.]+[\.]?[\ ]?/g);
 
     for (let i = 0; i < maxRows; i++) {
@@ -44,7 +44,6 @@ function textFormatter(string, maxLength, maxRows, whiteSpace) {
                 }
 
                 //cutting up to space character
-                console.log(tmp, lastLetter, j);
                 j -= 2;
                 tmp = tmp.slice(0, -j);
                 //shift index not to loose data

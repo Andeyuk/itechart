@@ -1,18 +1,34 @@
 
 
 export let Calculator = {
-    exec(str='111.2222 + 2222.3333 * 3'){ //just test example
+    exec(str){ //just test example
         getMethod = getMethod.bind(this);
 
-        let arr = str.match(/([\d.]+)?[+*-/%]?/g);
-        arr = arr.filter((el)=>el.length)
-        let result = arr[0];
+        let arr = str.match(/[\d\.\d]*[+*-/%()]?/g);
 
-        for (let i = 1; i < arr.length - 1; i+=2){
-            result = getMethod(arr[i])(result, arr[i+1]);
+        arr = arr.filter((el)=>el.length) //filter empty matches
+        console.log(arr)
+
+        let parenthesisLeftInd = arr.findIndex(el=>el == '(');
+        if (parenthesisLeftInd >= 0){
+            
+            let parenthesisRightInd = arr.findIndex(el=>el == ')');
+            arr.splice(parenthesisRightInd, 1)
+
+            let innerArr = arr.splice(parenthesisLeftInd + 1 ,parenthesisRightInd - parenthesisLeftInd - 1);
+            console.log(innerArr);
+
+            replacePriorityOperations(innerArr);
+
+            console.log(arr);
+
+            arr[parenthesisLeftInd] = exec(innerArr)
         }
 
-        return result;
+        replacePriorityOperations(arr)
+        console.log(arr);
+
+        return exec(arr);
 
         function getMethod(operator){
             switch (operator){
@@ -21,6 +37,27 @@ export let Calculator = {
                 case '*': return this.mult;
                 case '/': return this.div;
                 case '%': return this.divr;
+            }
+        }
+
+        function exec(arr, start = 0, end = arr.length){
+            console.log(arr)
+            let result = arr[start];
+            for (let i = start; i < end - 1; i+=2){
+                result = getMethod(arr[i+1]).apply(this,[result, arr[i+2]]);
+            }
+            return result;
+        }
+
+        function replacePriorityOperations(arr){
+            let priorOperatorInd = arr.findIndex(el=>el == ( '*' || '/' || '%' ));
+            while(priorOperatorInd >= 0){
+               let tmp = exec(arr, priorOperatorInd - 1, priorOperatorInd + 1);
+
+               arr.splice(priorOperatorInd , 2);
+               arr[priorOperatorInd - 1] = tmp;
+
+               priorOperatorInd = arr.findIndex(el=>el == ( '*' || '/' || '%' ));
             }
         }
     },
