@@ -15,10 +15,11 @@ if (tabs)
     })
 
 function swapClass(nodeRm, nodeAdd, className){
-    if(!nodeRm || !nodeAdd || !className) throw new TypeError('Check parameters');
+    if (!nodeRm || !nodeAdd || !className) 
+        throw new TypeError('Check parameters');
 
     nodeRm.classList.remove(className);
     nodeAdd.classList.add('media-tabs__item--active');
-    
+
     return true;
 }

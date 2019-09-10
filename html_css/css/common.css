@@ -47,22 +47,24 @@
     src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url('../fonts/SourceSansPro-SemiBold.ttf') format('truetype');
 }
 
-
-
-/**/
-.text_title{
+.text__title {
     font-weight: 900;
     font-family: 'DejaVu Sans';
 }
 
-.text_subtitle {
+.text__subtitle {
     font-family: 'DejaVu Sans';
     font-weight: 300;
 }
 
-.text_common {
-    font-family: 'DejaVu Sans';
+.text__common {
     font-family: 'Source Sans Pro';
     font-weight: 400;
-    color: #9d9d9d;
+    color: rgba(157,157,157,1.0);
+}
+
+.button{
+    background-color: rgb(241, 196, 15);
+    border: none;
+    border-radius: 5px;
 }

@@ -1,4 +1,3 @@
-
 body {
     padding: 5.45% 0;
     background-image: url(../img/back.png);
@@ -8,10 +7,9 @@ body {
 .page {
     width: 64%;
     margin: 0 auto;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
 }
-
 
 .page__header {
     font-size: 1em;
@@ -39,18 +37,12 @@ body {
 
 .nav__item {
     display: inline-block;
-    padding: 0 0.5rem;
+    padding: 0 8px;
 }
 
 .nav__link {
     text-decoration: none;
     color: rgb(113, 106, 114);
-}
-
-.close-menu {
-    display: none;
-    position: absolute;
-    width: 1em;
 }
 
 .page__header {
@@ -59,15 +51,15 @@ body {
 }
 
 .nav__link--current {
-    color: #f1c40f;
+    color: rgba(241,196,15,1.0);
 }
 
-.page__nav-icon{
-    width:2em;
-    height:2em;
-    display:none;
+.page__nav-icon {
+    width: 2em;
+    height: 2em;
+    display: none;
 }
 
-.nav__close-btn{
-    display:none;
+.nav__close-btn {
+    display: none;
 }

@@ -1,12 +1,13 @@
 .slide {
     background: rgb(113, 106, 114) url(../img/rope.jfif) no-repeat;
-    padding-bottom: 44.5%;
     position: relative;
     background-size: cover;
     background-position: right;
     text-align: center;
     position: relative;
     font-size: 1em;
+    height: 30vw;
+    overflow: hidden;
 }
 
 
@@ -21,6 +22,7 @@
     justify-content: space-between;
     position: absolute;
     bottom: 0;
+    z-index: 1000;
 }
 
 .slide__title {
@@ -31,12 +33,30 @@
 
 .slide__subtitle {
     display: block;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 .slide-control__icon {
     width: 2em;
     height: auto;
-    color: white;
+    color: rgba(255,255,255,1.0);
     cursor: pointer;
+}
+
+.slide-row {
+    position: absolute;
+    z-index: 500;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    display: flex;
+}
+
+.slide-row__item {
+    background: rgb(113, 106, 114) url(../img/rope.jfif) no-repeat;
+    background-size: cover;
+    background-position: right;
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
