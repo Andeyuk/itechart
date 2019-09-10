@@ -24,11 +24,10 @@ body {
 .task__work-space {
     display: flex;
     width: 80%;
-    margin: 20px auto;
+    margin: 40px auto;
 }
 
 .work-space__output-wrap {
-    padding: 16px;
     margin-left: auto;
     min-width: 300px;
 }
@@ -37,14 +36,18 @@ body {
     border: 1px solid rgb(148, 148, 148);
     background-color: rgb(244, 249, 255);
     text-align: center;
-    line-height: 150px;
+    line-height: 32px;
+    padding : 16px;
+    white-space: pre-line;
 }
+
 .work-space__input{
     background-color:rgb(244, 249, 255);
     border: 1px solid rgb(148, 148, 148);
     height:2em;
     padding: 0 0.5em;
     min-width: 300px;
+    width:100%;
     box-sizing: border-box;
 }
 
@@ -53,4 +56,13 @@ body {
     font-size: 1.3em;
     color: black;
     font-family: 'Arial Narrow', Arial;
+}
+
+.DateFormatter__input-wrap{
+    min-width: 450px;
+}
+
+.choose-bar{
+    display: flex;
+    align-items: center;
 }
