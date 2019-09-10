@@ -254,6 +254,7 @@ function DateFormatter_input_action(input, output) {
   output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getFormattedDay.bind(date));
   output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getFormattedMonth.bind(date));
   output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getFormattedDate.bind(date));
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getFullDate.bind(date));
   output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.fromNow.bind(date));
 }
 
@@ -875,7 +876,7 @@ function (_Date) {
   _inherits(DateFormatter, _Date);
 
   function DateFormatter(dateStr, format, toFormat) {
-    var _getPrototypeOf3;
+    var _getPrototypeOf2;
 
     var _this;
 
@@ -902,19 +903,8 @@ function (_Date) {
       if (el[0] == "MM") return getValue(el, dateStr) - 1;
       return getValue(el, dateStr);
     });
-    dateStr = dateStr.toString();
-    dateStr = dateStr.match(/\d+/g); //length 1 => no separator
 
-    if (dateStr.length == 1) {
-      var _getPrototypeOf2;
-
-      var _super2 = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
-
-      initProps.apply(_assertThisInitialized(_this));
-      return _possibleConstructorReturn(_this, _super2);
-    }
-
-    var _super = _this = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf3, [this].concat(_toConsumableArray(dateStr))));
+    var _super = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
 
     initProps.apply(_assertThisInitialized(_this));
     return _possibleConstructorReturn(_this, _super); //helper-block
@@ -947,15 +937,15 @@ function (_Date) {
     key: "getFullDate",
     value: function getFullDate() {
       var separator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ' ';
-      var date = [this.getDate(), this.getMonth(), this.getFullYear()];
+      var date = [this.getDate(), this.getFormattedMonth(), this.getFullYear()];
       return date.join(separator);
     }
   }, {
     key: "getFormattedDate",
     value: function getFormattedDate() {
       var day = this.getDate().toString().length == 1 ? '0' + this.getDate() : this.getDate();
-      var year = this.getMonth().toString().length == 1 ? '0' + this.getMonth() : this.getMonth();
-      if (this.toFormat) return this.toFormat.replace(/Y+/, this.getFullYear()).replace(/D+/, day).replace(/M+/, year);
+      var month = this.getMonth().toString().length == 1 ? '0' + (this.getMonth() + 1) : this.getMonth() + 1;
+      if (this.toFormat) return this.toFormat.replace(/Y+/, this.getFullYear()).replace(/D+/, day).replace(/M+/, month);
       return "".concat(this.getDate(), " ").concat(this.getFormattedMonth(), " ").concat(this.getFullYear());
     }
   }, {
@@ -968,7 +958,7 @@ function (_Date) {
     key: "getFormattedMonth",
     value: function getFormattedMonth() {
       var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      return months[this.getMonth() - 1];
+      return months[this.getMonth()];
     }
   }, {
     key: "fromNow",

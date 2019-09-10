@@ -18,5 +18,6 @@ export function DateFormatter_input_action(input, output) {
     output.textContent += Helper.functionOutput(date.getFormattedDay.bind(date));
     output.textContent += Helper.functionOutput(date.getFormattedMonth.bind(date));
     output.textContent += Helper.functionOutput(date.getFormattedDate.bind(date));
+    output.textContent += Helper.functionOutput(date.getFullDate.bind(date));
     output.textContent += Helper.functionOutput(date.fromNow.bind(date));
 }

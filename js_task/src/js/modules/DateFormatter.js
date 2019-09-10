@@ -34,22 +34,10 @@ export class DateFormatter extends Date{
             }
         )
 
-        dateStr = dateStr.toString();
-        dateStr = dateStr.match(/\d+/g);
-
-        //length 1 => no separator
-        if (dateStr.length == 1){
-            let _super = super(...values)
-
-            initProps.apply(this);
-            
-            return _super;
-        }
-
-        let _super = super(...dateStr)
+        let _super = super(...values)
 
         initProps.apply(this);
-
+            
         return _super;
 
         //helper-block
@@ -81,7 +69,7 @@ export class DateFormatter extends Date{
     getFullDate(separator = ' '){
         let date = [
             this.getDate(),
-            this.getMonth(),
+            this.getFormattedMonth(),
             this.getFullYear()
         ]
 
@@ -89,14 +77,14 @@ export class DateFormatter extends Date{
     }
 
     getFormattedDate() {
-        let day = this.getDate().toString().length == 1 ? ('0' + this.getDate()) : this.getDate();
-        let year = this.getMonth().toString().length == 1 ? ('0' + this.getMonth()) : this.getMonth();
+        let day = this.getDate().toString().length == 1 ? '0' + this.getDate() : this.getDate();
+        let month = this.getMonth().toString().length == 1 ? '0' + (this.getMonth() + 1) : (this.getMonth() + 1);
 
         if (this.toFormat)
             return this.toFormat
                         .replace(/Y+/, this.getFullYear())
                         .replace(/D+/, day)
-                        .replace(/M+/, year);
+                        .replace(/M+/, month);
 
         return `${this.getDate()} ${this.getFormattedMonth()} ${this.getFullYear()}`
     }
@@ -108,7 +96,7 @@ export class DateFormatter extends Date{
 
     getFormattedMonth(){
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        return months[this.getMonth() - 1];
+        return months[this.getMonth()];
     }
 
     fromNow(){
