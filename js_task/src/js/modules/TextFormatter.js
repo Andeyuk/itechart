@@ -12,8 +12,8 @@ export function textFormatter(string, maxLength, maxRows, whiteSpace) {
 
     let rows = [];
     let shift = 0;
-    
-    //ignore max length coz it wouild be wrapped by symbol or word not sentence
+
+    //ignore max length coz it wouild be wrapped by symbol or word then not sentence
     if (whiteSpace == 3 || whiteSpace == 'sentence')
         return string.match(/[^\.]+[\.]?[\ ]?/g);
 

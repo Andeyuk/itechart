@@ -1,0 +1,15 @@
+
+.info-item{
+    min-width:300px;
+    text-align: center;
+}
+
+.info-item__top{
+    line-height: 2em;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.info-item__middle{
+    margin: 10px 0;
+}

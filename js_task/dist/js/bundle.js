@@ -1188,7 +1188,7 @@ function textFormatter(string, maxLength, maxRows, whiteSpace) {
   if (!maxLength && (whiteSpace != 3 || whiteSpace != 'sentence') || whiteSpace == 4 || whiteSpace == 'nowrap') return string;
   if (!maxRows) maxRows = Infinity;
   var rows = [];
-  var shift = 0; //ignore max length coz it wouild be wrapped by symbol or word not sentence
+  var shift = 0; //ignore max length coz it wouild be wrapped by symbol or word then not sentence
 
   if (whiteSpace == 3 || whiteSpace == 'sentence') return string.match(/[^\.]+[\.]?[\ ]?/g);
 
