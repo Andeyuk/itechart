@@ -1,13 +1,12 @@
-
-import { Cache as Cacher} from './modules/Cache'
-import { CachingCalculator as CCalc} from './modules/CachingCalculator'
-
 import { APT_input_handler as APT_handler} from './EventHandlers/ArrayProcessorHandler'
 import { DateFormatter_input_change as DF_input_action} from './EventHandlers/DateFromatterHandler'
 import { TextFormatter_input as TF_input_action} from './EventHandlers/TextFormatterHandler'
 import { ArraySorter_input as AS_input_action} from './EventHandlers/ArraySorterHandler'
 import { BinaryConverter_input_action as BC_input_action } from './EventHandlers/BinaryConverterHandler'
 import { StringCalculator_input_action as SC_input_action} from './EventHandlers/StringCalculator'
+import { 
+    Cacher_input_acion,
+    Cacher_clear } from './EventHandlers/CacherHandler'
 
 let APT_input = document.getElementById('APT__input');
 let APT_output = document.getElementById('APT__output');
@@ -46,6 +45,13 @@ let Bc_selectors = '#converter__input, #converter__base, #converter__new-base';
 let SC_input = document.getElementById('string-calc__input');
 let SC_output = document.getElementById('string-calc__output');
 
+let Cache_input = document.getElementById('cacher__input');
+let Cache_output = document.getElementById('cacher__output');
+let Cache_limit = document.getElementById('cacher__limit');
+let Cache_clear = document.getElementById('cacher__clear');
+
+
+//I'd like to test the perfomance of this approach
 window.addEventListener('input', (event)=>{
     switch(true){
         case controller(event, '#APT__input', true): return APT_handler(APT_input, APT_output)
@@ -54,6 +60,13 @@ window.addEventListener('input', (event)=>{
         case controller(event, '#sorter__input', true): return AS_input_action(AS_input, AS_output)
         case controller(event, Bc_selectors, true): return BC_input_action(BC_input, BC_args, BC_output)
         case controller(event, '#string-calc__input', true): return SC_input_action(SC_input, SC_output)
+        case controller(event, '#cacher__input', true): return Cacher_input_acion(Cache_input, Cache_limit, Cache_output)
+    };
+})
+
+window.addEventListener('click', (event)=>{
+    switch(true){
+        case controller(event, '#cacher__clear', true): return Cacher_clear(Cache_output)
     };
 })
 
@@ -64,6 +77,7 @@ window.addEventListener('load', ()=>{
     AS_input_action(AS_input, AS_output);
     BC_input_action(BC_input, BC_args, BC_output);
     SC_input_action(SC_input, SC_output);
+    Cacher_input_acion(Cache_input, Cache_limit, Cache_output);
 })
 
 

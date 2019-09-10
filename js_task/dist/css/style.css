@@ -91,3 +91,21 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+.choose-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.text-formatter{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width:80%;
+}
+
+
+.text-formatter__input{
+    height: 300px;
+}

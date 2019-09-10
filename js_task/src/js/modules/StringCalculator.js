@@ -1,13 +1,12 @@
 
 
 export let Calculator = {
-    exec(str){ //just test example
+    exec(str){
         getMethod = getMethod.bind(this);
 
         let arr = str.match(/[\d\.\d]*[+*-/%()]?/g);
 
         arr = arr.filter((el)=>el.length) //filter empty matches
-        console.log(arr)
 
         let parenthesisLeftInd = arr.findIndex(el=>el == '(');
         if (parenthesisLeftInd >= 0){
@@ -16,17 +15,13 @@ export let Calculator = {
             arr.splice(parenthesisRightInd, 1)
 
             let innerArr = arr.splice(parenthesisLeftInd + 1 ,parenthesisRightInd - parenthesisLeftInd - 1);
-            console.log(innerArr);
 
             replacePriorityOperations(innerArr);
-
-            console.log(arr);
 
             arr[parenthesisLeftInd] = exec(innerArr)
         }
 
         replacePriorityOperations(arr)
-        console.log(arr);
 
         return exec(arr);
 
@@ -41,7 +36,6 @@ export let Calculator = {
         }
 
         function exec(arr, start = 0, end = arr.length){
-            console.log(arr)
             let result = arr[start];
             for (let i = start; i < end - 1; i+=2){
                 result = getMethod(arr[i+1]).apply(this,[result, arr[i+2]]);

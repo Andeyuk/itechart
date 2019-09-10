@@ -61,3 +61,8 @@ body {
 .DateFormatter__input-wrap{
     min-width: 450px;
 }
+
+.choose-bar{
+    display: flex;
+    align-items: center;
+}

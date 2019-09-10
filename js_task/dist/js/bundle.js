@@ -117,19 +117,113 @@ function APT_input_handler(input, output) {
 
 /***/ }),
 
-/***/ "./src/js/EventHandlers/DateFromatterHandler.js":
-/*!******************************************************!*\
-  !*** ./src/js/EventHandlers/DateFromatterHandler.js ***!
-  \******************************************************/
-/*! exports provided: DateFormatter_input, DateFormatter_input_change, DateFormatter_FullDate_click */
+/***/ "./src/js/EventHandlers/ArraySorterHandler.js":
+/*!****************************************************!*\
+  !*** ./src/js/EventHandlers/ArraySorterHandler.js ***!
+  \****************************************************/
+/*! exports provided: ArraySorter_input */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter_input", function() { return DateFormatter_input; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArraySorter_input", function() { return ArraySorter_input; });
+/* harmony import */ var _modules_Helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Helper */ "./src/js/modules/Helper.js");
+/* harmony import */ var _modules_ArraySorter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/ArraySorter */ "./src/js/modules/ArraySorter.js");
+
+
+function ArraySorter_input(input, output) {
+  var numbers = input.value.match(/-?\d+/g);
+
+  for (var i = 0; i < numbers.length; i++) {
+    numbers[i] = parseInt(numbers[i]);
+  }
+
+  output.textContent = '';
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArraySorter__WEBPACK_IMPORTED_MODULE_1__["ArraySorter"].bubbleSort, numbers);
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArraySorter__WEBPACK_IMPORTED_MODULE_1__["ArraySorter"].insertionSort, numbers);
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArraySorter__WEBPACK_IMPORTED_MODULE_1__["ArraySorter"].selectionSort, numbers);
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].functionOutput(_modules_ArraySorter__WEBPACK_IMPORTED_MODULE_1__["ArraySorter"].mergeSort.bind(_modules_ArraySorter__WEBPACK_IMPORTED_MODULE_1__["ArraySorter"]), numbers);
+}
+
+/***/ }),
+
+/***/ "./src/js/EventHandlers/BinaryConverterHandler.js":
+/*!********************************************************!*\
+  !*** ./src/js/EventHandlers/BinaryConverterHandler.js ***!
+  \********************************************************/
+/*! exports provided: BinaryConverter_input_action */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BinaryConverter_input_action", function() { return BinaryConverter_input_action; });
+/* harmony import */ var _modules_BinaryConverter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/BinaryConverter */ "./src/js/modules/BinaryConverter.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+function BinaryConverter_input_action(input, args, output) {
+  var numbers = input.value.match(/-?[\da-zA-Z]/g);
+  var params = args.map(function (el) {
+    return el.value;
+  });
+
+  try {
+    output.textContent = _modules_BinaryConverter__WEBPACK_IMPORTED_MODULE_0__["numberConvert"].apply(void 0, [numbers].concat(_toConsumableArray(params)));
+  } catch (err) {
+    output.textContent = err;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/js/EventHandlers/CacherHandler.js":
+/*!***********************************************!*\
+  !*** ./src/js/EventHandlers/CacherHandler.js ***!
+  \***********************************************/
+/*! exports provided: Cacher_input_acion, Cacher_clear */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cacher_input_acion", function() { return Cacher_input_acion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cacher_clear", function() { return Cacher_clear; });
+/* harmony import */ var _modules_Cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Cache */ "./src/js/modules/Cache.js");
+
+function Cacher_input_acion(input, limit, output) {
+  var cachedFunc = _modules_Cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].reg(say, 2);
+  cachedFunc(input.value);
+  var cache = JSON.stringify(cachedFunc.getCache()).replace(/,/g, '\n');
+  output.textContent = cache + '\n';
+}
+function Cacher_clear(output) {
+  _modules_Cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].register = [];
+  output.textContent = '';
+}
+
+function say(arg) {
+  return 'Hello' + arg;
+}
+
+/***/ }),
+
+/***/ "./src/js/EventHandlers/DateFromatterHandler.js":
+/*!******************************************************!*\
+  !*** ./src/js/EventHandlers/DateFromatterHandler.js ***!
+  \******************************************************/
+/*! exports provided: DateFormatter_input_change */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter_input_change", function() { return DateFormatter_input_change; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter_FullDate_click", function() { return DateFormatter_FullDate_click; });
 /* harmony import */ var _modules_DateFormatter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/DateFormatter */ "./src/js/modules/DateFormatter.js");
+/* harmony import */ var _modules_Helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/Helper */ "./src/js/modules/Helper.js");
 function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
@@ -145,16 +239,77 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
-function DateFormatter_input(input, outputs) {
-  _toConsumableArray(outputs).forEach(function (el) {
-    el.textContent = input.value;
-  });
-}
+
 function DateFormatter_input_change(input, output) {
-  var vals = input.value.replace(/[“,]?/, '').split(',');
-  output.textContent = _construct(_modules_DateFormatter__WEBPACK_IMPORTED_MODULE_0__["DateFormatter"], _toConsumableArray(vals)).toString();
+  var numbs = input.value.match(/\d+.?\d+.?\d+/)[0];
+  var formats = input.value.match(/[YMD]+.?[YMD]+.?[YMD]+/g);
+
+  var date = _construct(_modules_DateFormatter__WEBPACK_IMPORTED_MODULE_0__["DateFormatter"], [numbs].concat(_toConsumableArray(formats)));
+
+  output.textContent = date.toString() + '\n';
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getDate.bind(date));
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getMonth.bind(date));
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getDay.bind(date));
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getFullYear.bind(date));
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getFormattedDay.bind(date));
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getFormattedMonth.bind(date));
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.getFormattedDate.bind(date));
+  output.textContent += _modules_Helper__WEBPACK_IMPORTED_MODULE_1__["Helper"].functionOutput(date.fromNow.bind(date));
 }
-function DateFormatter_FullDate_click(output) {}
+
+/***/ }),
+
+/***/ "./src/js/EventHandlers/StringCalculator.js":
+/*!**************************************************!*\
+  !*** ./src/js/EventHandlers/StringCalculator.js ***!
+  \**************************************************/
+/*! exports provided: StringCalculator_input_action */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StringCalculator_input_action", function() { return StringCalculator_input_action; });
+/* harmony import */ var _modules_CachingCalculator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/CachingCalculator */ "./src/js/modules/CachingCalculator.js");
+
+function StringCalculator_input_action(input, output) {
+  output.textContent = _modules_CachingCalculator__WEBPACK_IMPORTED_MODULE_0__["CachingCalculator"].exec(input.value) + '\n';
+  var calcCache = JSON.stringify(_modules_CachingCalculator__WEBPACK_IMPORTED_MODULE_0__["CachingCalculator"].exec.getCache()).replace(/,/g, '\n');
+  output.textContent += calcCache;
+}
+
+/***/ }),
+
+/***/ "./src/js/EventHandlers/TextFormatterHandler.js":
+/*!******************************************************!*\
+  !*** ./src/js/EventHandlers/TextFormatterHandler.js ***!
+  \******************************************************/
+/*! exports provided: TextFormatter_input */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextFormatter_input", function() { return TextFormatter_input; });
+/* harmony import */ var _modules_TextFormatter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/TextFormatter */ "./src/js/modules/TextFormatter.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+function TextFormatter_input(input, args, output) {
+  var params = args.map(function (el) {
+    return el.value;
+  });
+  var formattedText = _modules_TextFormatter__WEBPACK_IMPORTED_MODULE_0__["textFormatter"].apply(void 0, [input.value].concat(_toConsumableArray(params)));
+  output.textContent = '';
+  if (formattedText.forEach) formattedText.forEach(function (el) {
+    el += '\n';
+    output.textContent += el;
+  });else output.textContent = formattedText;
+}
 
 /***/ }),
 
@@ -167,13 +322,13 @@ function DateFormatter_FullDate_click(output) {}
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_Helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Helper */ "./src/js/modules/Helper.js");
-/* harmony import */ var _modules_DateFormatter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/DateFormatter */ "./src/js/modules/DateFormatter.js");
-/* harmony import */ var _modules_Cache__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Cache */ "./src/js/modules/Cache.js");
-/* harmony import */ var _modules_CachingCalculator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/CachingCalculator */ "./src/js/modules/CachingCalculator.js");
-/* harmony import */ var _modules_StringCalculator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/StringCalculator */ "./src/js/modules/StringCalculator.js");
-/* harmony import */ var _EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EventHandlers/ArrayProcessorHandler */ "./src/js/EventHandlers/ArrayProcessorHandler.js");
-/* harmony import */ var _EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EventHandlers/DateFromatterHandler */ "./src/js/EventHandlers/DateFromatterHandler.js");
+/* harmony import */ var _EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EventHandlers/ArrayProcessorHandler */ "./src/js/EventHandlers/ArrayProcessorHandler.js");
+/* harmony import */ var _EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventHandlers/DateFromatterHandler */ "./src/js/EventHandlers/DateFromatterHandler.js");
+/* harmony import */ var _EventHandlers_TextFormatterHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EventHandlers/TextFormatterHandler */ "./src/js/EventHandlers/TextFormatterHandler.js");
+/* harmony import */ var _EventHandlers_ArraySorterHandler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EventHandlers/ArraySorterHandler */ "./src/js/EventHandlers/ArraySorterHandler.js");
+/* harmony import */ var _EventHandlers_BinaryConverterHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EventHandlers/BinaryConverterHandler */ "./src/js/EventHandlers/BinaryConverterHandler.js");
+/* harmony import */ var _EventHandlers_StringCalculator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EventHandlers/StringCalculator */ "./src/js/EventHandlers/StringCalculator.js");
+/* harmony import */ var _EventHandlers_CacherHandler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EventHandlers/CacherHandler */ "./src/js/EventHandlers/CacherHandler.js");
 
 
 
@@ -185,32 +340,77 @@ var APT_input = document.getElementById('APT__input');
 var APT_output = document.getElementById('APT__output');
 var DF_input = document.getElementById('DateFormatter__input');
 var DF_output = document.getElementById('DateFormaatter__output');
-var DF_outputs = document.getElementsByClassName('DateFormatter__props');
-window.addEventListener('change', function (event) {
+var TF_wrap = document.getElementById('text-formatter__wrap');
+var TF_length = document.getElementById('text-formatter__length');
+var TF_rows = document.getElementById('text-formatter__rows');
+var TF_input = document.getElementById('text-formatter__input');
+var TF_output = document.getElementById('text-formatter__output');
+var TF_args = [TF_length, TF_rows, TF_wrap];
+var TF_selectors = '#text-formatter__input, #text-formatter__length, #text-formatter__rows, #text-formatter__wrap';
+var AS_input = document.getElementById('sorter__input');
+var AS_output = document.getElementById('sorter__output');
+var BC_input = document.getElementById('converter__input');
+var BC_output = document.getElementById('converter__output');
+var BC_base = document.getElementById('converter__base');
+var BC_new_base = document.getElementById('converter__new-base');
+var BC_args = [BC_base, BC_new_base];
+var Bc_selectors = '#converter__input, #converter__base, #converter__new-base';
+var SC_input = document.getElementById('string-calc__input');
+var SC_output = document.getElementById('string-calc__output');
+var Cache_input = document.getElementById('cacher__input');
+var Cache_output = document.getElementById('cacher__output');
+var Cache_limit = document.getElementById('cacher__limit');
+var Cache_clear = document.getElementById('cacher__clear'); //I'd like to test the perfomance of this approach
+
+window.addEventListener('input', function (event) {
   switch (true) {
     case controller(event, '#APT__input', true):
-      return Object(_EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_5__["APT_input_handler"])(APT_input, APT_output);
+      return Object(_EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_0__["APT_input_handler"])(APT_input, APT_output);
 
     case controller(event, '#DateFormatter__input', true):
-      return Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_6__["DateFormatter_input_change"])(DF_input, DF_output);
+      return Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_1__["DateFormatter_input_change"])(DF_input, DF_output);
+
+    case controller(event, TF_selectors, true):
+      return Object(_EventHandlers_TextFormatterHandler__WEBPACK_IMPORTED_MODULE_2__["TextFormatter_input"])(TF_input, TF_args, TF_output);
+
+    case controller(event, '#sorter__input', true):
+      return Object(_EventHandlers_ArraySorterHandler__WEBPACK_IMPORTED_MODULE_3__["ArraySorter_input"])(AS_input, AS_output);
+
+    case controller(event, Bc_selectors, true):
+      return Object(_EventHandlers_BinaryConverterHandler__WEBPACK_IMPORTED_MODULE_4__["BinaryConverter_input_action"])(BC_input, BC_args, BC_output);
+
+    case controller(event, '#string-calc__input', true):
+      return Object(_EventHandlers_StringCalculator__WEBPACK_IMPORTED_MODULE_5__["StringCalculator_input_action"])(SC_input, SC_output);
+
+    case controller(event, '#cacher__input', true):
+      return Object(_EventHandlers_CacherHandler__WEBPACK_IMPORTED_MODULE_6__["Cacher_input_acion"])(Cache_input, Cache_limit, Cache_output);
   }
 
   ;
 });
-window.addEventListener('input', function (event) {
+window.addEventListener('click', function (event) {
   switch (true) {
-    case controller(event, '#DateFormatter__input', true):
-      Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_6__["DateFormatter_input"])(DF_input, DF_outputs);
+    case controller(event, '#cacher__clear', true):
+      return Object(_EventHandlers_CacherHandler__WEBPACK_IMPORTED_MODULE_6__["Cacher_clear"])(Cache_output);
   }
 
   ;
+});
+window.addEventListener('load', function () {
+  Object(_EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_0__["APT_input_handler"])(APT_input, APT_output);
+  Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_1__["DateFormatter_input_change"])(DF_input, DF_output);
+  Object(_EventHandlers_TextFormatterHandler__WEBPACK_IMPORTED_MODULE_2__["TextFormatter_input"])(TF_input, TF_args, TF_output);
+  Object(_EventHandlers_ArraySorterHandler__WEBPACK_IMPORTED_MODULE_3__["ArraySorter_input"])(AS_input, AS_output);
+  Object(_EventHandlers_BinaryConverterHandler__WEBPACK_IMPORTED_MODULE_4__["BinaryConverter_input_action"])(BC_input, BC_args, BC_output);
+  Object(_EventHandlers_StringCalculator__WEBPACK_IMPORTED_MODULE_5__["StringCalculator_input_action"])(SC_input, SC_output);
+  Object(_EventHandlers_CacherHandler__WEBPACK_IMPORTED_MODULE_6__["Cacher_input_acion"])(Cache_input, Cache_limit, Cache_output);
 });
 
 function controller(event, selector) {
   var strict = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
   var checker;
   if (strict) checker = Element.prototype.matches.bind(event.target);else checker = Element.prototype.closest.bind(event.target);
-  console.log(checker, selector);
+  console.log(event.target, selector, checker(selector));
   if (checker(selector)) return true;
 }
 
@@ -283,34 +483,29 @@ var ArrayProcessor = {
 
     for (var i = 1; i < arr.length;) {
       while (curEl <= arr[i] && i < arr.length) {
-        //console.log('compare inc', curEl, arr[i]);
         tmpSequence.push(arr[i]);
         curEl = arr[i];
         i++;
-      } //console.log('compare inc seq', tmpSequence, seqIncr);
-
+      }
 
       if (seqIncr.length < tmpSequence.length) {
         seqIncr = _toConsumableArray(tmpSequence);
       }
 
-      tmpSequence = [curEl]; //console.log('reslt inc', tmpSequence, seqIncr, curEl, arr[i]);
-      //I need to skip decreasing seq, though i'd like to save it
+      tmpSequence = [curEl]; //I need to skip decreasing seq, though i'd like to save it
 
       while (curEl >= arr[i] && i < arr.length) {
         console.log('compare decr', curEl, arr[i]);
         tmpSequence.push(arr[i]);
         curEl = arr[i];
         i++;
-      } //console.log('compare dec seq', tmpSequence, seqDecr);
-
+      }
 
       if (seqDecr.length < tmpSequence.length) {
         seqDecr = _toConsumableArray(tmpSequence);
       }
 
-      tmpSequence = [curEl]; //console.log('reslt dec', tmpSequence, seqDecr, curEl, arr[i]);
-      //console.log('iter');
+      tmpSequence = [curEl];
     }
 
     if (seqIncr.length == 1) seqIncr.pop();
@@ -326,14 +521,9 @@ var ArrayProcessor = {
     var curEl = arr[0];
 
     for (var i = 1; i < arr.length; i++) {
-      console.log('compare inc', curEl, arr[i]);
-
       if (curEl <= arr[i]) {
         tmpSequence.push(arr[i]);
-        console.log('com', tmpSequence, seqIncr);
       } else {
-        console.log('compare inc seq', tmpSequence, seqIncr, seqIncr.length < tmpSequence.length);
-
         if (seqIncr.length < tmpSequence.length) {
           seqIncr = _toConsumableArray(tmpSequence);
         }
@@ -352,6 +542,145 @@ var ArrayProcessor = {
     return seqIncr;
   }
 };
+
+/***/ }),
+
+/***/ "./src/js/modules/ArraySorter.js":
+/*!***************************************!*\
+  !*** ./src/js/modules/ArraySorter.js ***!
+  \***************************************/
+/*! exports provided: ArraySorter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArraySorter", function() { return ArraySorter; });
+var ArraySorter = {
+  bubbleSort: function bubbleSort(arr, comparator) {
+    var checker;
+    if (comparator) checker = comparator;else checker = function checker(a, b) {
+      return a - b;
+    };
+
+    for (var i = 0; i < arr.length - 1; i++) {
+      for (var j = i + 1; j < arr.length; j++) {
+        if (checker(arr[i], arr[j]) > 0) {
+          var _ref = [arr[j], arr[i]];
+          arr[i] = _ref[0];
+          arr[j] = _ref[1];
+        }
+      }
+    }
+
+    return arr;
+  },
+  insertionSort: function insertionSort(arr, comparator) {
+    var checker;
+    if (comparator) checker = comparator;else checker = function checker(a, b) {
+      return a - b;
+    };
+
+    for (var i = 0; i < arr.length - 1; i++) {
+      if (checker(arr[i], arr[i + 1]) <= 0) continue;
+      var j = i + 1;
+
+      do {
+        var _ref2 = [arr[j - 1], arr[j]];
+        arr[j] = _ref2[0];
+        arr[j - 1] = _ref2[1];
+        j--;
+      } while (checker(arr[j], arr[j - 1]) < 0 && j > 0);
+    }
+
+    return arr;
+  },
+  selectionSort: function selectionSort(arr, comparator) {
+    var checker;
+    if (comparator) checker = comparator;else checker = function checker(a, b) {
+      return a - b;
+    };
+
+    for (var i = 0; i < arr.length - 1; i++) {
+      var minInd = i;
+
+      for (var j = i + 1; j < arr.length; j++) {
+        if (checker(arr[i], arr[j]) > 0) minInd = j;
+      }
+
+      var _ref3 = [arr[minInd], arr[i]];
+      arr[i] = _ref3[0];
+      arr[minInd] = _ref3[1];
+    }
+
+    return arr;
+  },
+  mergeSort: function mergeSort(arr) {
+    var increasing = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+    if (arr.length <= 1) {
+      return arr;
+    }
+
+    var middle = Math.floor(arr.length / 2);
+    var left = arr.slice(0, middle);
+    var right = arr.slice(middle);
+    return merge(this.mergeSort(left), this.mergeSort(right));
+
+    function merge(left, right) {
+      var leftIndex = 0;
+      var rightIndex = 0;
+      var results = [];
+      if (increasing) while (leftIndex < left.length || rightIndex < right.length) {
+        if (leftIndex === left.length) {
+          results.push(right[rightIndex]);
+          rightIndex++;
+        } else if (rightIndex === right.length || left[leftIndex] <= right[rightIndex]) {
+          results.push(left[leftIndex]);
+          leftIndex++;
+        } else {
+          results.push(right[rightIndex]);
+          rightIndex++;
+        }
+      } else while (leftIndex < left.length || rightIndex < right.length) {
+        if (leftIndex === left.length) {
+          results.unshift(right[rightIndex]);
+          rightIndex++;
+        } else if (rightIndex === right.length || left[leftIndex] <= right[rightIndex]) {
+          results.unshift(left[leftIndex]);
+          leftIndex++;
+        } else {
+          results.unshift(right[rightIndex]);
+          rightIndex++;
+        }
+      }
+      return results;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/modules/BinaryConverter.js":
+/*!*******************************************!*\
+  !*** ./src/js/modules/BinaryConverter.js ***!
+  \*******************************************/
+/*! exports provided: numberConvert */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numberConvert", function() { return numberConvert; });
+function numberConvert(arr, baseFrom, baseTo) {
+  if (!arr) return arr;
+  arr.forEach(function (el) {
+    var decimalElem = parseInt(el, baseFrom);
+    if (isNaN(decimalElem) && el) throw new TypeError('Wrong base: digit "' + el + '" has no equivalent in ' + baseFrom + ' number system');
+  });
+  arr = arr.join('');
+  var decimal = parseInt(arr, baseFrom);
+  var converted = decimal.toString(baseTo);
+  return converted;
+}
 
 /***/ }),
 
@@ -382,7 +711,6 @@ var Cache = {
     var unitedStorage = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
     var cache;
     var data = {};
-    var counter = 0;
 
     if (unitedStorage) {
       var registredFunc = this.find(func);
@@ -410,9 +738,8 @@ var Cache = {
         return cache[sortedArgs];
       }
 
-      if (counter <= limit) {
+      if (Object.keys(cache).length < limit) {
         cache[sortedArgs] = func.apply(void 0, arguments);
-        counter++;
         return cache[sortedArgs];
       }
 
@@ -645,6 +972,7 @@ function (_Date) {
 
       function diffTostr(diffPar, discription) {
         if (diffPar > 0) return diffPar + ' ' + discription;
+        if (diffPar < 0) return -diffPar + ' ' + discription;
         return '';
       }
 
@@ -693,7 +1021,7 @@ var Helper = {
       params[_key2 - 1] = arguments[_key2];
     }
 
-    return "".concat(func.name, " result: ").concat(func.apply(void 0, params), "\n");
+    return "".concat(func.name.replace("bound", ''), " result: ").concat(func.apply(void 0, params), "\n");
   }
 };
 
@@ -718,21 +1046,29 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 var Calculator = {
-  exec: function exec() {
-    var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '111.2222 + 2222.3333 * 3';
-    //just test example
+  exec: function exec(str) {
     getMethod = getMethod.bind(this);
-    var arr = str.match(/([\d.]+)?[+*-/%]?/g);
+    var arr = str.match(/[\d\.\d]*[+*-/%()]?/g);
     arr = arr.filter(function (el) {
       return el.length;
-    });
-    var result = arr[0];
+    }); //filter empty matches
 
-    for (var i = 1; i < arr.length - 1; i += 2) {
-      result = getMethod(arr[i])(result, arr[i + 1]);
+    var parenthesisLeftInd = arr.findIndex(function (el) {
+      return el == '(';
+    });
+
+    if (parenthesisLeftInd >= 0) {
+      var parenthesisRightInd = arr.findIndex(function (el) {
+        return el == ')';
+      });
+      arr.splice(parenthesisRightInd, 1);
+      var innerArr = arr.splice(parenthesisLeftInd + 1, parenthesisRightInd - parenthesisLeftInd - 1);
+      replacePriorityOperations(innerArr);
+      arr[parenthesisLeftInd] = exec(innerArr);
     }
 
-    return result;
+    replacePriorityOperations(arr);
+    return exec(arr);
 
     function getMethod(operator) {
       switch (operator) {
@@ -750,6 +1086,33 @@ var Calculator = {
 
         case '%':
           return this.divr;
+      }
+    }
+
+    function exec(arr) {
+      var start = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : arr.length;
+      var result = arr[start];
+
+      for (var i = start; i < end - 1; i += 2) {
+        result = getMethod(arr[i + 1]).apply(this, [result, arr[i + 2]]);
+      }
+
+      return result;
+    }
+
+    function replacePriorityOperations(arr) {
+      var priorOperatorInd = arr.findIndex(function (el) {
+        return el == ('*' || false || false);
+      });
+
+      while (priorOperatorInd >= 0) {
+        var tmp = exec(arr, priorOperatorInd - 1, priorOperatorInd + 1);
+        arr.splice(priorOperatorInd, 2);
+        arr[priorOperatorInd - 1] = tmp;
+        priorOperatorInd = arr.findIndex(function (el) {
+          return el == ('*' || false || false);
+        });
       }
     }
   },
@@ -801,6 +1164,72 @@ function castFloatDecorator(func) {
     });
     return func.apply(void 0, _toConsumableArray(args));
   };
+}
+
+/***/ }),
+
+/***/ "./src/js/modules/TextFormatter.js":
+/*!*****************************************!*\
+  !*** ./src/js/modules/TextFormatter.js ***!
+  \*****************************************/
+/*! exports provided: textFormatter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "textFormatter", function() { return textFormatter; });
+/** 
+ * @param {number = 1, 2, 3, 4 | string = "symbol", "word", "sentence", "nowrap" , "none" or any other string} whiteSpace  
+ */
+function textFormatter(string, maxLength, maxRows, whiteSpace) {
+  if (!maxLength && (whiteSpace != 3 || whiteSpace != 'sentence') || whiteSpace == 4 || whiteSpace == 'nowrap') return string;
+  if (!maxRows) maxRows = Infinity;
+  var rows = [];
+  var shift = 0; //ignore max length coz it wouild be wrapped by symbol or word not sentence
+
+  if (whiteSpace == 3 || whiteSpace == 'sentence') return string.match(/[^\.]+[\.]?[\ ]?/g);
+
+  for (var i = 0; i < maxRows; i++) {
+    var tmp = string.slice(i * (maxLength - 1) + shift, (i + 1) * (maxLength - 1) + shift);
+    var rowEndIndex = (i + 1) * (maxLength - 1) + shift;
+
+    if (rowEndIndex >= string.length) {
+      rows.push(tmp);
+      break;
+    }
+
+    var lastLetter = string[rowEndIndex];
+    var preLastLetter = string[rowEndIndex - 1];
+
+    if (lastLetter.match(/[a-zA-Z]/) && preLastLetter.match(/[a-zA-Z]/)) {
+      if (whiteSpace == 'symbol' || whiteSpace == 1) tmp += '-';
+
+      if (whiteSpace == 'word' || whiteSpace == 2) {
+        var j = 1; //find space from the row end
+
+        for (; lastLetter != ' ' && j < tmp.length; j++) {
+          lastLetter = tmp[tmp.length - j];
+        } //cutting up to space character
+
+
+        j -= 2;
+        tmp = tmp.slice(0, -j); //shift index not to loose data
+
+        shift -= j;
+      }
+    } else {
+      if (preLastLetter.match(/\s/) && lastLetter.match(/[a-zA-Z]/) || preLastLetter.match(/[a-zA-Z]/) && lastLetter.match(/\s/)) {
+        tmp += '';
+      } else {
+        tmp += lastLetter;
+        shift++;
+      }
+    }
+
+    rows.push(tmp);
+  }
+
+  return rows;
 }
 
 /***/ })

@@ -17,7 +17,6 @@ export let Cache = {
     reg (func, limit = Infinity, unitedStorage = true){
         let cache;
         let data = {};
-        let counter = 0;
 
         if (unitedStorage){
             let registredFunc = this.find(func);
@@ -45,10 +44,9 @@ export let Cache = {
                 console.log('got from cache');
                 return cache[sortedArgs];
             }
-    
-            if (counter <= limit){
+
+            if (Object.keys(cache).length < limit){
                 cache[sortedArgs] = func(...arguments);
-                counter++;
                 return cache[sortedArgs]
             }
 
