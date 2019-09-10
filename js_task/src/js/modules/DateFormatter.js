@@ -2,23 +2,15 @@
 export class DateFormatter extends Date{
     constructor(dateStr, format, toFormat){
 
-        if (!dateStr) {
-            let _super = super();
-
-            initProps.apply(this);
-            
-            return _super;
-        }
-
         let matchedWord = dateStr.match(/[a-zA-Z]+/);
 
         //handle numbers, not valid args and Month names to Date
         if (!dateStr.length || matchedWord) {
-            let _super = super(dateStr);
+            let defaultSuper = super(dateStr);
 
             initProps.apply(this);
 
-            return _super;
+            return defaultSuper;
         }
 
         //default format
@@ -72,7 +64,11 @@ export class DateFormatter extends Date{
 
             function getMonthFixer(func){
                 return function getMonth(){
-                    return func.apply(this) + 1;
+                    if(func.incremented != true){
+                        func.incremented = true;
+                        return func.apply(this) + 1;
+                    }
+                    return func.apply(this);
                 }
             }
 
@@ -81,6 +77,7 @@ export class DateFormatter extends Date{
                 this.constructor.prototype.getMonth = getMonthFixer(this.getMonth); //Date indicates month from 0, but task requares from 1
             }
     }
+
     getFullDate(separator = ' '){
         let date = [
             this.getDate(),

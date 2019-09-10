@@ -9,7 +9,7 @@ export function DateFormatter_input_action(input, output) {
     let formats = input.value.match(/[YMD]+.?[YMD]+.?[YMD]+/g);
 
     let date = new DF(numbs, ...formats);
-
+    
     output.textContent = date.toString() + '\n';
     output.textContent += Helper.functionOutput(date.getDate.bind(date));
     output.textContent += Helper.functionOutput(date.getMonth.bind(date));

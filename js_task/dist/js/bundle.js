@@ -881,20 +881,13 @@ function (_Date) {
 
     _classCallCheck(this, DateFormatter);
 
-    if (!dateStr) {
-      var _super2 = _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this));
-
-      initProps.apply(_assertThisInitialized(_this));
-      return _possibleConstructorReturn(_this, _super2);
-    }
-
     var matchedWord = dateStr.match(/[a-zA-Z]+/); //handle numbers, not valid args and Month names to Date
 
     if (!dateStr.length || matchedWord) {
-      var _super3 = _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr));
+      var defaultSuper = _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr));
 
       initProps.apply(_assertThisInitialized(_this));
-      return _possibleConstructorReturn(_this, _super3);
+      return _possibleConstructorReturn(_this, defaultSuper);
     } //default format
 
 
@@ -915,10 +908,10 @@ function (_Date) {
     if (dateStr.length == 1) {
       var _getPrototypeOf2;
 
-      var _super4 = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
+      var _super2 = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
 
       initProps.apply(_assertThisInitialized(_this));
-      return _possibleConstructorReturn(_this, _super4);
+      return _possibleConstructorReturn(_this, _super2);
     }
 
     var _super = _this = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf3, [this].concat(_toConsumableArray(dateStr))));
@@ -933,7 +926,12 @@ function (_Date) {
 
     function getMonthFixer(func) {
       return function getMonth() {
-        return func.apply(this) + 1;
+        if (func.incremented != true) {
+          func.incremented = true;
+          return func.apply(this) + 1;
+        }
+
+        return func.apply(this);
       };
     }
 

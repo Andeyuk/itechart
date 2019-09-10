@@ -83,8 +83,6 @@ window.addEventListener('load', ()=>{
 
 
 
-
-
 function controller(event, selector, strict = false){
 
     let checker;
