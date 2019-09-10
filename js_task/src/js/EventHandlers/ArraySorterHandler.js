@@ -1,7 +1,7 @@
 import { Helper } from '../modules/Helper'
 import { ArraySorter as AS } from '../modules/ArraySorter'
 
-export function ArraySorter_input(input, output) {
+export function ArraySorter_input_action(input, output) {
     let numbers = input.value.match(/-?\d+/g);
 
     for (let i = 0; i < numbers.length; i++) {

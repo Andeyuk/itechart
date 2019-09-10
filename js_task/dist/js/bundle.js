@@ -90,17 +90,17 @@
 /*!*******************************************************!*\
   !*** ./src/js/EventHandlers/ArrayProcessorHandler.js ***!
   \*******************************************************/
-/*! exports provided: APT_input_handler */
+/*! exports provided: APT_input_action */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APT_input_handler", function() { return APT_input_handler; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APT_input_action", function() { return APT_input_action; });
 /* harmony import */ var _modules_Helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Helper */ "./src/js/modules/Helper.js");
 /* harmony import */ var _modules_ArrayProcessor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/ArrayProcessor */ "./src/js/modules/ArrayProcessor.js");
 
 
-function APT_input_handler(input, output) {
+function APT_input_action(input, output) {
   var numbers = input.value.match(/-?\d+/g);
 
   for (var i = 0; i < numbers.length; i++) {
@@ -121,17 +121,17 @@ function APT_input_handler(input, output) {
 /*!****************************************************!*\
   !*** ./src/js/EventHandlers/ArraySorterHandler.js ***!
   \****************************************************/
-/*! exports provided: ArraySorter_input */
+/*! exports provided: ArraySorter_input_action */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArraySorter_input", function() { return ArraySorter_input; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArraySorter_input_action", function() { return ArraySorter_input_action; });
 /* harmony import */ var _modules_Helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Helper */ "./src/js/modules/Helper.js");
 /* harmony import */ var _modules_ArraySorter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/ArraySorter */ "./src/js/modules/ArraySorter.js");
 
 
-function ArraySorter_input(input, output) {
+function ArraySorter_input_action(input, output) {
   var numbers = input.value.match(/-?\d+/g);
 
   for (var i = 0; i < numbers.length; i++) {
@@ -216,12 +216,12 @@ function say(arg) {
 /*!******************************************************!*\
   !*** ./src/js/EventHandlers/DateFromatterHandler.js ***!
   \******************************************************/
-/*! exports provided: DateFormatter_input_change */
+/*! exports provided: DateFormatter_input_action */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter_input_change", function() { return DateFormatter_input_change; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateFormatter_input_action", function() { return DateFormatter_input_action; });
 /* harmony import */ var _modules_DateFormatter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/DateFormatter */ "./src/js/modules/DateFormatter.js");
 /* harmony import */ var _modules_Helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/Helper */ "./src/js/modules/Helper.js");
 function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
@@ -240,7 +240,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
-function DateFormatter_input_change(input, output) {
+function DateFormatter_input_action(input, output) {
   var numbs = input.value.match(/(\d+.?\d+.?\d+)/)[0];
   var formats = input.value.match(/[YMD]+.?[YMD]+.?[YMD]+/g);
 
@@ -283,12 +283,12 @@ function StringCalculator_input_action(input, output) {
 /*!******************************************************!*\
   !*** ./src/js/EventHandlers/TextFormatterHandler.js ***!
   \******************************************************/
-/*! exports provided: TextFormatter_input */
+/*! exports provided: TextFormatter_input_action */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextFormatter_input", function() { return TextFormatter_input; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextFormatter_input_action", function() { return TextFormatter_input_action; });
 /* harmony import */ var _modules_TextFormatter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/TextFormatter */ "./src/js/modules/TextFormatter.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -299,7 +299,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
-function TextFormatter_input(input, args, output) {
+function TextFormatter_input_action(input, args, output) {
   var params = args.map(function (el) {
     return el.value;
   });
@@ -365,16 +365,16 @@ var Cache_clear = document.getElementById('cacher__clear'); //I'd like to test t
 window.addEventListener('input', function (event) {
   switch (true) {
     case controller(event, '#APT__input', true):
-      return Object(_EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_0__["APT_input_handler"])(APT_input, APT_output);
+      return Object(_EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_0__["APT_input_action"])(APT_input, APT_output);
 
     case controller(event, '#DateFormatter__input', true):
-      return Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_1__["DateFormatter_input_change"])(DF_input, DF_output);
+      return Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_1__["DateFormatter_input_action"])(DF_input, DF_output);
 
     case controller(event, TF_selectors, true):
-      return Object(_EventHandlers_TextFormatterHandler__WEBPACK_IMPORTED_MODULE_2__["TextFormatter_input"])(TF_input, TF_args, TF_output);
+      return Object(_EventHandlers_TextFormatterHandler__WEBPACK_IMPORTED_MODULE_2__["TextFormatter_input_action"])(TF_input, TF_args, TF_output);
 
     case controller(event, '#sorter__input', true):
-      return Object(_EventHandlers_ArraySorterHandler__WEBPACK_IMPORTED_MODULE_3__["ArraySorter_input"])(AS_input, AS_output);
+      return Object(_EventHandlers_ArraySorterHandler__WEBPACK_IMPORTED_MODULE_3__["ArraySorter_input_action"])(AS_input, AS_output);
 
     case controller(event, Bc_selectors, true):
       return Object(_EventHandlers_BinaryConverterHandler__WEBPACK_IMPORTED_MODULE_4__["BinaryConverter_input_action"])(BC_input, BC_args, BC_output);
@@ -397,10 +397,10 @@ window.addEventListener('click', function (event) {
   ;
 });
 window.addEventListener('load', function () {
-  Object(_EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_0__["APT_input_handler"])(APT_input, APT_output);
-  Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_1__["DateFormatter_input_change"])(DF_input, DF_output);
-  Object(_EventHandlers_TextFormatterHandler__WEBPACK_IMPORTED_MODULE_2__["TextFormatter_input"])(TF_input, TF_args, TF_output);
-  Object(_EventHandlers_ArraySorterHandler__WEBPACK_IMPORTED_MODULE_3__["ArraySorter_input"])(AS_input, AS_output);
+  Object(_EventHandlers_ArrayProcessorHandler__WEBPACK_IMPORTED_MODULE_0__["APT_input_action"])(APT_input, APT_output);
+  Object(_EventHandlers_DateFromatterHandler__WEBPACK_IMPORTED_MODULE_1__["DateFormatter_input_action"])(DF_input, DF_output);
+  Object(_EventHandlers_TextFormatterHandler__WEBPACK_IMPORTED_MODULE_2__["TextFormatter_input_action"])(TF_input, TF_args, TF_output);
+  Object(_EventHandlers_ArraySorterHandler__WEBPACK_IMPORTED_MODULE_3__["ArraySorter_input_action"])(AS_input, AS_output);
   Object(_EventHandlers_BinaryConverterHandler__WEBPACK_IMPORTED_MODULE_4__["BinaryConverter_input_action"])(BC_input, BC_args, BC_output);
   Object(_EventHandlers_StringCalculator__WEBPACK_IMPORTED_MODULE_5__["StringCalculator_input_action"])(SC_input, SC_output);
   Object(_EventHandlers_CacherHandler__WEBPACK_IMPORTED_MODULE_6__["Cacher_input_acion"])(Cache_input, Cache_limit, Cache_output);

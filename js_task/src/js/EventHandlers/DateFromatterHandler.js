@@ -3,7 +3,7 @@ import { DateFormatter as DF } from '../modules/DateFormatter'
 import { Helper } from '../modules/Helper'
 
 
-export function DateFormatter_input_change(input, output) {
+export function DateFormatter_input_action(input, output) {
 
     let numbs = input.value.match(/(\d+.?\d+.?\d+)/)[0];
     let formats = input.value.match(/[YMD]+.?[YMD]+.?[YMD]+/g);

@@ -1,7 +1,7 @@
 
 import { textFormatter as TF } from '../modules/TextFormatter'
 
-export function TextFormatter_input(input, args, output) {
+export function TextFormatter_input_action(input, args, output) {
 
     let params = args.map((el)=>el.value);
     let formattedText = TF(input.value, ...params);

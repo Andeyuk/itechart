@@ -1,12 +1,13 @@
-import { APT_input_handler as APT_handler} from './EventHandlers/ArrayProcessorHandler'
-import { DateFormatter_input_change as DF_input_action} from './EventHandlers/DateFromatterHandler'
-import { TextFormatter_input as TF_input_action} from './EventHandlers/TextFormatterHandler'
-import { ArraySorter_input as AS_input_action} from './EventHandlers/ArraySorterHandler'
+import { APT_input_action as APT_input_action} from './EventHandlers/ArrayProcessorHandler'
+import { DateFormatter_input_action as DF_input_action} from './EventHandlers/DateFromatterHandler'
+import { TextFormatter_input_action as TF_input_action} from './EventHandlers/TextFormatterHandler'
+import { ArraySorter_input_action as AS_input_action} from './EventHandlers/ArraySorterHandler'
 import { BinaryConverter_input_action as BC_input_action } from './EventHandlers/BinaryConverterHandler'
 import { StringCalculator_input_action as SC_input_action} from './EventHandlers/StringCalculator'
 import { 
     Cacher_input_acion,
-    Cacher_clear } from './EventHandlers/CacherHandler'
+    Cacher_clear 
+} from './EventHandlers/CacherHandler'
 
 let APT_input = document.getElementById('APT__input');
 let APT_output = document.getElementById('APT__output');
@@ -54,7 +55,7 @@ let Cache_clear = document.getElementById('cacher__clear');
 //I'd like to test the perfomance of this approach
 window.addEventListener('input', (event)=>{
     switch(true){
-        case controller(event, '#APT__input', true): return APT_handler(APT_input, APT_output)
+        case controller(event, '#APT__input', true): return APT_input_action(APT_input, APT_output)
         case controller(event, '#DateFormatter__input', true): return DF_input_action(DF_input, DF_output)
         case controller(event, TF_selectors, true): return TF_input_action(TF_input, TF_args, TF_output)
         case controller(event, '#sorter__input', true): return AS_input_action(AS_input, AS_output)
@@ -71,7 +72,7 @@ window.addEventListener('click', (event)=>{
 })
 
 window.addEventListener('load', ()=>{
-    APT_handler(APT_input, APT_output);
+    APT_input_action(APT_input, APT_output);
     DF_input_action(DF_input, DF_output);
     TF_input_action(TF_input, TF_args, TF_output);
     AS_input_action(AS_input, AS_output);
