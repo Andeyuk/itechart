@@ -2,15 +2,23 @@
 export class DateFormatter extends Date{
     constructor(dateStr, format, toFormat){
 
+        if (!dateStr) {
+            let _super = super();
+
+            initProps.apply(this);
+            
+            return _super;
+        }
+
         let matchedWord = dateStr.match(/[a-zA-Z]+/);
 
         //handle numbers, not valid args and Month names to Date
         if (!dateStr.length || matchedWord) {
-            let defaultSuper = super(dateStr);
+            let _super = super(dateStr);
 
             initProps.apply(this);
 
-            return defaultSuper;
+            return _super;
         }
 
         //default format

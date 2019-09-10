@@ -196,7 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_Cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Cache */ "./src/js/modules/Cache.js");
 
 function Cacher_input_acion(input, limit, output) {
-  var cachedFunc = _modules_Cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].reg(say, 2);
+  var cachedFunc = _modules_Cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].reg(say, limit.value);
   cachedFunc(input.value);
   var cache = JSON.stringify(cachedFunc.getCache()).replace(/,/g, '\n');
   output.textContent = cache + '\n';
@@ -207,7 +207,7 @@ function Cacher_clear(output) {
 }
 
 function say(arg) {
-  return 'Hello' + arg;
+  return 'Hello ' + arg;
 }
 
 /***/ }),
@@ -241,7 +241,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 function DateFormatter_input_change(input, output) {
-  var numbs = input.value.match(/\d+.?\d+.?\d+/)[0];
+  var numbs = input.value.match(/(\d+.?\d+.?\d+)/)[0];
   var formats = input.value.match(/[YMD]+.?[YMD]+.?[YMD]+/g);
 
   var date = _construct(_modules_DateFormatter__WEBPACK_IMPORTED_MODULE_0__["DateFormatter"], [numbs].concat(_toConsumableArray(formats)));
@@ -460,14 +460,22 @@ var ArrayProcessor = {
     return curSum;
   },
   getMax: function getMax(arr) {
-    var arrSorted = _toConsumableArray(arr).sort();
+    var max = arr[0];
 
-    return arrSorted[arrSorted.length - 1];
+    for (var i = 1; i < arr.length; i++) {
+      if (max < arr[i]) max = arr[i];
+    }
+
+    return max;
   },
   getMin: function getMin(arr) {
-    var arrSorted = _toConsumableArray(arr).sort();
+    var min = arr[0];
 
-    return arrSorted[0];
+    for (var i = 1; i < arr.length; i++) {
+      if (min > arr[i]) min = arr[i];
+    }
+
+    return min;
   },
   getMedium: function getMedium(arr) {
     var arrSorted = _toConsumableArray(arr).sort();
@@ -873,13 +881,20 @@ function (_Date) {
 
     _classCallCheck(this, DateFormatter);
 
+    if (!dateStr) {
+      var _super2 = _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this));
+
+      initProps.apply(_assertThisInitialized(_this));
+      return _possibleConstructorReturn(_this, _super2);
+    }
+
     var matchedWord = dateStr.match(/[a-zA-Z]+/); //handle numbers, not valid args and Month names to Date
 
     if (!dateStr.length || matchedWord) {
-      var defaultSuper = _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr));
+      var _super3 = _this = _possibleConstructorReturn(this, _getPrototypeOf(DateFormatter).call(this, dateStr));
 
       initProps.apply(_assertThisInitialized(_this));
-      return _possibleConstructorReturn(_this, defaultSuper);
+      return _possibleConstructorReturn(_this, _super3);
     } //default format
 
 
@@ -900,10 +915,10 @@ function (_Date) {
     if (dateStr.length == 1) {
       var _getPrototypeOf2;
 
-      var _super2 = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
+      var _super4 = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf2, [this].concat(_toConsumableArray(values))));
 
       initProps.apply(_assertThisInitialized(_this));
-      return _possibleConstructorReturn(_this, _super2);
+      return _possibleConstructorReturn(_this, _super4);
     }
 
     var _super = _this = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(DateFormatter)).call.apply(_getPrototypeOf3, [this].concat(_toConsumableArray(dateStr))));

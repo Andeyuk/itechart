@@ -1,7 +1,7 @@
 import {Cache as C} from '../modules/Cache'
 
 export function Cacher_input_acion(input, limit, output){
-    let cachedFunc = C.reg(say, 2);
+    let cachedFunc = C.reg(say, limit.value);
 
     cachedFunc(input.value);
     let cache = JSON.stringify(cachedFunc.getCache()).replace(/,/g,'\n')
@@ -16,5 +16,5 @@ export function Cacher_clear(output){
 
 
 function say(arg){
-    return 'Hello' + arg
+    return 'Hello ' + arg
 }

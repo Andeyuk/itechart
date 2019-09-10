@@ -29,13 +29,23 @@ export let ArrayProcessor = {
     },
 
     getMax(arr) {
-        let arrSorted = [...arr].sort();
-        return arrSorted[arrSorted.length - 1];
+        let max = arr[0];
+
+        for (let i = 1; i < arr.length; i++) {
+            if (max < arr[i]) max = arr[i];
+        }
+
+        return max
     },
 
     getMin(arr) {
-        let arrSorted = [...arr].sort();
-        return arrSorted[0];
+        let min = arr[0];
+
+        for (let i = 1; i < arr.length; i++) {
+            if (min > arr[i]) min = arr[i];
+        }
+
+        return min
     },
 
     getMedium(arr) {
