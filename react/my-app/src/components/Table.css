@@ -1,0 +1,11 @@
+.currency__table,
+.table__cell,
+.table__title{
+    border: 1px solid black;
+}
+
+.table__cell,
+.table__title{
+    padding:10px;
+    text-align: center;
+}

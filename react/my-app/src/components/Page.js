@@ -1,8 +1,9 @@
 import React from 'react';
 import InfoBlock from './InfoBlock'
+import CurrencyApp from './CurrencyApp'
 import './Page.css';
 
-export class Page extends React.Component{
+class Page extends React.Component{
     render(){
         let blockContent = ["Some Title", "Some Text to middle", "Some conclusion"];
         return(
@@ -20,10 +21,12 @@ export class Page extends React.Component{
                         value = {blockContent}
                     />
                 </div>
+                <CurrencyApp />
                 <div className = 'footer'>
                     footer here
                 </div>
             </React.Fragment>
+
         )
     }
 }
