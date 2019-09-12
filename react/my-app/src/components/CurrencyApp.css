@@ -1,0 +1,9 @@
+.display-wrapper{
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.currency__chosen-block{
+    margin-left:50px;
+}

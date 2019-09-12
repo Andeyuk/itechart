@@ -1,6 +1,8 @@
-const DYNAMIC_RATE_URL = 'http://www.nbrb.by/API/ExRates/Rates/Dynamics/';
-const CURRENCIES_LIST_URL = 'http://www.nbrb.by/API/ExRates/Currencies/';
+const DYNAMIC_RATE_URL = 'http://www.nbrb.by/API/ExRates/Rates/Dynamics/'; 
+const CURRENCIES_LIST_URL = 'http://www.nbrb.by/API/ExRates/Currencies/'; //contains overdue id
 const RATE_URL = 'http://www.nbrb.by/API/ExRates/Rates/';
+const TMP_RATE_LIST = 'http://www.nbrb.by/api/exrates/rates?periodicity=0';
+
 
 let CurrencyAPI = {
     async getDynamicRates(Cur_ID, startDate, endDate) {
@@ -11,7 +13,7 @@ let CurrencyAPI = {
             + encodeData({ startDate, endDate });
 
         let response = await fetch(link);
-
+        
         if (response.ok) {
             return await response.json();
         } else {
@@ -20,7 +22,7 @@ let CurrencyAPI = {
     },
 
     async getCurrencies() {
-        let response = await fetch(CURRENCIES_LIST_URL)
+        let response = await fetch(CURRENCIES_LIST_URL);
 
         if (response.ok) {
             return await response.json();
@@ -33,6 +35,16 @@ let CurrencyAPI = {
         let link = RATE_URL + Cur_ID + '?' + encodeData({onDate});
         console.log(link);
         let response = await fetch(link);
+
+        if (response.ok) {
+            return await response.json();
+        } else {
+            alert('HTTP Error: ' + response.status);
+        }
+    },
+
+    async getSomeCurrencies(){
+        let response = await fetch(TMP_RATE_LIST);
 
         if (response.ok) {
             return await response.json();

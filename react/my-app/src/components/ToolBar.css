@@ -1,0 +1,4 @@
+.currency__toolbar{
+    display:flex;
+    justify-content: space-evenly;
+}
