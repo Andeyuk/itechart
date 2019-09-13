@@ -1,4 +1,9 @@
 .currency__toolbar{
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(216, 216, 216, 0.6);
+    padding: 0 20px 20px;
+    box-sizing: border-box;
 }

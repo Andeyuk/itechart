@@ -24,14 +24,20 @@ class Table extends React.PureComponent{
             )
         })
 
+        if (this.props.headerData.title)
+            headerRow.unshift(
+                <th 
+                className = "table__title"
+                key = {'title'}>
+                    {this.props.headerData.title}
+                </th>
+            )
+
         return(
             <div className = "table-wrap">
                 <table className = "currency__table">
                     <thead>
                         <tr>
-                            <th className = "table__title">
-                                Дата
-                            </th>
                             {headerRow}
                         </tr>
                     </thead>

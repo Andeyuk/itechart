@@ -17,6 +17,7 @@ class ToolBar extends React.PureComponent{
         this.onDateChange = this.onDateChange.bind(this);
         this.onCurrencyClick = this.onCurrencyClick.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.isValidState = this.isValidState.bind(this);
     }
 
     onDateChange(event){
@@ -50,12 +51,32 @@ class ToolBar extends React.PureComponent{
     }
 
     onSubmit(){
-        this.props.onSubmit(this.state.data)
+        if (this.isValidState())
+            this.props.onSubmit(this.state.data)
+        else alert('Проверьте введнные данные');
     }
 
+    isValidState(){
+        let data = this.state.data;
+
+        if (!data.dateFrom || !data.dateTo)
+            return false;
+
+        let dateFrom = new Date(data.dateFrom);
+        let dateTo = new Date(data.dateTo);
+
+        if (dateFrom.getTime() >  dateTo.getTime())
+            return false
+
+        if (!data.currencyIDs.length || !data.currencyNames.length)
+            return false;
+        
+        return true;
+    }
 
     render(){
         console.log('toolbar rendered');
+        console.log(this.props)
 
         let currencyList = this.props.currencies.map((cur)=>{
             return(
@@ -90,6 +111,7 @@ class ToolBar extends React.PureComponent{
                     <select 
                         className="currency__select-items"
                         id="currencyIDs"
+                        multiple="multiple"
                     >
                         {currencyList}
                     </select>
