@@ -91,7 +91,6 @@ class ToolBar extends React.PureComponent{
 
     render(){
         console.log('toolbar rendered');
-        console.log(this.props)
 
         let currencyList = this.props.currencies.map((cur)=>{
             return(
