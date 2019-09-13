@@ -8,14 +8,25 @@
 .table__title{
     padding:10px;
     text-align: center;
+    position: relative;
 }
 
 
 .table-wrap{
-    flex-grow: 10;
     display: flex;
     justify-content: center;
     padding: 20px;
-    box-sizing: border-box;
-    max-width: 730px;
+}
+
+.currency__table{
+    background: rgb(226, 221, 221);
+}
+
+.table__rm-btn{
+    width:10px;
+    color: black;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    cursor: pointer;
 }

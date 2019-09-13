@@ -5,7 +5,7 @@ import ToolBar from './ToolBar'
 import './CurrencyApp.css';
 
 
-class CurrencyApp extends React.Component{
+class CurrencyApp extends React.PureComponent{
     constructor(props){
         super(props);
         this.state = {
@@ -18,7 +18,8 @@ class CurrencyApp extends React.Component{
             currencies: [],
         }
         this.onSubmit = this.onSubmit.bind(this);
-        this.onCurrencyClick = this.onCurrencyClick.bind(this)
+        this.onCurrencyClick = this.onCurrencyClick.bind(this);
+        this.onRemoveCurrency = this.onRemoveCurrency.bind(this);
     }
 
     componentDidMount(){
@@ -41,7 +42,6 @@ class CurrencyApp extends React.Component{
         
         Promise.all(promiseList).then((el)=>{
             let dataContentRows = el[0].map((arr, i)=>dataToRow(el, i, "Cur_OfficialRate"));
-
             this.setState({
                 contentData: dataContentRows,
             })
@@ -51,34 +51,68 @@ class CurrencyApp extends React.Component{
     onCurrencyClick(currency){
         let currencyNames = Object.assign({}, this.state.headerData);
         currencyNames.vals.push(currency);
+
         this.setState({
             headerData: currencyNames
         })
-        /*this.refs.display.setState({
-            currency: cur
-        })*/
+    }
+
+    onRemoveCurrency(event){
+        let currencyNames = Object.assign({}, this.state.headerData);
+        let toRemove = event.target.closest('.table__title').textContent;
+        let ind = currencyNames.vals.findIndex(val=>
+            val === toRemove
+        )
+
+        currencyNames.vals.splice(ind, 1);
+
+        if (this.state.contentData.length){
+
+
+            if (this.state.contentData[0].vals.length == 1){
+                this.setState({
+                    headerData: currencyNames,
+                    contentData: []
+                })
+                return;
+            }
+
+            let contentData = this.state.contentData.map(el=>el);
+            contentData.forEach(obj=>
+                obj.vals.splice(ind, 1)
+            );
+
+            this.setState({
+                headerData: currencyNames,
+                contentData: contentData
+            })
+
+        } else {
+
+            this.setState({
+                headerData: currencyNames
+            })
+        }
+
+        this.refs.toolBar.removeCurrency(toRemove);
     }
 
     render(){
         console.log("app rendered")
+
         return(
             <div className = "currency">
                 <ToolBar 
+                    ref = 'toolBar'
                     currencies = {this.state.currencies}
                     onSubmit = {this.onSubmit}
                     onCurrencyClick = {this.onCurrencyClick}
+                /> 
+                <Table 
+                    headerData = {this.state.headerData}
+                    data = {this.state.contentData}
+                    onRemoveCurrency = {this.onRemoveCurrency}
                 />
-                <div className = "display-wrapper">
-                    <ChosenCurrencies 
-                    ref='display' 
-                    id="chosenCurrency"
-                    currenciesNames = {this.state.headerData.vals}
-                    />    
-                    <Table 
-                        headerData = {this.state.headerData}
-                        data = {this.state.contentData}
-                    />
-                </div>
             </div>
         )
     }
@@ -86,23 +120,6 @@ class CurrencyApp extends React.Component{
 
 export default CurrencyApp;
 
-
-class ChosenCurrencies extends React.Component{
-    render(){
-
-        let currencyArr = this.props.currenciesNames.map((el,ind)=>{
-            return(
-                <div key={ind}>{el}</div>
-            )
-        })
-        return(
-            <div className="currency__chosen-block">
-                <p>Выбранная валюта</p>
-                {currencyArr}
-            </div>
-        )
-    }
-}
 
 function dataToRow(data, rowInd, prop){
     let newData = {}

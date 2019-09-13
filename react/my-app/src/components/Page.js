@@ -4,7 +4,6 @@ import './Page.css';
 
 class Page extends React.Component{
     render(){
-        let blockContent = ["Some Title", "Some Text to middle", "Some conclusion"];
         return(
             <React.Fragment>
                 <div className = 'banner'>
@@ -14,7 +13,6 @@ class Page extends React.Component{
                     footer here
                 </div>
             </React.Fragment>
-
         )
     }
 }

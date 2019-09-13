@@ -6,31 +6,27 @@ class ToolBar extends React.PureComponent{
     constructor(props){
         super(props)
         this.state={
-            data:{
-                dateFrom: null,
-                dateTo: null,
-                currencyIDs: [],
-                currencyNames: []
-            }
+            dateFrom: null,
+            dateTo: null,
+            currencyIDs: [],
+            currencyNames: []
         }
 
         this.onDateChange = this.onDateChange.bind(this);
         this.onCurrencyClick = this.onCurrencyClick.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.isValidState = this.isValidState.bind(this);
+        this.removeCurrency = this.removeCurrency.bind(this);
     }
 
     onDateChange(event){
-        let data = this.state.data;
-        data[event.target.id] = event.target.value
-
         this.setState({
-            data: data
+            [event.target.id]: event.target.value
         })
     }
 
     onCurrencyClick(event){
-        let data = this.state.data;
+        let data = this.state;
         let currencyID = event.target.id;
         let currencyProp = event.target.parentElement.id;
         
@@ -43,7 +39,8 @@ class ToolBar extends React.PureComponent{
         data.currencyNames.push(event.target.value);
 
         this.setState({
-            data: data
+            currencyIDs: data.currencyIDs,
+            currencyNames: data.currencyNames
         })
 
         this.props.onCurrencyClick(event.target.value);
@@ -52,12 +49,12 @@ class ToolBar extends React.PureComponent{
 
     onSubmit(){
         if (this.isValidState())
-            this.props.onSubmit(this.state.data)
+            this.props.onSubmit(this.state)
         else alert('Проверьте введнные данные');
     }
 
     isValidState(){
-        let data = this.state.data;
+        let data = this.state;
 
         if (!data.dateFrom || !data.dateTo)
             return false;
@@ -72,6 +69,24 @@ class ToolBar extends React.PureComponent{
             return false;
         
         return true;
+    }
+
+    removeCurrency(currencyName){
+        let currencyNames = [...this.state.currencyNames];
+        let currencyIDs = [...this.state.currencyIDs];
+        let toRemove = currencyName;
+        let ind = currencyNames.findIndex(val=>
+            val === toRemove
+        )
+
+        currencyNames.splice(ind, 1);
+        currencyIDs.splice(ind, 1);
+
+        this.setState({
+            currencyNames: currencyNames,
+            currencyIDs: currencyIDs
+        })
+
     }
 
     render(){
