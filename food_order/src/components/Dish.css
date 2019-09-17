@@ -1,0 +1,31 @@
+
+.dish__title{
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.dish__description{
+    line-height: 1.2em;
+}
+
+.dish__description__short{
+    overflow: hidden;
+    max-height: calc(1.2em * 5);
+}
+
+.dish__input{
+    width: 2em;
+    text-align: center;
+}
+
+.dish__cart-control{
+    display: flex;
+    width: 80%;
+    margin: 20px auto;
+    
+}
+
+.dish__cart-button{
+    margin-right: auto;
+}

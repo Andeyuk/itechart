@@ -1,0 +1,33 @@
+.main{
+    width: 65%;
+    min-width: 800px;
+    margin: 0 auto;
+    background: rgba(151, 151, 151, 0.555);
+}
+
+.intro__title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.main__content{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.intro{
+    background: #282c34;
+    color: rgb(214, 206, 192);
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(180, 180, 180);
+}
+
+.intro__text-wrap{
+    width: 90%;
+    line-height: 1.2em;
+    padding-bottom: 20px;
+    margin: 0 auto;
+}
