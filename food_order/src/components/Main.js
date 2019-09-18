@@ -1,5 +1,5 @@
 import React from 'react';
-import  history  from '../history/history';
+//import  history  from '../history/history';
 import SlideBlock from '../containers/SlideBlock'
 import './Main.css';
 

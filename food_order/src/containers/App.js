@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import  * as pageAct  from '../actions/pageActions';
 import { Router, Route } from 'react-router-dom';
 import  history  from '../history/history';
+
 import Main from '../components/Main';
+import Header from '../components/Header';
+
+
 import './App.css';
 
 class App extends React.Component{
@@ -11,9 +15,7 @@ class App extends React.Component{
     console.log("app rendered");
     return (
       <div className="App">
-        <header className="App-header">
-          Ета Хедер
-        </header>
+        <Header />
         <Router history = { history }>
             <Route exact path = '/' component = { Main }/>
         </Router>

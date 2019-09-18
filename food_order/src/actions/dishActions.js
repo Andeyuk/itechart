@@ -1,10 +1,27 @@
 
-export function dishOnClick(e){
+export function chooseDish(dishID){
     return {
-        type: 'DISH_CLICKED',
-        payload: e.target,
-        //match: (el) => el.matches('.slide-block__item'),
-        //swapDisplay: (el) => el.style.display === 'block' ? el.style.display = 'none' : el.style.display = 'block',
+        type: 'CHOOSE_DISH',
+        payload: +dishID,
     }
 
+}
+
+export function setDishAmount(amount){
+    return {
+        type: 'SET_DISH_AMOUNT',
+        payload: amount,
+    }
+
+}
+
+export function setDishes(dishes){
+    return {
+        type: 'SET_DISHES',
+        payload: dishes.map(dish => {
+            dish.amount = 0;
+            return dish;
+        }),
+    }
+    
 }
