@@ -36,7 +36,7 @@ class Dish extends React.PureComponent{
                     >Add</button>
                     <button 
                         data-id = {id}
-                        id = "decrBtn"
+                        className = "decrBtn"
                     >-</button>
                     <input 
                         data-id = {id}
@@ -47,7 +47,7 @@ class Dish extends React.PureComponent{
                     ></input>
                     <button 
                         data-id = {id}
-                        id = "incrBtn"
+                        className = "incrBtn"
                     >+</button>
                 </div>
             </div>

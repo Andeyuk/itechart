@@ -6,6 +6,7 @@ import  history  from '../history/history';
 
 import Main from '../components/Main';
 import Header from '../components/Header';
+import Menu from '../components/Menu';
 
 
 import './App.css';
@@ -18,6 +19,7 @@ class App extends React.Component{
         <Header />
         <Router history = { history }>
             <Route exact path = '/' component = { Main }/>
+            <Route path = '/menu' component = { Menu }/>
         </Router>
         <footer className = "footer">Ета футер</footer>
       </div>

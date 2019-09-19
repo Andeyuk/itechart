@@ -23,8 +23,10 @@ class SlideBlock extends React.Component{
     onClick(event){
         let el = event.target;
         let id = +el.dataset.id;
+
         if(isNaN(id)) return;
-        const {amount} = this.props.dish.dishes[id];
+
+        const {amount} = this.props.dish.dishes.find(dish=>dish.id === id);
 
         switch(true){
             case el.matches('.slide-block__item'):{
@@ -32,7 +34,7 @@ class SlideBlock extends React.Component{
                 break;
             }
 
-            case el.matches('#decrBtn'):{
+            case el.matches('.decrBtn'):{
 
                 this.props.choseDish(id);
 
@@ -43,7 +45,7 @@ class SlideBlock extends React.Component{
                 break;
             }
 
-            case el.matches('#incrBtn'):{
+            case el.matches('.incrBtn'):{
                 this.props.choseDish(id);
 
                 this.props.setDishAmount(amount + 1);
@@ -62,8 +64,7 @@ class SlideBlock extends React.Component{
     }
 
     onChangeAmount(event){
-        if (event.target.dataset.id !== this.props.dish.dishID)
-            this.props.setDishAmount(event.target.value);
+        this.props.setDishAmount(event.target.value);
     }
 
     componentDidMount(){
@@ -77,7 +78,6 @@ class SlideBlock extends React.Component{
 
         let dishID = this.props.dish.dishID;
 
-        console.log(this.props.dish)
         let slides = this.props.dish.dishes.map((dish, ind)=>{
             let zIndex;
 
