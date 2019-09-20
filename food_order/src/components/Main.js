@@ -14,16 +14,15 @@ class Main extends React.Component{
         console.log('main rendered')
         return(
             <div className = "main">
-            <div className = "main__content">
-                <SlideBlock amount = {6}/>
-                <div className = "intro">
-                    <h2 className = "intro__title">Title</h2>
-                    <div className = "intro__text-wrap">
-                        <p className = "intro__text">{text}</p>
+                <div className = "main__content">
+                    <SlideBlock/>
+                    <div className = "intro">
+                        <h2 className = "intro__title">Title</h2>
+                        <div className = "intro__text-wrap">
+                            <p className = "intro__text">{text}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
             </div>
         )
     }

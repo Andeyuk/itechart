@@ -10,6 +10,7 @@ const TOGGLE_VISIBILITY = 'TOGGLE_VISIBILITY';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const SET_ITEM_AMOUNT = 'SET_ITEM_AMOUNT';
 const SAVE_PURCHASES = 'SAVE_PURCHASES';
+const CLEAR_PURCHASES = 'CLEAR_PURCHASES';
 
 
 export function cartReducer(state = initialState, action){
@@ -30,7 +31,7 @@ export function cartReducer(state = initialState, action){
         case TOGGLE_VISIBILITY:
             return {...state, isVisible: !state.isVisible}
 
-            
+
         case REMOVE_FROM_CART:{
             let itemInd = state.purchases.find(item=>item.id === action.payload);
 
@@ -53,6 +54,12 @@ export function cartReducer(state = initialState, action){
             sessionStorage.setItem(
                 SESSION_STORAGE_KEY, 
                 JSON.stringify(state.purchases));
+            return state;
+        }
+
+        case CLEAR_PURCHASES:{
+            sessionStorage.removeItem(
+                SESSION_STORAGE_KEY);
             return state;
         }
 

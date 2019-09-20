@@ -3,7 +3,6 @@ import {Router, Link} from 'react-router-dom';
 import history  from '../history/history';
 
 import './Header.css';
-import cartIcon from '../img/shopping-cart.svg'
 
 import Cart from '../containers/Cart';
 

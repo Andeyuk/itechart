@@ -31,3 +31,9 @@ export function savePurchases(){
         type: 'SAVE_PURCHASES'
     }
 }
+
+export function clearPuchases(){
+    return{
+        type: 'CLEAR_PURCHASES'
+    }
+}

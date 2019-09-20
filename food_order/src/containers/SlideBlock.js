@@ -7,9 +7,12 @@ import { addToCart } from '../actions/cartActions';
 
 import './SlideBlock.css';
 
-function generateDishes(id, name, cookingTime){
+import arrLeft from '../img/left-arrow.svg';
+import arrRight from '../img/right-arrow.svg';
+
+function generateDishes(id, name, cookingTime, queue){
     let descr = `May we be permitted to recur, for the sake of clearness in the recital, to the simple means which we have already employed in the case of Waterloo.`;
-    return {id, name, descr, cookingTime};
+    return {id, name, descr, cookingTime, queue};
 }
 
 
@@ -26,7 +29,8 @@ class SlideBlock extends React.Component{
 
         if(isNaN(id)) return;
 
-        const {amount} = this.props.dish.dishes.find(dish=>dish.id === id);
+        let amount= this.props.dish.dishes.find(dish=>dish.id === id).amount || 0;
+
 
         switch(true){
             case el.matches('.slide-block__item'):{
@@ -35,21 +39,17 @@ class SlideBlock extends React.Component{
             }
 
             case el.matches('.decrBtn'):{
-
                 this.props.choseDish(id);
 
                 const newAmount =  amount > 0 ? amount - 1 : amount;
                 
                 this.props.setDishAmount(newAmount);
-                
                 break;
             }
 
             case el.matches('.incrBtn'):{
                 this.props.choseDish(id);
-
                 this.props.setDishAmount(amount + 1);
-
                 break;
             }
 
@@ -68,7 +68,7 @@ class SlideBlock extends React.Component{
 
     componentDidMount(){
         //later data will be fetched
-        let demoDishesData = Array(6).fill(null).map((el, ind)=>generateDishes(ind, 'Lorem'+ind, 60*15));
+        let demoDishesData = Array(6).fill(null).map((el, ind)=>generateDishes(ind, 'Lorem'+ind, 60*15, ind));
         this.props.setDishes(demoDishesData);
     }
 
@@ -79,51 +79,62 @@ class SlideBlock extends React.Component{
         let dishID = this.props.dish.dishID;
 
         let slides = this.props.dish.dishes.map((dish, ind)=>{
-            let zIndex;
+            let display;
 
             if (dish.id === dishID){
-                zIndex = '700'
+                display = 'flex'
             } 
             else {
-                zIndex = '900'
+                display = 'none'
             }
 
             return <Dish 
                 key = {ind}
-                id = {dish.id}
-                zIndex = {zIndex}
-                dishAmount = {dish.amount}
-                name = {dish.name}
-                descr = {dish.descr}
+                display = {display}
+                amount = {dish.amount}
+                queue = {dish.queue}
+                dish = {dish}
             ></Dish>
         })
 
         return(
-            <div 
-                className = "slide-block"
-                onClick = { this.onClick }
-                onChange = { this.onChangeAmount }
-            >
-                { slides }
-            </div>
+            <>
+                <div 
+                    className = "slide-block"
+                    onClick = { this.onClick }
+                    onChange = { this.onChangeAmount }
+                >
+
+                    { slides }
+
+                    <div className = "slide-block__arrow-left">
+                        <img src = {arrLeft} alt = "left"></img>
+                    </div>
+                    
+                    <div className = "slide-block__arrow-right">
+                        <img src = {arrRight} alt = "right"></img>
+                    </div>
+                </div>
+            </>
         )
     }
 }
 
 const mapStateToProps = store => {
+    console.log(store)
     return {
       dish: store.dish,
     }
-  }
+}
   
-  const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
     return {
       choseDish: id => dispatch(dishAct.chooseDish(id)),
       setDishAmount: amount => dispatch(dishAct.setDishAmount(amount)),
       setDishes: dishes => dispatch(dishAct.setDishes(dishes)),
       addToCart: (id, amount) => dispatch(addToCart(id, amount)),
     }
-  }
+}
   
   
 export default connect(mapStateToProps, mapDispatchToProps)(SlideBlock);

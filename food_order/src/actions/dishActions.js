@@ -18,10 +18,8 @@ export function setDishAmount(amount){
 export function setDishes(dishes){
     return {
         type: 'SET_DISHES',
-        payload: dishes.map(dish => {
-            dish.amount = 0;
-            return dish;
-        }),
+        payload: dishes
     }
-    
 }
+    
+

@@ -40,23 +40,11 @@
     border-top: 1px solid rgb(216, 147, 29);
 }
 
-.cart__item{
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .cart__icon-wrap{
     position: relative;
     cursor: pointer;
 }
 
-.cart-item__name{
-    color: rgb(214, 206, 192);
-    text-decoration: none;
-    display: inline-block;
-}
 
 .cart__checkout{
     padding: 0px 20px 10px;

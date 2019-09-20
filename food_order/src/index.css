@@ -16,7 +16,7 @@ code {
 .App {
   text-align: center;
   background:rgb(43, 34, 31) url('./img/tmp_bg.png');
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
 }
 
 .footer{

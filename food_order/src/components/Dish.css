@@ -22,10 +22,21 @@
 .dish__cart-control{
     display: flex;
     width: 80%;
-    margin: 20px auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
     
 }
 
-.dish__cart-button{
-    margin-right: auto;
+.dish__cart-button,
+.dish__amount-wrap{
+    margin-top: 15px;
 }
+
+.dish__cooking-duration{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+

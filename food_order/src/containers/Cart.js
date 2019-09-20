@@ -70,6 +70,7 @@ class Cart extends React.Component{
         let amount = this.props.cart.purchases.length;
 
         if (amount) this.props.savePurchases();
+        else this.props.clearPurchases();
 
         let cartListStyle = {
             display: isVisible ? 'block' : 'none'
@@ -128,7 +129,8 @@ const mapDispatchToProps = dispatch => {
         toggle: () => dispatch(cartAct.toggleVisibility()),
         setItemAmount: (id, amount) => dispatch(cartAct.setItemAmount(id, amount)),
         removeFromCart: id => dispatch(cartAct.removeFromCart(id)),
-        savePurchases: () =>dispatch(cartAct.savePurchases()),
+        savePurchases: () => dispatch(cartAct.savePurchases()),
+        clearPurchases: () => dispatch(cartAct.clearPuchases()),
     }
 }
 
