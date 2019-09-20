@@ -54,7 +54,6 @@ class SlideBlock extends React.Component{
             }
 
             case el.matches('.dish__cart-button'):{
-                console.log('amount:', amount, 'id:', id);
                 this.props.addToCart(id, amount);
                 break;
             }
@@ -68,7 +67,8 @@ class SlideBlock extends React.Component{
     }
 
     componentDidMount(){
-        let demoDishesData = Array(6).fill(null).map((el, ind)=>generateDishes(ind, 'Lorem', 60*15));
+        //later data will be fetched
+        let demoDishesData = Array(6).fill(null).map((el, ind)=>generateDishes(ind, 'Lorem'+ind, 60*15));
         this.props.setDishes(demoDishesData);
     }
 
@@ -100,9 +100,10 @@ class SlideBlock extends React.Component{
 
         return(
             <div 
-            className = "slide-block"
-            onClick = { this.onClick }
-            onChange = { this.onChangeAmount }>
+                className = "slide-block"
+                onClick = { this.onClick }
+                onChange = { this.onChangeAmount }
+            >
                 { slides }
             </div>
         )

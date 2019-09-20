@@ -5,13 +5,12 @@ const initialState = {
     isVisible: false,
 }
 
-
-
 const ADD_TO_CART = 'ADD_TO_CART';
 const TOGGLE_VISIBILITY = 'TOGGLE_VISIBILITY';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const SET_ITEM_AMOUNT = 'SET_ITEM_AMOUNT';
 const SAVE_PURCHASES = 'SAVE_PURCHASES';
+
 
 export function cartReducer(state = initialState, action){
     switch (action.type){

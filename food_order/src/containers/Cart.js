@@ -1,9 +1,8 @@
 import React from 'react';
-import { Router, Link } from 'react-router-dom';
-import history  from '../history/history';
 import { connect } from 'react-redux';
 
 import * as cartAct from '../actions/cartActions';
+import CartItem from '../components/CartItem';
 
 import cartIcon from '../img/shopping-cart.svg';
 import './Cart.css';
@@ -13,6 +12,7 @@ class Cart extends React.Component{
         super(props)
         this.toggleVisibility = this.toggleVisibility.bind(this);
         this.onClick = this.onClick.bind(this);
+        this.onChangeAmount = this.onChangeAmount.bind(this);
     }
 
     onClick(event){
@@ -46,7 +46,6 @@ class Cart extends React.Component{
             }
 
             case el.matches('.dish__cart-button'):{
-                console.log('amount:', amount, 'id:', id);
                 this.props.addToCart(id, amount);
                 break;
             }
@@ -57,6 +56,10 @@ class Cart extends React.Component{
 
     toggleVisibility(){
         this.props.toggle();
+    }
+
+    onChangeAmount(event){
+        this.props.setItemAmount(+event.target.dataset.id, +event.target.value);
     }
 
     render(){
@@ -85,8 +88,7 @@ class Cart extends React.Component{
                 name = {dishes[el.id].name}
                 key = {el.id}
             />
-        }
-        )
+        })
         
         return(
             <div className = "cart">
@@ -101,44 +103,14 @@ class Cart extends React.Component{
                     className = "cart__items-list"
                     style = {cartListStyle}
                     onClick = {this.onClick}
+                    onChange = {this.onChangeAmount}
                 >
                     {items}
-                    
+                <div className = "cart__checkout">
+                    <button className = "checkout-btn">Checkout(not active)</button>
+                </div>
                 </ul>
             </div>
-        )
-    }
-}
-
-class CartItem extends React.PureComponent{
-    render(){
-        console.log('item rendered')
-        const {id, amount, name} = this.props
-
-        return(
-            <li className = "cart__item">
-                <Router history = { history }>
-                    <Link className = "cart-item__name" to = "/dishes/:dish">
-                        {name}
-                    </Link>
-                </Router>
-                <div className = "cart__amount-buttons">
-                    <button 
-                    data-id = {id}
-                        className = "decrBtn"
-                    >-</button>
-                    <input 
-                        data-id = {id}
-                        value = {amount}
-                        type = "text" 
-                        className = "dish__input"
-                    ></input>
-                    <button 
-                        data-id = {id}
-                        className = "incrBtn"
-                    >+</button>
-                </div>
-            </li>
         )
     }
 }
@@ -154,7 +126,7 @@ const mapDispatchToProps = dispatch => {
     return {
         addToCart: (id, amount) => dispatch(cartAct.addToCart(id, amount)),
         toggle: () => dispatch(cartAct.toggleVisibility()),
-        setItemAmount: (id,amount) => dispatch(cartAct.setItemAmount(id, amount)),
+        setItemAmount: (id, amount) => dispatch(cartAct.setItemAmount(id, amount)),
         removeFromCart: id => dispatch(cartAct.removeFromCart(id)),
         savePurchases: () =>dispatch(cartAct.savePurchases()),
     }

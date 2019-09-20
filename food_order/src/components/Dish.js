@@ -15,43 +15,42 @@ class Dish extends React.PureComponent{
 
         return(
             <div 
-                className = "slide-block__item-wrap dish"
+                    className = "slide-block__item-wrap dish"
             >
-            <div className = "slide-block__item"
-                data-id = {id}
-                style = {style}
-            ></div>
-            <div className = "slide-block__item-info">
-                <h3 className = "dish__title">{name}</h3>
-                <p className = "dish__description dish__description__short">
-                    {descr}
-                </p>
-                <div 
-                    className = "dish__cart-control"
+                <div className = "slide-block__item"
                     data-id = {id}
-                >
-                    <button 
+                    style = {style}
+                ></div>
+                <div className = "slide-block__item-info">
+                    <h3 className = "dish__title">{name}</h3>
+                    <p className = "dish__description dish__description__short">
+                        {descr}
+                    </p>
+                    <div 
+                        className = "dish__cart-control"
                         data-id = {id}
-                        className = "dish__cart-button"
-                    >Add</button>
-                    <button 
-                        data-id = {id}
-                        className = "decrBtn"
-                    >-</button>
-                    <input 
-                        data-id = {id}
-                        onChange = {this.props.onChange}
-                        value = {dishAmount} 
-                        type = "text" 
-                        className = "dish__input"
-                    ></input>
-                    <button 
-                        data-id = {id}
-                        className = "incrBtn"
-                    >+</button>
+                    >
+                        <button 
+                            data-id = {id}
+                            className = "dish__cart-button"
+                        >Add</button>
+                        <button 
+                            data-id = {id}
+                            className = "decrBtn"
+                        >-</button>
+                        <input 
+                            data-id = {id}
+                            value = {dishAmount} 
+                            type = "text" 
+                            className = "dish__input"
+                        ></input>
+                        <button 
+                            data-id = {id}
+                            className = "incrBtn"
+                        >+</button>
+                    </div>
                 </div>
             </div>
-        </div>
         )
     }
 }
