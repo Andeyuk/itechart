@@ -1,9 +1,14 @@
 .slide-block{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    border: 1px solid rgb(180, 180, 180);
     position: relative;
+    border: 1px solid rgb(180, 180, 180);
+}
+
+.slide-block__current{
+    padding-bottom: 66.7%;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
 }
 
 .slide-block__item-wrap{
@@ -76,3 +81,15 @@
 .slide-block__arrow-left:hover{
     background: #282c34;
 }
+
+.slide-block__items-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    min-width: 100%;
+    position: relative;
+    animation-fill-mode: forwards;
+    box-sizing: border-box;
+    transition: right 1s;
+}
+

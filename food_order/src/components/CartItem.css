@@ -4,3 +4,7 @@
     text-decoration: none;
     display: inline-block;
 }
+
+.removeBtn{
+    cursor: pointer;
+}

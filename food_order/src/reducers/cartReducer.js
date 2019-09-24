@@ -1,3 +1,4 @@
+
 const SESSION_STORAGE_KEY = 'food_order';
 
 const initialState = {

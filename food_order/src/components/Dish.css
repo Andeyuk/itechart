@@ -40,3 +40,10 @@
     margin-top: 15px;
 }
 
+.dish__price{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 15px;
+}

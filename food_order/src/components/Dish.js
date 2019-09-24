@@ -12,7 +12,7 @@ class Dish extends React.PureComponent{
         }
 
         //static
-        let {id, name, descr, cookingTime} =  this.props.dish;
+        let {id, name, descr, cookingTime, price} =  this.props.dish;
         //dynamic
         let {amount, queue} =  this.props;
 
@@ -35,12 +35,18 @@ class Dish extends React.PureComponent{
                         {descr}
                     </p>
 
-                    <div className = "dish__cooking-duration">
-                        <CookingDuration
-                            queue = {queue}
-                            cookingTime = {cookingTime}
-                        />
-                    </div>
+
+                    <DishPrice
+                        price = {price}
+                        amount = {amount}
+                    />
+                    
+                    <CookingDuration
+                        queue = {queue}
+                        cookingTime = {cookingTime}
+                        amount = {amount}
+                    />
+
 
                     <div 
                         className = "dish__cart-control"
@@ -93,15 +99,15 @@ class Input extends React.PureComponent{
 }
 
 class CookingDuration extends React.PureComponent{
-    componentDidMount(){
-
-    }
     render(){
         console.log('  dish coockin rendered');
-        let queue = this.props.queue;
-        let CookingTime = this.props.cookingTime;
+        let {queue, amount, cookingTime} = this.props;
 
-        let allTime = queue * CookingTime;
+        let allTime = cookingTime * amount * queue
+            || cookingTime * queue 
+            || cookingTime * amount
+            || cookingTime;
+        
         let hours = allTime / 3600^0;
         let mins = allTime % 3600 / 60;
 
@@ -111,10 +117,23 @@ class CookingDuration extends React.PureComponent{
         time = time.length > 1 ? time  : 'inf'
 
         return(
-            <>
+            <div className = "dish__cooking-duration">
                 <div>Ready in:</div>
                 <div>{time}</div>
-            </>
+            </div>
+        )
+    }
+}
+
+class DishPrice extends React.Component{
+    render(){
+        let {price, amount} = this.props;
+
+        return(
+            <div className = "dish__price">
+                <div>Price:</div>
+                <div>{price * amount || price}</div>
+            </div>
         )
     }
 }

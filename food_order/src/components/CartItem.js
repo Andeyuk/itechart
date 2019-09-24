@@ -2,11 +2,16 @@ import React from 'react';
 import { Router, Link } from 'react-router-dom';
 import history  from '../history/history';
 
+import remove from '../img/delete.svg';
+import './CartItem.css'
+
 
 class CartItem extends React.PureComponent{
     render(){
         console.log('item rendered')
-        const {id, amount, name} = this.props
+        let {id, amount} = this.props;
+        let {name} = this.props.dishes.find(el=>el.id === id);
+
 
         return(
             <li className = "cart__item">
@@ -30,6 +35,14 @@ class CartItem extends React.PureComponent{
                         data-id = {id}
                         className = "incrBtn"
                     >+</button>
+                    
+                    <img
+                        data-id = {id}
+                        className = "removeBtn"
+                        src = {remove}
+                        alt = "remove"
+                    >
+                    </img>
                 </div>
             </li>
         )

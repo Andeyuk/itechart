@@ -50,6 +50,11 @@ class Cart extends React.Component{
                 break;
             }
 
+            case el.matches('.removeBtn'):{
+                this.props.removeFromCart(id);
+                break;
+            }
+
             default:  console.log('none');
         }
     }
@@ -81,15 +86,20 @@ class Cart extends React.Component{
         }
 
         let items = (
-                dishes.length > 0 ? purchases : []
-            ).map(el=>{
+            dishes.length > 0 ? purchases : []
+        ).map(el=>{
             return <CartItem 
                 id = {el.id}
                 amount = {el.amount}
-                name = {dishes[el.id].name}
+                dishes = {dishes}
                 key = {el.id}
             />
         })
+
+        let totalPrice = 0;    
+        purchases.forEach(el => {
+            totalPrice += el.amount * el.price;
+        });
         
         return(
             <div className = "cart">
@@ -108,6 +118,9 @@ class Cart extends React.Component{
                 >
                     {items}
                 <div className = "cart__checkout">
+                    <div className = "cart__total_price">
+                        {totalPrice}
+                    </div>
                     <button className = "checkout-btn">Checkout(not active)</button>
                 </div>
                 </ul>
