@@ -9,9 +9,7 @@ import './CartItem.css'
 class CartItem extends React.PureComponent{
     render(){
         console.log('item rendered')
-        let {id, amount} = this.props;
-        let {name} = this.props.dishes.find(el=>el.id === id);
-
+        let {id, amount, name} = this.props;
 
         return(
             <li className = "cart__item">

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import  * as dishAct  from '../actions/dishActions';
-import { addToCart } from '../actions/cartActions';
-import * as carouselAct from '../actions/carouselActions'
+import  * as dishAct  from '../redux/actions/dishActions';
+import { addToCart } from '../redux/actions/cartActions';
+import * as carouselAct from '../redux/actions/carouselActions'
 
 import './SlideBlock.css';
 import arrLeft from '../img/left-arrow.svg';
@@ -58,7 +58,7 @@ class SlideBlock extends React.Component{
             }
 
             case el.matches('.dish__cart-button'):{
-                this.props.addToCart(id, amount, dish.price);
+                this.props.addToCart(id, amount, dish.price, dish.name);
                 break;
             }
 
@@ -110,7 +110,7 @@ class SlideBlock extends React.Component{
                 }
         
                 return <Dish 
-                    key = {ind}
+                    key = {dish.id}
                     display = {display}
                     amount = {dish.amount}
                     queue = {dish.queue}
@@ -118,7 +118,7 @@ class SlideBlock extends React.Component{
                 ></Dish>
             })
             tmp.push(
-                <div 
+                <div key = {j}
                     className = "slide-block__items-wrap"
                     style = {blockShiftStyle}
                 >
@@ -126,8 +126,6 @@ class SlideBlock extends React.Component{
                 </div>
             )  
         }
-
-        console.log(tmp)
 
         return(
             <>
@@ -156,13 +154,13 @@ class SlideBlock extends React.Component{
                     <div 
                         className = "slide-block__arrow-right"
                         onClick = {this.nextSlide}
-                        data-direction = "1"
+                        data-direction = {1}
                     >
                     
                         <img 
                             src = {arrRight} 
                             alt = "right"
-                            data-direction = "1"
+                            data-direction = {1}
                         >
                         </img>
                     </div>
@@ -187,7 +185,7 @@ const mapDispatchToProps = dispatch => {
       choseDish: id => dispatch(dishAct.chooseDish(id)),
       setDishAmount: amount => dispatch(dishAct.setDishAmount(amount)),
       setDishes: dishes => dispatch(dishAct.setDishes(dishes)),
-      addToCart: (id, amount, price) => dispatch(addToCart(id, amount, price)),
+      addToCart: (id, amount, price, name) => dispatch(addToCart(id, amount, price, name)),
       setCarouselSize: (sz) => dispatch(carouselAct.setCarouselSize(sz)),
       setCurrent: (el) => dispatch(carouselAct.setCurrent(el)),
 

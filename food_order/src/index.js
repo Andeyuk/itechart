@@ -8,12 +8,15 @@ import  history  from './history/history';
 import Main from './components/Main';
 import Header from './components/Header';
 import Menu from './components/Menu';
+import Registration from './containers/Registration';
+import Profile from './containers/Profile'
 
 import * as serviceWorker from './serviceWorker';
 
-import store from './store/storeConfig';
+import store from './config/storeConfig';
 import './reset.css';
 import './index.css';
+
 
 
 ReactDOM.render(
@@ -23,6 +26,8 @@ ReactDOM.render(
             <Router history = { history }>
                 <Route exact path = '/' component = { Main }/>
                 <Route path = '/menu' component = { Menu }/>
+                <Route path = '/signup' component = { Registration }/>
+                <Route path = '/profile' component = { Profile }/>
             </Router>
             <footer className = "footer">Ета футер</footer>
         </div>

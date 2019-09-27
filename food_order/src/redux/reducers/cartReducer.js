@@ -1,5 +1,6 @@
+import {keys} from '../../config'
 
-const SESSION_STORAGE_KEY = 'food_order';
+const SESSION_STORAGE_KEY = keys.SESSION_STORAGE_CART_KEY;
 
 const initialState = {
     purchases: JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY)) || [],

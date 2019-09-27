@@ -33,62 +33,11 @@
     position: relative;
 }
 
-.cart {
-    padding-top: 0.4375em;
+
+
+.header__left{
+    display: flex;
     position: absolute;
     right: 0;
     height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-}
-
-.cart__icon {
-    height: 2.1em;
-    width: 2.1em;
-}
-
-.cart__amount{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: red;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: 50px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
-
-.cart__items-list{
-    position: absolute;
-    width: 300px;
-    left: -133px;
-    top: 100%;
-    background: #282c34;
-    border-top: 1px solid rgb(216, 147, 29);
-}
-
-.cart__item{
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cart__icon-wrap{
-    position: relative;
-    cursor: pointer;
-}
-
-.cart-item__name{
-    color: rgb(214, 206, 192);
-    text-decoration: none;
-    display: inline-block;
 }

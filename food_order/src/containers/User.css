@@ -1,0 +1,149 @@
+.user {
+    padding-top: 0.4375em;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-width: 2.1em;
+    justify-content: center;
+}
+
+.user__icon {
+    height: 2.1em;
+    width: 2.1em;
+}
+
+.user__icon-wrap{
+    display: flex;
+    position: relative;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user__drop-down{
+    position: absolute;
+    top: 100%;
+}
+
+.user__drop-down_middle{
+    width: 300px;
+    left: -133px;
+}
+
+.user__drop-down_small{
+    width: 200px;
+    left: -66px;
+}
+
+
+/* template*/
+
+.login__header{
+    padding: 10px 0;
+    text-transform: uppercase;
+    color: white;
+}
+
+.login__link {
+	color: #282c34;
+}
+
+.login__link:hover {
+	color: #aeaeae;
+}
+
+
+.login {
+    background-color: rgb(214, 206, 192);
+    background: white;
+	padding-bottom: 30px;
+	border-radius: 0 0 5px 5px;
+	box-shadow: 0 5px 50px rgba(0,0,0,0.4);
+    text-align: center;
+
+}
+
+
+.login__header {
+    background-color: #282c34;
+    border-top: 1px solid rgb(216, 147, 29);
+	margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.login__label {
+	font-weight: 700;
+	font-size: .8em;
+	color: #888;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	line-height: 2em;
+}
+
+.login__input {
+	margin-bottom: 20px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	font-size: .9em;
+	color: #888;
+}
+
+.login__input:focus {
+	outline: none;
+	border-color: #665851;
+	transition: 0.5s;
+	color: #665851;
+}
+
+.login__button {
+	border: 0;
+	border-radius: 2px;
+	color: white;
+	padding: 10px;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 0.7em;
+	letter-spacing: 1px;
+	background-color: #282c34;
+	cursor:pointer;
+    outline: none;
+    margin:0 5px 10px 5px;
+}
+
+.login__button:hover {
+	opacity: 0.7;
+	transition: 0.5s;
+}
+
+
+/*drop-down*/
+.user-list{
+    display: none;
+    background: #282c34;
+    padding: 5px;
+    border-top: 1px solid rgb(216, 147, 29);
+}
+
+.user-list__item{
+    padding: 5px 0;
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px dotted rgb(180, 180, 180);
+    text-align: center;
+}
+
+.user-list__item:last-of-type{
+    border: none;
+}
+
+.user:hover .user-list{
+    display: block;
+    cursor: pointer;
+}
+
+.user_logged{
+    color: rgb(255, 246, 229);
+    padding: 0.2em 0.5em;
+}

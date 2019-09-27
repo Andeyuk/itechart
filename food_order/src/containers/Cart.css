@@ -1,13 +1,11 @@
 .cart {
     padding-top: 0.4375em;
-    position: absolute;
-    right: 0;
     height: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    margin-right: 10px;
 }
 
 .cart__icon {
@@ -58,3 +56,14 @@
 .cart__amount-buttons{
     display: flex;
 }
+
+
+.cart__item{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+

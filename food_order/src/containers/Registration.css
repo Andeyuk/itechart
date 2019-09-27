@@ -1,0 +1,75 @@
+
+.reg-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 900px;
+}
+
+.reg__header{
+    background: #282c34;
+    color: white;
+    padding: 20px;
+}
+
+.reg {
+    background-color: rgb(214, 206, 192);
+    background: white;
+	padding-bottom: 20px;
+	border-radius: 5px;
+	box-shadow: 0 5px 50px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+
+.reg__header {
+    background-color: #282c34;
+    margin-top: 0;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 10px;
+    min-width: 300px;
+}
+
+.reg__label {
+	font-weight: 700;
+	font-size: .8em;
+	color: #888;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	line-height: 2em;
+}
+
+.reg__input {
+	margin-bottom: 20px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	font-size: .9em;
+	color: #888;
+}
+
+.reg__input:focus {
+	outline: none;
+	border-color: #665851;
+	color: #665851;
+}
+
+.reg__button {
+	border: 0;
+	border-radius: 2px;
+	color: white;
+	padding: 10px;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 0.7em;
+	letter-spacing: 1px;
+	background-color: #282c34;
+	cursor:pointer;
+    outline: none;
+    margin:0 5px 10px 5px;
+}
+
+.reg__button:hover {
+	opacity: 0.7;
+	transition: 0.5s;
+}

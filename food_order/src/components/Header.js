@@ -5,6 +5,7 @@ import history  from '../history/history';
 import './Header.css';
 
 import Cart from '../containers/Cart';
+import User from '../containers/User';
 
 class Header extends React.Component{
     render(){
@@ -17,7 +18,10 @@ class Header extends React.Component{
                             <Link to="/menu" className= "nav__link">Menu</Link>
                         </Router>
                     </nav>
-                    <Cart />
+                    <div className = "header__left">
+                        <Cart />
+                        <User />
+                    </div>
                 </div>
             </header>
         )

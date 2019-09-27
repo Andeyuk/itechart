@@ -83,7 +83,7 @@ class Dish extends React.PureComponent{
 
 class Input extends React.PureComponent{
     render(){
-        console.log('  dish input rendered');
+       // console.log('  dish input rendered');
         let value = this.props.value || 0;
         let id = this.props.id
         return(
@@ -100,7 +100,7 @@ class Input extends React.PureComponent{
 
 class CookingDuration extends React.PureComponent{
     render(){
-        console.log('  dish coockin rendered');
+        //console.log('  dish coockin rendered');
         let {queue, amount, cookingTime} = this.props;
 
         let allTime = cookingTime * amount * queue

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as cartAct from '../actions/cartActions';
+import * as cartAct from '../redux/actions/cartActions';
 import CartItem from '../components/CartItem';
 
 import cartIcon from '../img/shopping-cart.svg';
@@ -45,11 +45,6 @@ class Cart extends React.Component{
                 break;
             }
 
-            case el.matches('.dish__cart-button'):{
-                this.props.addToCart(id, amount);
-                break;
-            }
-
             case el.matches('.removeBtn'):{
                 this.props.removeFromCart(id);
                 break;
@@ -74,12 +69,10 @@ class Cart extends React.Component{
         let dishes = this.props.dishes;
         let amount = this.props.cart.purchases.length;
 
+        //transfer to API
         if (amount) this.props.savePurchases();
         else this.props.clearPurchases();
 
-        let cartListStyle = {
-            display: isVisible ? 'block' : 'none'
-        }
 
         let amountStyle = {
             width: amount.toString().length * 16 + 'px',
@@ -91,7 +84,7 @@ class Cart extends React.Component{
             return <CartItem 
                 id = {el.id}
                 amount = {el.amount}
-                dishes = {dishes}
+                name = {el.name}
                 key = {el.id}
             />
         })
@@ -110,20 +103,21 @@ class Cart extends React.Component{
                     <img className = "cart__icon" src ={cartIcon}  alt = "cart"></img>
                     <div className = "cart__amount" style = {amountStyle}>{amount}</div>
                 </div>
-                <ul 
-                    className = "cart__items-list"
-                    style = {cartListStyle}
-                    onClick = {this.onClick}
-                    onChange = {this.onChangeAmount}
-                >
-                    {items}
-                <div className = "cart__checkout">
-                    <div className = "cart__total_price">
-                        {totalPrice}
+                {  isVisible &&
+                    <ul 
+                        className = "cart__items-list"
+                        onClick = {this.onClick}
+                        onChange = {this.onChangeAmount}
+                    >
+                        {items}
+                    <div className = "cart__checkout">
+                        <div className = "cart__total_price">
+                            {totalPrice}
+                        </div>
+                        <button className = "checkout-btn">Checkout(not active)</button>
                     </div>
-                    <button className = "checkout-btn">Checkout(not active)</button>
-                </div>
-                </ul>
+                    </ul>
+                }
             </div>
         )
     }
@@ -138,7 +132,6 @@ const mapStateToProps = store => {
   
 const mapDispatchToProps = dispatch => {
     return {
-        addToCart: (id, amount) => dispatch(cartAct.addToCart(id, amount)),
         toggle: () => dispatch(cartAct.toggleVisibility()),
         setItemAmount: (id, amount) => dispatch(cartAct.setItemAmount(id, amount)),
         removeFromCart: id => dispatch(cartAct.removeFromCart(id)),
