@@ -1,13 +1,20 @@
 
 const passport = require('passport');
-const LocalStrategy = require('passport-local').LocalStrategy();
+const LocalStrategy = require('passport-local').Strategy;
 const User = require('../../db/models/user');
+const Op = require('sequelize').Op;
 
 passport.use(new LocalStrategy({
+        usernameField: 'username',
+        passwordField: 'password',
         session: false
     }, 
-    (login, password, done) => {
-        User.findOne({where: {login: login}})
+    (username, password, done) => {
+        User.findOne({
+            where: {
+                [Op.or]: [{username: username},  {email: username}]
+            }
+        })
         .then(user=>{
             //to do check passport func
             if (!user || !user.password === password) {

@@ -4,6 +4,7 @@ module.exports={
     },
     JWT:{
         secret: 'todo',
-        live: process.env.JWT_LIVE
+        life: 0.5*3600,
+        longLife: 30*24*3600,
     }
 }
