@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const config = require('../config').db;
 
-const sequelize = new Sequelize(config.URL);
+const db = new Sequelize(config.URL);
 
 
-sequelize
+db
     .authenticate()
     .then(() => {
     console.log('db connected.');
@@ -13,8 +13,8 @@ sequelize
     console.error('Unable to connect to the database:', err);
     });
 
-sequelize.sync({
+/*db.sync({
     force: true
-})
+})*/
 
-module.exports = sequelize;
+module.exports = db;

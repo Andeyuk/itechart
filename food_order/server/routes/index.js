@@ -1,36 +1,45 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 const Dish = require('../db/models/dish');
-const Op = require('sequelize').Op;
-const Checkout = require('../db/models/dishCheckout');
+const User = require('../db/models/user');
+const Order = require('../db/models/order');
+const OrderLine = require('../db/models/orderLine');
 
-router.post('/checkout', (req, res) => {
-  console.log(req.body);
-  let IDs = req.body.dishes.map(el=>el.id);
-  Dish.findAll({
-    where: {
-      id: {
-        [Op.in]: IDs
-      }
-    }
-  }).then(dishes=>{
-    const arr = dishes.map((el)=>{
-      return { 
-        dish_id: el.id,
-        user_id: req.body.user.id,
-      }
+const Op = require('sequelize').Op;
+
+
+
+router.post('/checkout', passport.authorize('jwt'), (req, res) => {
+    console.log(req.body);
+    const dishIDs = req.body.dishes.map(el=>el.DishId);
+
+    const dishes = Dish.findAll({
+        where: {
+            id: {
+                [Op.in]: dishIDs
+            }
+        }
     })
-    console.log(arr,'sadsdasd');
-    arr.forEach(el=>{
-      let dish=req.body.dishes.find(dish=>dish.id === el.dish_id);
-      if (dish.amount) arr.unshift(el);
-    })
-    console.log(arr,'sadsdasd');
-    Checkout.bulkCreate(arr);
-  })
+
+    const order = Order.create({UserId: req.body.user.id, isActive: true})
+
+    Promise.all([dishes, order])
+        .then((vals)=>{
+
+            const bulkArr = req.body.dishes.map((el,ind)=>{
+                return {...el, price: vals[0][ind].price, OrderId: vals[1].id}
+            })
+            
+            return OrderLine.bulkCreate(bulkArr)
+        })
+        .then((orders)=>{
+            if(orders)
+                res.send({status: 'OK'});
+        })
+        .catch(err=>res.send(err))
     
-  res.send('ok');
 });
 
 module.exports = router;

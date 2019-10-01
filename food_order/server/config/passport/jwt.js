@@ -10,10 +10,11 @@ const opts = {
     audience: JWT.audience
   };
 
-passport.use(new Strategy(opts,(jwt_payload, done)=>{
-    User.findByPk(jwt_payload.id)
+passport.use(new Strategy(opts, (jwt_payload, done)=>{
+
+    User.findByPk(jwt_payload.payload.id,{raw: true})
         .then(user => 
-            user ? done(user) : done(null, false, {message: 'No such a user'})
+           user ? done(null, user) : done(null, false, {message: 'No such a user'})
         )
         .catch(err => done(err))
 }))
