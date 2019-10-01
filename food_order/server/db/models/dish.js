@@ -1,15 +1,13 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../init');
 
-const User = require('./user');
-
 const Model = Sequelize.Model;
 class Dish extends Model {}
 Dish.init({
     id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,
+        unique: false,
         autoIncrement: true,
         primaryKey: true
     },
@@ -35,11 +33,5 @@ Dish.init({
     tableName: 'dishes',
 });
 
-Dish.belongsToMany(User, {
-    through: 'checkout',
-});
-User.belongsToMany(Dish, {
-    through: 'checkout'
-})
 
 module.exports = Dish;
