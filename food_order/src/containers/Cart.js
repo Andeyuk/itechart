@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import * as cartAct from '../redux/actions/cartActions';
+import * as userAct from '../redux/actions/userActions';
 import CartItem from '../components/CartItem';
 
 import cartIcon from '../img/shopping-cart.svg';
 import './Cart.css';
+import { AuthAPI } from '../API/AuthAPI';
+import { CartAPI } from '../API/CartAPI';
 
 class Cart extends React.Component{
     constructor(props){
@@ -19,13 +22,30 @@ class Cart extends React.Component{
         let el = event.target;
         let id = +el.dataset.id;
 
-        if(isNaN(id)) return;
-
-        const {amount} = this.props.cart.purchases.find(dish=>dish.id === id);
+        let amount;
+        if (id)
+            amount = this.props.cart.purchases.find(dish=>dish.id === id).amount;
 
         switch(true){
-            case el.matches('.decrBtn'):{
+            case el.matches('.checkout-btn'):{
+                CartAPI.checkout(this.props.cart.purchases)
+                    .then(el=>{
+                        if (el instanceof Error) throw el;
+                        console.log(el);
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                        AuthAPI.logout();
+                        this.props.setUserName(null);
+                    });
+                break;
+            }
 
+            case isNaN(id): {
+                break;
+            }
+
+            case el.matches('.decrBtn'):{
                 const newAmount =  amount > 0 ? amount - 1 : amount;
 
                 if (newAmount === 0) {
@@ -66,7 +86,7 @@ class Cart extends React.Component{
         console.log('cart rendered');
 
         let {purchases, isVisible} = this.props.cart;
-        let dishes = this.props.dishes;
+        //let dishes = this.props.dishes;
         let amount = this.props.cart.purchases.length;
 
         //transfer to API
@@ -79,7 +99,7 @@ class Cart extends React.Component{
         }
 
         let items = (
-            dishes.length > 0 ? purchases : []
+            purchases || []
         ).map(el=>{
             return <CartItem 
                 id = {el.id}
@@ -114,7 +134,7 @@ class Cart extends React.Component{
                         <div className = "cart__total_price">
                             {totalPrice}
                         </div>
-                        <button className = "checkout-btn">Checkout(not active)</button>
+                        <button className = "checkout-btn">Checkout</button>
                     </div>
                     </ul>
                 }
@@ -137,6 +157,7 @@ const mapDispatchToProps = dispatch => {
         removeFromCart: id => dispatch(cartAct.removeFromCart(id)),
         savePurchases: () => dispatch(cartAct.savePurchases()),
         clearPurchases: () => dispatch(cartAct.clearPuchases()),
+        setUserName: (name) => dispatch(userAct.setUserName(name))
     }
 }
 
