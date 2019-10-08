@@ -1,16 +1,16 @@
 
-export function chooseDish(dishID){
+export function chooseDish(id){
     return {
         type: 'CHOOSE_DISH',
-        payload: +dishID,
+        payload: {id},
     }
 
 }
 
-export function setDishAmount(amount){
+export function setDishAmount(id, amount){
     return {
         type: 'SET_DISH_AMOUNT',
-        payload: amount,
+        payload: {id, amount},
     }
 
 }

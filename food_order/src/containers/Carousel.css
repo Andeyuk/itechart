@@ -1,9 +1,10 @@
-.slide-block{
+
+.carousel{
     position: relative;
     border: 1px solid rgb(180, 180, 180);
 }
 
-.slide-block__current{
+.carousel__current{
     padding-bottom: 66.7%;
     height: 0;
     overflow: hidden;
@@ -11,14 +12,14 @@
     display: flex;
 }
 
-.slide-block__item-wrap{
+.carousel__item-wrap{
     width: 33.333%;
     box-sizing: border-box;
     border: 1px solid rgb(180, 180, 180);
     position: relative;
 }
 
-.slide-block__item{
+.carousel__item{
     width: 100%;
     padding-bottom: 100%;
     background: #282c34 url('../img/pizza.jpg');
@@ -29,12 +30,12 @@
 }
 
 
-.slide-block__item:hover{
+.carousel__item:hover{
     filter: contrast(115%);
     cursor: pointer;
 }
 
-.slide-block__item-info{
+.carousel__item-info{
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -50,8 +51,8 @@
     box-shadow: inset 0px 0px 10px 0px #47412dc9;
 }
 
-.slide-block__arrow-right,
-.slide-block__arrow-left{
+.carousel__arrow-right,
+.carousel__arrow-left{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -65,23 +66,23 @@
 
 }
 
-.slide-block__arrow-right{
+.carousel__arrow-right{
     left: calc(100% + 1px);
     justify-content: flex-start;
 
 }
 
-.slide-block__arrow-left{
+.carousel__arrow-left{
     right: calc(100% + 1px);
     justify-content: flex-end;
 }
 
-.slide-block__arrow-right:hover,
-.slide-block__arrow-left:hover{
+.carousel__arrow-right:hover,
+.carousel__arrow-left:hover{
     background: #282c34;
 }
 
-.slide-block__items-wrap{
+.carousel__items-wrap{
     display: flex;
     flex-wrap: wrap;
     min-width: 100%;
@@ -90,4 +91,3 @@
     box-sizing: border-box;
     transition: right 1s;
 }
-

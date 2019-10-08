@@ -18,6 +18,9 @@ const CLEAR_PURCHASES = 'CLEAR_PURCHASES';
 export function cartReducer(state = initialState, action){
     switch (action.type){
         case ADD_TO_CART:{
+            
+            if(!action.payload.amount) return state;
+
             let itemIndex = state.purchases.findIndex(el => el.id === action.payload.id);
             let newPurchases;
 
