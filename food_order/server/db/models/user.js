@@ -19,7 +19,7 @@ User.init({
     },
     role: {
         type: Sequelize.ENUM,
-        values: ['admin', 'user'],
+        values: ['admin', 'user', 'worker'],
         defaultValue: 'user',
     }
 }, {

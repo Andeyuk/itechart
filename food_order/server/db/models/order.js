@@ -19,5 +19,4 @@ Order.init({
 
 User.hasMany(Order);
 
-
 module.exports = Order;

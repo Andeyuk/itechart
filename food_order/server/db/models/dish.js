@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../init');
 
+
 const Model = Sequelize.Model;
 class Dish extends Model {}
 Dish.init({
@@ -20,7 +21,7 @@ Dish.init({
         type: Sequelize.FLOAT,
         allowNull: false
     },
-    coockingTime: {
+    cookingTime: {
         type: Sequelize.INTEGER,//seconds
         allowNull: false
     },
@@ -32,6 +33,7 @@ Dish.init({
     sequelize,
     tableName: 'dishes',
 });
+
 
 
 module.exports = Dish;

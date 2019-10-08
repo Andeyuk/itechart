@@ -8,17 +8,42 @@ const Model = Sequelize.Model;
 class OrderLine extends Model {}
 
 OrderLine.init({
-    OrderId: Sequelize.INTEGER,
-    DishId: Sequelize.INTEGER,
+    OrderId: {
+        type: Sequelize.INTEGER,
+        foreignKey: {
+            references: Order,
+        }
+    },
+    DishId: {
+        type: Sequelize.INTEGER,
+        foreignKey: {
+            references: Dish,
+        }
+    },
     amount: Sequelize.INTEGER,
     price: Sequelize.FLOAT,
+    total: {
+        type: Sequelize.FLOAT,
+    }
 }, {
     sequelize,
     timestamps: false,
 })
 
+OrderLine.beforeCreate((userInstance) => {
+    userInstance.total = userInstance.amount * userInstance.price;
+  })
+OrderLine.beforeBulkCreate((instances) => {
+    instances.forEach(instance=>
+        instance.total = instance.amount * instance.price
+    )
+})
+
 Order.hasMany(OrderLine);
+OrderLine.belongsTo(Order);
+
 Dish.hasOne(OrderLine);
+OrderLine.belongsTo(Dish);
 
 
 
