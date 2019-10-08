@@ -1,6 +1,6 @@
 import React from 'react';
 import {Router, Link} from 'react-router-dom';
-import history  from '../history/history';
+import history  from '../config/historyConfig';
 
 import './Header.css';
 

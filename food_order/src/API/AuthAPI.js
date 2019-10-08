@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
-import {keys} from '../config'
+import {keys} from '../config';
 
 const {USER_KEY, JWT_KEY} = keys.LSTORAGE;
 
 export const AuthAPI = {
     login(username, password, remember){
-        return fetch('auth/login', {
+        return fetch('/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ export const AuthAPI = {
     },
 
     register(username, email, password){
-        return fetch('auth/signup', {
+        return fetch('/auth/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,8 +52,8 @@ export const AuthAPI = {
         .catch(err=>console.log(err));
     },
 
-    fetch(url, opt){
-        return fetch('auth/signup', {...opt, token: this.getToken()})
+    fetch(url, opt={}){
+        return fetch(url, {...opt, headers: {...opt.headers, Authorization: this.getToken()}})
     },
 
     isLogged(){

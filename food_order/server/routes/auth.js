@@ -9,8 +9,9 @@ const JWT = require('../config').JWT;
 
 
 router.post('/signup', (req, res) => {
-    console.log(req.body);
+
     let {username, email, password} = req.body;
+    if (!username || !email || !passport) return res.status(422).send({error:'EMPTY_FIELD', message:'Missed required field'})
 
     User.create({username, email, password})
         .then(user=>
@@ -18,9 +19,10 @@ router.post('/signup', (req, res) => {
         )
         .catch(err=>{
             console.log(err);
-            res.send(400, err)
+            res.status(500).send(err)
         })
   });
+
 
 router.post('/login',
     (req, res, next) => {
@@ -30,20 +32,21 @@ router.post('/login',
 
             const life = req.remember ? JWT.longLife : JWT.life;
             
-        const token = jwt.sign({
-              payload: {
-                  id: user.id,
-              },
-              exp: Math.floor(Date.now() / 1000) + parseInt(life)
-            },
-            JWT.secret);
-        
-        return res.send({
-            user,
-            token: 'Bearer ' + token,
-        })
-  })(req, res, next);
-})
+            const token = jwt.sign({
+                    payload: {
+                        id: user.id,
+                    },
+                    exp: Math.floor(Date.now() / 1000) + parseInt(life)
+                },
+                JWT.secret
+            );
+            
+            return res.send({
+                user,
+                token: 'Bearer ' + token,
+            })
+        })(req, res, next);
+    })
 
 
 

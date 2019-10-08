@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { Router, Route } from 'react-router-dom';
-import  history  from './history/history';
+import  history  from './config/historyConfig';
 
 import Main from './components/Main';
 import Header from './components/Header';
-import Menu from './components/Menu';
+import Menu from './containers/Menu';
 import Registration from './containers/Registration';
 import Profile from './containers/Profile'
 

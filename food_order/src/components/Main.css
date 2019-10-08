@@ -30,3 +30,8 @@
     padding-bottom: 20px;
     margin: 0 auto;
 }
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
