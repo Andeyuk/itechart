@@ -1,10 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { normalize, schema } from 'normalizr';
+
+import history from '../config/historyConfig';
+
+import {AuthAPI} from '../API/AuthAPI';
+import {OrderAPI} from '../API/OrderAPI';
+import * as userAct from '../redux/actions/userActions';
+
+import Order from './Order';
 
 import './Profile.css';
 
 class Profile extends React.Component{
+    componentDidMount(){
+        const dish = new schema.Entity('dish');
+        const orderLine = new schema.Entity('orderLines', {
+            Dish: dish
+        });
+        const orderLines = new schema.Entity('orders',{
+            OrderLines: [orderLine]
+        });
+        const order = new schema.Array(orderLines);
+
+        OrderAPI.getHistory()
+            .then(res=>res.json())
+            .then(json=>{
+                return normalize(json, order);
+            })
+            .then(data=>this.props.setOrderHistory(data));
+    }
+
     render(){
+        const {userName, userEmail} = this.props.user;
+        if (!AuthAPI.isLogged()) {
+            history.push('/');
+        }
+
+        const orders = (this.props.user.orderHistory.result || []).map(id=>
+            <Order id = {id}></Order>
+        );
+
         return(
             <div className = "profile-wrap">
                 <div className = "profile">
@@ -12,39 +48,19 @@ class Profile extends React.Component{
                         <div className = "info__item">
                             <div className = "info__title">Username:</div>
                             <div className = "info__content">
-                                @Username
+                                {userName}
                             </div>
                         </div>
                         <div className = "info__item">
                             <div className = "info__title">Email:</div>
                             <div className = "info__content">
-                                email@mail.com
+                                {userEmail}
                             </div>
                         </div>
                     </div>
                     <div className = "profile__history history">
                         <div className = "history__title">History</div>
-                        <div className = "history__item">
-                            <div className = "history__row">
-                                <div className = "history__date">Date</div>
-                                <div className = "history__spend">@spend</div>
-                            </div>
-                            <ul className = "history__bill">
-                                <li className = "history__dish">
-                                    <p>Lorem</p>
-                                    <p>@Price</p>
-                                </li>
-                                <li className = "history__dish">
-                                    <p>Lorem</p>
-                                    <p>@Price</p>
-                                </li>
-                                <li className = "history__dish">
-                                    <p>Lorem</p>
-                                    <p>@Price</p>
-                                </li>
-                                <p>total price</p>
-                            </ul>
-                        </div>
+                        {orders}
                     </div>
                 </div>
             </div>
@@ -52,4 +68,21 @@ class Profile extends React.Component{
     }
 }
 
-export default Profile;
+
+
+const mapStateToProps = store => {
+    console.log(store)
+    return {
+      user: store.user,
+    }
+}
+  
+const mapDispatchToProps = dispatch => {
+    return {
+        setOrderHistory: (history) => dispatch(userAct.setOrderHistory(history))
+    }
+}
+  
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+
