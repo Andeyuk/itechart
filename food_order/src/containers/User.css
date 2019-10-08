@@ -120,7 +120,6 @@
 
 /*drop-down*/
 .user-list{
-    display: none;
     background: #282c34;
     padding: 5px;
     border-top: 1px solid rgb(216, 147, 29);
@@ -138,10 +137,7 @@
     border: none;
 }
 
-.user:hover .user-list{
-    display: block;
-    cursor: pointer;
-}
+
 
 .user_logged{
     color: rgb(255, 246, 229);

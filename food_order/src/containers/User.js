@@ -1,7 +1,8 @@
 import React from 'react';
 import {Router, Link} from 'react-router-dom';
-import history  from '../history/history';
+import history  from '../config/historyConfig';
 import { connect } from 'react-redux';
+import { batch } from "react-redux";
 
 import * as userAct from '../redux/actions/userActions'
 
@@ -27,8 +28,11 @@ class User extends React.Component{
 
         AuthAPI.login(userName, password, remember)
             .then(el=>{
-                this.props.setUsername(el.user.username);
-                this.props.toggleVisibility();
+                batch(()=>{
+                    this.props.setUserName(el.user.username);
+                    this.props.setUserEmail(el.user.email);
+                    this.props.toggleVisibility();
+                })
             })
             .catch(err=>console.error(err));
     }
@@ -42,7 +46,7 @@ class User extends React.Component{
             }
             case !!el.closest('.user__logout'):{
                 AuthAPI.logout();
-                this.props.setUsername(null);
+                this.props.setUserName(null);
                 break;
             }
             case !!el.closest('.user__icon-wrap'):{
@@ -56,7 +60,7 @@ class User extends React.Component{
     render(){
         console.log('user rendered');
 
-        const {isVisible, username} = this.props.user;
+        const {isVisible, userName} = this.props.user;
         return(
             <div 
                 className = "user"
@@ -66,9 +70,13 @@ class User extends React.Component{
                     className = "user__icon-wrap"
                 >
                     <img className = "user__icon" src ={userIcon}  alt = "cart"></img>
-                    { username && <UserLogged username = {username}/>}
+                    <div className = "user_logged">{userName}</div>
+                    { userName &&  isVisible &&
+                    <UserLogged 
+                        userName = {userName}
+                    />}
                 </div>
-                {!username && isVisible &&
+                {!userName && isVisible &&
                 <UserForm 
                     onSubmit = {this.handleSubmit}
                 />}
@@ -81,15 +89,11 @@ class User extends React.Component{
 class UserLogged extends React.PureComponent{
     render(){
         console.log('  user logged rendered');
-        let name = this.props.username;
         return(
-            <>
-                <div className = "user_logged">{name}</div>
-                <ul className = 'user-list user__drop-down user__drop-down_small'>
-                    <li className = 'user-list__item user__profile'>Profile</li>
-                    <li className = 'user-list__item user__logout'>Logout</li>
-                </ul>
-            </>
+            <ul className = 'user-list user__drop-down user__drop-down_small'>
+                <li className = 'user-list__item user__profile'>Profile</li>
+                <li className = 'user-list__item user__logout'>Logout</li>
+            </ul>
         )
     }
 }
@@ -141,7 +145,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return {
         toggleVisibility: ()=> dispatch(userAct.toggleVisibility()),
-        setUsername: (name) => dispatch(userAct.setUsername(name))
+        setUserName: (name) => dispatch(userAct.setUserName(name)),
+        setUserEmail: (email) => dispatch(userAct.setUserEmail(email))
     }
 }
 
