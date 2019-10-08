@@ -7,12 +7,13 @@ const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: JWT.secret,
     issuer: JWT.issuer,
-    audience: JWT.audience
-  };
+    audience: JWT.audience,
+    session: false
+};
 
 passport.use(new Strategy(opts, (jwt_payload, done)=>{
-
-    User.findByPk(jwt_payload.payload.id,{raw: true})
+    console.log(jwt_payload)
+    User.findByPk(jwt_payload.payload.id, {raw: true})
         .then(user => 
            user ? done(null, user) : done(null, false, {message: 'No such a user'})
         )
