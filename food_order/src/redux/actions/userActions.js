@@ -5,6 +5,12 @@ export function toggleVisibility(){
     }
 }
 
+export function hideUser(){
+    return {
+        type: 'HIDE_USER',
+    }
+}
+
 
 export function setUserName(name){
     return {
@@ -27,3 +33,33 @@ export function setOrderHistory(history){
     }
 }
 
+export function logout(){
+    return {
+        type: 'LOGOUT',
+    }
+}
+
+
+export function fetchLoginRequest(){
+    return{
+        type: 'FETCH_LOGIN_REQUEST'
+    }
+}
+
+export function fetchLoginSuccess(response){
+    return{
+        type: 'FETCH_LOGIN_SUCCESS',
+        payload:{
+            response
+        },
+    }
+}
+
+export function fetchLoginFailure(error){
+    return{
+        type: 'FETCH_LOGIN_FAILURE',
+        payload:{
+            error
+        },
+    }
+}

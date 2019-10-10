@@ -10,6 +10,8 @@ import * as userAct from '../redux/actions/userActions';
 
 import Order from './Order';
 
+import { Dimmer, Loader, Container, Segment} from 'semantic-ui-react';
+
 import './Profile.css';
 
 class Profile extends React.Component{
@@ -33,12 +35,9 @@ class Profile extends React.Component{
 
     render(){
         const {userName, userEmail} = this.props.user;
-        if (!AuthAPI.isLogged()) {
-            history.push('/');
-        }
 
         const orders = (this.props.user.orderHistory.result || []).map(id=>
-            <Order id = {id}></Order>
+            <Order id = {id} key={id}></Order>
         );
 
         return(
@@ -60,6 +59,11 @@ class Profile extends React.Component{
                     </div>
                     <div className = "profile__history history">
                         <div className = "history__title">History</div>
+                        { !orders.length &&
+                            <Container>
+                                <Loader active inline='centered' size='big'>Loading</Loader>
+                            </Container>
+                        }
                         {orders}
                     </div>
                 </div>

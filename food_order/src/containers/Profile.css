@@ -3,7 +3,7 @@
     width: 60%;
     margin: 0 auto;
     min-width:800px;
-    height: 900px;
+    min-height: 900px;
 }
 
 .info{
@@ -37,6 +37,7 @@
 .history{
     width: 50%;
     padding: 30px;
+    position: relative;
 }
 
 .history__row{

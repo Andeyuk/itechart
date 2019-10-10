@@ -22,5 +22,42 @@ export function setDishes(dishes){
     }
 }
 
- 
+export function setCurrentPage(pageInd){
+    return{
+        type: 'SET_CURRENT_PAGE',
+        payload: {pageInd},
+    }
+}
+
+export function setVisibleAmount(amount){
+    return{
+        type: 'SET_VISIBLE_AMOUNT',
+        payload: {amount},
+    }
+}
+
+
+export function fetchDishRequest(){
+    return{
+        type: 'FETCH_DISH_REQUEST'
+    }
+}
+
+export function fetchDishSuccess(response){
+    return{
+        type: 'FETCH_DISH_SUCCESS',
+        payload:{
+            response
+        },
+    }
+}
+
+export function fetchDishFailure(error){
+    return{
+        type: 'FETCH_DISH_FAILURE',
+        payload:{
+            error
+        },
+    }
+}
 

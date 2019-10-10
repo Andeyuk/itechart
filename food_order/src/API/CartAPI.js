@@ -12,7 +12,7 @@ export const CartAPI = {
             })
         })
         .then(res => {
-            if(res.status !== 200) throw new Error(res.status + ':' + res.statusText)
+            if(res.status > 399 && res.status < 200) throw new Error(res.statusText)
             return res.json()
         })
         .catch(err=>err)

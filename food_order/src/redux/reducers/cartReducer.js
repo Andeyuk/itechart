@@ -1,18 +1,25 @@
 import {keys} from '../../config'
+import {
+    ADD_TO_CART,
+    TOGGLE_CART_VISIBILITY,
+    REMOVE_FROM_CART,
+    SET_ITEM_AMOUNT,
+    SAVE_PURCHASES,
+    CLEAR_PURCHASES,
+    FETCH_CART_REQUEST,
+    FETCH_CART_SUCCESS,
+    FETCH_CART_FAILURE,
+    HIDE_CART,
+} from '../constants'
 
 const SESSION_STORAGE_KEY = keys.SESSION_STORAGE_CART_KEY;
 
 const initialState = {
     purchases: JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY)) || [],
     isVisible: false,
+    status: null,
+    statusText: null,
 }
-
-const ADD_TO_CART = 'ADD_TO_CART';
-const TOGGLE_VISIBILITY = 'TOGGLE_VISIBILITY';
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
-const SET_ITEM_AMOUNT = 'SET_ITEM_AMOUNT';
-const SAVE_PURCHASES = 'SAVE_PURCHASES';
-const CLEAR_PURCHASES = 'CLEAR_PURCHASES';
 
 
 export function cartReducer(state = initialState, action){
@@ -33,9 +40,12 @@ export function cartReducer(state = initialState, action){
             return {...state, purchases: newPurchases} 
         }
 
-        case TOGGLE_VISIBILITY:
+        case TOGGLE_CART_VISIBILITY:
             return {...state, isVisible: !state.isVisible}
 
+        case HIDE_CART:
+            return {...state, isVisible: false}
+    
 
         case REMOVE_FROM_CART:{
             let itemInd = state.purchases.find(item=>item.id === action.payload);
@@ -65,7 +75,31 @@ export function cartReducer(state = initialState, action){
         case CLEAR_PURCHASES:{
             sessionStorage.removeItem(
                 SESSION_STORAGE_KEY);
-            return state;
+            return {...state, purchases: {}};
+        }
+
+        case FETCH_CART_REQUEST: {
+            return {
+                ...state, 
+                status: 'fetch', 
+                statusText: null, 
+            }
+        }
+
+        case FETCH_CART_SUCCESS: {
+            return {
+                ...state,
+                status: 'success',
+                statusText: action.payload.response
+            }
+        }
+
+        case FETCH_CART_FAILURE: {
+            return {
+                ...state,
+                status: 'error',
+                statusText: action.payload.error,
+            }
         }
 
         default: return state;

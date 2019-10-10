@@ -1,4 +1,15 @@
 import {AuthAPI} from '../../API/AuthAPI'
+import {
+    TOGGLE_VISIBILITY,
+    HIDE_USER,
+    SET_USER_NAME,
+    SET_USER_EMAIL,
+    SET_ORDER_HISTORY,
+    LOGOUT,
+    FETCH_LOGIN_REQUEST,
+    FETCH_LOGIN_SUCCESS,
+    FETCH_LOGIN_FAILURE,
+} from '../constants'
 
 const {email, username} = AuthAPI.getUser() || {};
 
@@ -8,11 +19,6 @@ const initialState = {
     userEmail: email,
     orderHistory: {},
 }
-
-const TOGGLE_VISIBILITY = 'TOGGLE_USER_VISIBILITY';
-const SET_USER_NAME = 'SET_USER_NAME';
-const SET_USER_EMAIL = 'SET_USER_EMAIL';
-const SET_ORDER_HISTORY = 'SET_ORDER_HISTORY';
 
 
 export function userReducer(state = initialState, action){
@@ -33,6 +39,39 @@ export function userReducer(state = initialState, action){
         
         case SET_ORDER_HISTORY: {
             return {...state, orderHistory: action.payload}
+        }
+
+        case FETCH_LOGIN_REQUEST: {
+            return {
+                ...state, 
+                status: 'fetch', 
+                statusText: null, 
+            }
+        }
+
+        case FETCH_LOGIN_SUCCESS: {
+            return {
+                ...state, 
+                status: 'success', 
+                statusText: action.payload.response, 
+            }
+        }
+        
+        case FETCH_LOGIN_FAILURE: {
+            return {
+                ...state, 
+                status: 'error', 
+                statusText: action.payload.error, 
+            }
+        }
+
+        case LOGOUT: {
+            AuthAPI.logout();
+            return {...state, userName: null, userEmail: null}
+        }
+
+        case HIDE_USER: {
+            return {...state, isVisible: false}
         }
         default: return state;
     }

@@ -1,6 +1,7 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 
+
 import './Dish.css'
 
 import  * as dishAct  from '../redux/actions/dishActions';
@@ -40,21 +41,29 @@ class Dish extends React.PureComponent{
 
     render(){
         console.log("dish rendered");
-        const {amount = 0, dish, id, isSelected} =  this.props;
+        const {amount = 0, dish, isSelected, widthRatio} =  this.props;
         const visibility = isSelected ? 'visible' : 'hidden';
         const backStyle = {
-            visibility
+            visibility,
+            top:' 50%',  
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
         }
         const {name, description, cookingTime, price, isCookingAmount} = dish;
 
+        const DishWidth={
+            width: `${widthRatio}%`,
+        }
         return(
             <div 
                 className = "slide-block__item-wrap dish"
+                style={DishWidth}
             >
                 <div 
                     className = "slide-block__item"
                     onClick = {this.clickDish}
-                ></div>
+                >
+                </div>
 
                 <div 
                     className = "slide-block__item-info"

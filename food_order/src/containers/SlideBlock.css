@@ -46,8 +46,10 @@
     z-index: 900;
     align-items: center;
     padding: 20px;
-    min-width: 267px;
     box-shadow: inset 0px 0px 10px 0px #47412dc9;
+    top:' 50%';  
+    left: '50%';
+    transform: 'translate(-50%, -50%)';
 }
 
 .slide-block__arrow-right,

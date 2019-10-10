@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, batch} from 'react-redux';
+import { Button, Loader, Icon, Message} from 'semantic-ui-react';
 
 import * as cartAct from '../redux/actions/cartActions';
 import * as userAct from '../redux/actions/userActions';
@@ -9,6 +10,7 @@ import cartIcon from '../img/shopping-cart.svg';
 import './Cart.css';
 import { AuthAPI } from '../API/AuthAPI';
 import { CartAPI } from '../API/CartAPI';
+
 
 class Cart extends React.Component{
     constructor(props){
@@ -28,15 +30,28 @@ class Cart extends React.Component{
 
         switch(true){
             case el.matches('.checkout-btn'):{
+                if(!AuthAPI.isLogged()) {
+                        this.props.logout();
+                        this.props.fetchCartFailure('Unauthorized');
+                    break;
+                }
+
+                this.props.fetchCartRequest();
                 CartAPI.checkout(this.props.cart.purchases)
                     .then(el=>{
                         if (el instanceof Error) throw el;
                         console.log(el);
+                        this.props.fetchCartSuccess(el.message)
                     })
                     .catch(err=>{
                         console.log(err);
-                        AuthAPI.logout();
-                        this.props.setUserName(null);
+
+                        batch(()=>{
+                            if(!AuthAPI.isLogged())
+                                AuthAPI.logout()
+                            this.props.fetchCartFailure(err.message)
+                        })
+                        
                     });
                 break;
             }
@@ -76,6 +91,8 @@ class Cart extends React.Component{
 
     toggleVisibility(){
         this.props.toggle();
+        if (!this.props.cart.isVisible)
+            this.props.hideUser();
     }
 
     onChangeAmount(event){
@@ -85,13 +102,12 @@ class Cart extends React.Component{
     render(){
         console.log('cart rendered');
 
-        let {purchases, isVisible} = this.props.cart;
-        //let dishes = this.props.dishes;
-        let amount = this.props.cart.purchases.length;
+        const {purchases, isVisible, status, statusText} = this.props.cart;
+
+        const amount = this.props.cart.purchases.length || 0;
 
         //transfer to API
         if (amount) this.props.savePurchases();
-        else this.props.clearPurchases();
 
 
         let amountStyle = {
@@ -113,7 +129,7 @@ class Cart extends React.Component{
         purchases.forEach(el => {
             totalPrice += el.amount * el.price;
         });
-        
+
         return(
             <div className = "cart">
                 <div 
@@ -129,12 +145,41 @@ class Cart extends React.Component{
                         onClick = {this.onClick}
                         onChange = {this.onChangeAmount}
                     >
+                        <Message 
+                            error
+                            hidden={status !== 'error'}
+                            compact
+                            size='tiny'
+                        >
+                            <Message.Header>{statusText}</Message.Header>
+                        </Message>
                         {items}
                     <div className = "cart__checkout">
                         <div className = "cart__total_price">
                             {totalPrice}
                         </div>
-                        <button className = "checkout-btn">Checkout</button>
+                        <Button 
+                            size = 'small'
+                            compact
+                            className = "checkout-btn"
+                        >
+                            Checkout
+                            
+                            <Loader 
+                                active = {status === 'fetch'}
+                                inline 
+                                size='tiny'
+                            >
+                            </Loader>
+
+                            {status === 'success' && 
+                                <Icon 
+                                    name='check'
+                                    color='green'
+                                />
+                            }
+                            
+                        </Button>
                     </div>
                     </ul>
                 }
@@ -157,7 +202,12 @@ const mapDispatchToProps = dispatch => {
         removeFromCart: id => dispatch(cartAct.removeFromCart(id)),
         savePurchases: () => dispatch(cartAct.savePurchases()),
         clearPurchases: () => dispatch(cartAct.clearPuchases()),
-        setUserName: (name) => dispatch(userAct.setUserName(name))
+        setUserName: (name) => dispatch(userAct.setUserName(name)),
+        fetchCartRequest: ()=> dispatch(cartAct.fetchCartRequest()),
+        fetchCartSuccess: (res)=> dispatch(cartAct.fetchCartSuccess(res)),
+        fetchCartFailure: (err)=> dispatch(cartAct.fetchCartFailure(err)),
+        logout: () => dispatch(userAct.logout()),
+        hideUser: () => dispatch(userAct.hideUser()),
     }
 }
 

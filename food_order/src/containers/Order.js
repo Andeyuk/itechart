@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-import history from '../config/historyConfig';
-
 import OrderLine from './OrderLine';
 
 import * as userAct from '../redux/actions/userActions';
@@ -42,7 +40,6 @@ class Order extends React.Component{
 
 
 const mapStateToProps = (store, ownProps) => {
-    console.log(store)
     const entites = store.user.orderHistory.entities;
     return {
       order: entites.orders[ownProps.id],

@@ -8,7 +8,13 @@ export function addToCart(id, amount, price, name){
 
 export function toggleVisibility(){
     return{
-        type: 'TOGGLE_VISIBILITY',
+        type: 'TOGGLE_CART_VISIBILITY',
+    }
+}
+
+export function hideCart(){
+    return {
+        type: 'HIDE_CART',
     }
 }
 
@@ -36,5 +42,30 @@ export function savePurchases(){
 export function clearPuchases(){
     return{
         type: 'CLEAR_PURCHASES'
+    }
+}
+
+
+export function fetchCartRequest(){
+    return{
+        type: 'FETCH_CART_REQUEST'
+    }
+}
+
+export function fetchCartSuccess(response){
+    return{
+        type: 'FETCH_CART_SUCCESS',
+        payload:{
+            response
+        },
+    }
+}
+
+export function fetchCartFailure(error){
+    return{
+        type: 'FETCH_CART_FAILURE',
+        payload:{
+            error
+        },
     }
 }

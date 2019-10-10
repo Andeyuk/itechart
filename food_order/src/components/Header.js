@@ -1,6 +1,7 @@
 import React from 'react';
 import {Router, Link} from 'react-router-dom';
 import history  from '../config/historyConfig';
+import { Menu } from 'semantic-ui-react';
 
 import './Header.css';
 
@@ -10,7 +11,7 @@ import User from '../containers/User';
 class Header extends React.Component{
     render(){
         return(
-            <header className = "header">
+            <header className = "header-top">
                 <div className = "header__inner">
                     <nav className = "nav">
                         <Router history = { history }>

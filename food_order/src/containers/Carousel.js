@@ -6,6 +6,7 @@ import * as carouselAct from '../redux/actions/carouselActions';
 import arrLeft from '../img/left-arrow.svg';
 import arrRight from '../img/right-arrow.svg';
 
+
 import './Carousel.css';
 
 class Carousel extends React.PureComponent{
@@ -31,19 +32,20 @@ class Carousel extends React.PureComponent{
             right: `${100*this.props.carousel.current}%`,
         }
 
-        const slides = this.props.children.map((child, i)=>
-            <div key = {i}
-                className = "slide-block__items-wrap"
-                style = {blockShiftStyle}
-            >
-                {child}
-            </div>)
+
+        const slides = React.Children.map(this.props.children,(child, i)=>
+            React.cloneElement(
+                child,
+                {style: blockShiftStyle},
+            )
+        )
+
         return(
             <div 
                 className = "carousel"
             >
                 <div className = "carousel__current">
-                    {slides}
+                    {slides}       
                 </div>
 
                 <div 

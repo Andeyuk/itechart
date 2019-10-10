@@ -23,6 +23,8 @@
 
 .user__drop-down{
     position: absolute;
+    border-top: 1px solid rgb(216, 147, 29);
+    border-radius: 0;
     top: 100%;
 }
 
@@ -61,16 +63,9 @@
 	border-radius: 0 0 5px 5px;
 	box-shadow: 0 5px 50px rgba(0,0,0,0.4);
     text-align: center;
-
+    display: inline-block;
 }
 
-
-.login__header {
-    background-color: #282c34;
-    border-top: 1px solid rgb(216, 147, 29);
-	margin-top: 0;
-    margin-bottom: 10px;
-}
 
 .login__label {
 	font-weight: 700;

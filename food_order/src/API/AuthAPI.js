@@ -4,7 +4,7 @@ import {keys} from '../config';
 const {USER_KEY, JWT_KEY} = keys.LSTORAGE;
 
 export const AuthAPI = {
-    login(username, password, remember){
+    login(username, password, remember=false){
         return fetch('/auth/login', {
             method: 'POST',
             headers: {
@@ -17,7 +17,7 @@ export const AuthAPI = {
             })
         })
         .then(res => {
-            if(res.status !== 200) throw new Error('404: not found')
+            if(res.status > 399 && res.status < 200) throw new Error(res.statusText)
             return res.json()
         })
         .then(json=>{
@@ -46,7 +46,7 @@ export const AuthAPI = {
             })
         })
         .then(res => {
-            if(res.status !== 200) throw new Error('404: not found')
+            if(res.status > 399 && res.status < 200) throw new Error(res.statusText)
             return res.json()
         })
         .catch(err=>console.log(err));
@@ -62,12 +62,11 @@ export const AuthAPI = {
     },
 
     isTokenExpired(token){
-        const decoded = jwt.decode(token);
-
-        if (!decoded) return false;
+        const decoded = jwt.decode(token.replace('Bearer ',''));
+        if (!decoded) return true;
 
         if (decoded.exp < Date.now() / 1000)
-            return true
+            return true;
 
         return false;
 
