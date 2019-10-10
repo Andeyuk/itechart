@@ -12,11 +12,18 @@ const OrderLine = require('../db/models/orderLine');
 
   
 router.get('/', (req, res) => {
-    const {start = 0, limit = 30} = req.query;
+    const {start, limit} = req.query;
+    let options = {};
+
+    if (+limit)
+        options = {offset: start, limit};
 
     Dish.findAll({
         attributes: {
-            include: [[sequelize.fn('SUM', sequelize.col('OrderLine.amount')), 'isCookingAmount']], 
+            include: [
+                [sequelize.fn('SUM', sequelize.col('OrderLine.amount')), 'isCookingAmount'],
+                //should add cont?
+            ], 
             exclude: ['createdAt', 'updatedAt']
         },
         include: [{
@@ -31,11 +38,9 @@ router.get('/', (req, res) => {
                 //required:true,
             }
         },],
-        offset: start,
-        limit: limit,
-        group:[
-            'Dish.id',
-        ],
+        ...options,
+        group: ['Dish.id'],
+        order: ['id',],
         raw: true,
 
     }).then(dishes=>
