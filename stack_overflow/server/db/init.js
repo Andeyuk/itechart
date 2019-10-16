@@ -13,8 +13,8 @@ db
     console.error('Unable to connect to the database:', err);
     });
 
-db.sync({
+/*db.sync({
     force: true
-})
+})*/
 
 module.exports = db;

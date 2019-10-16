@@ -1,7 +1,7 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../../db/models/user');
+const UserService = require('../../services/user');
 const Op = require('sequelize').Op;
 
 passport.use(new LocalStrategy({
@@ -10,15 +10,19 @@ passport.use(new LocalStrategy({
         session: false
     }, 
     (login, password, done) => {
-        User.getUserByLogin(login, password)
+        UserService.getByLogin(login)
         .then(user=>{
 
             //to do check passport func
             if (!user || user.password !== password) {
                 return done(null, false, {message: 'No such a user'});
             }
-            let {id, userName, email, firstName, lastName} = user;
-            return done(null, {id, userName, email, firstName, lastName, seniority});
+
+            Object.defineProperty(user, 'password', {
+                enumerable: false,
+            });
+
+            return done(null, user);
         })
         .catch(err=>done(err))
     }

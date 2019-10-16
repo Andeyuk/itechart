@@ -18,7 +18,7 @@ Answer.init({
     },
     answerLevel: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        defaultValue: 1
     },
     content:{
         type: Sequelize.STRING,
