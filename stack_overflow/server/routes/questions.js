@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const conntroller = require('../controllers/questions');
+const QuestionConntroller = require('../controllers/questions');
 
-//router.get('/', conntroller.getAll)
+router.get('/', QuestionConntroller.getAll)
 
+router.get('/:id', QuestionConntroller.getById);
 
 module.exports = router;
