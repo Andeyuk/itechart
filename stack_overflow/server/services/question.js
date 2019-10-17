@@ -1,76 +1,46 @@
 
-const Model = require('../db/models/question');
+const QuestionRepository = require('../repositories/question');
 
-const Question = {
+const Question={
 
-    async getAll({status='active', orderBy = ['id'], offset, limit}){
-        let options = {};
-        if (offset && limit) {
-            options = {
-                offset,
-                limit
-            }
-        }
+    async addViewIfNessesary(){
+        //todo
+    },
 
+    async findAll(options){
         return (
-            await Model.findAll({
-                where: {
-                    status
-                },
-                order: orderBy,
-                options
-            })
+            await QuestionRepository.findAll(options)
         )
     },
 
-    async getById(id){
-        return await Model.findByPk(id)
+    async findById(id){
+        return await QuestionRepository.findById(id)
     },
 
 
     async upVote(id){
-        const question = await Model.findByPk(id);
-        return (
-            await question.increment('upVotes', { 
-                where: {
-                    id
-                }
-            })
-        )
+        return await QuestionRepository.increment(id, 'upVotes');
     },
 
     async downVote(id){
-        const question = await Model.findByPk(id);
-        return (
-            await question.increment('downVotes', { 
-                where: {
-                    id
-                }
-            })
-        )
+        return await QuestionRepository.increment(id, 'downVotes');
     },
 
-    async create(header, content){
-        return (
-            await Model.create({
-                header,
-                content
-            })
-        )
+
+    async create({header, content}){
+        return await QuestionRepository.create({
+            header,
+            content
+        })
+
     },
 
-    async destroy(id){
-        const question = await Model.findByPk(id);
-        return await question.destroy();
+    async delete(id){
+        return await QuestionRepository.delete(id);
     },
 
-    async updateStatus(id, status){
-        const question = await Model.findByPk(id);
-        return (
-            await question.update({ 
-                status
-            })
-        )
+    async update(id, data){
+        return await QuestionRepository.update(id, data);
     }
 }
 

@@ -1,10 +1,11 @@
-const Model = require('../db/models/user');
+const UserRepository = require('../repositories/user');
 const createError = require('http-errors');
+const Sequelize = require('sequelize');
 const Op = require('sequelize').Op;
 
 const User = {
 
-    async getByLogin(login, options){
+    async findByLogin(login, options){
         const {
             raw = true,
             attributes = {
@@ -12,7 +13,7 @@ const User = {
             }
         } = options || {};
         return (
-            await Model.findOne({
+            await UserRepository.findOne({
                 attributes,
                 where: {
                     [Op.or]: {
@@ -25,24 +26,37 @@ const User = {
         )
     },
 
-    async getById(id){
-        return await  Model.findByPk(id)
+    async findAll(options){
+        return (
+            await UserRepository.findAll({
+                options
+            })
+        )
     },
 
+    async findById(id){
+        return await UserRepository.findById(id)
+    },
 
-    async create(obj){
+    async update(id, data){
+        return await UserRepository.update(id, data);
+    },
+
+    async delete(id){
+        return await UserRepository.delete(id);
+    },
+
+    async create(data){
         try {
-            const user = await Model.create(obj);
-            return user;
+            return await UserRepository.create(data);
         } catch (err){
-            throw new createError.Conflict('User Already Exists');
-        } 
-    },
-
-    async destroy(id){
-        const user = await this.getById(id);
-        return await user.destroy();
-    }
+            if (err instanceof Sequelize.UniqueConstraintError || 
+                err instanceof Sequelize.ValidationErrorItem){
+                throw new createError.Conflict(err.errors[0].message)
+            }
+                
+        }
+    }    
 }
 
 module.exports = User;

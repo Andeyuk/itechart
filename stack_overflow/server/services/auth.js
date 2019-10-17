@@ -1,8 +1,7 @@
 const passport = require('passport');
 const createError = require('http-errors');
 const AuthUtils = require('../utils/auth');
-const UserService = require('../services/user');
-
+const UserService = require('./user');
 
 
 function checkUserFound(user){
@@ -11,15 +10,25 @@ function checkUserFound(user){
     }
 }
 
+
 const Auth = {
-    authenticate(strategy){
-        return function(req, res, next){
-            return passport.authenticate(strategy, {session: false})(req, res, next);
+    authenticate: (strategy) => (req, res, next) => {
+        passport.authenticate(strategy, {session: false})(req, res, next);
+    },
+        
+    hasRole: (role) => (req, res, next) => {
+        if (req.user.role !== role){
+            throw new createError.Forbidden()
+        }
+    },
+
+    hasSameId(userId, reqId){
+        if (userId != reqId){
+            throw new createError.Forbidden()
         }
     },
 
     login(user){
-        console.log(user);
         checkUserFound(user);
 
         const token = AuthUtils.generateToken(user.id);
@@ -31,9 +40,10 @@ const Auth = {
     },
 
     async register(user){
-        console.log(user)
         return await UserService.create(user);
-    }
+    },
+
+    
 }
 
 module.exports = Auth;

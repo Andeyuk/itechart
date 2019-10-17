@@ -1,62 +1,39 @@
 
-const Model = require('../db/models/answer');
+const AnswerReposiory = require('../repositories/answer');
 
-const Answer = {
-    async getAll(options){
+const Answer={
+    async findAll(options){
         return (
-            await Model.findAll({
+            await AnswerReposiory.findAll({
                 options
             })
         )
     },
 
-    async upVote(id){
-        const answer = await Model.findByPk(id);
-        return (
-            await answer.increment('upVotes', { 
-                where: {
-                    id
-                }
-            })
-        )
-    },
-
-    async getById(id){
-        return await Model.findByPk(id)
+    async findById(id){
+        return await AnswerReposiory.findById(id)
     },
 
     async downVote(id){
-        const answer = await Model.findByPk(id);
-        return (
-            await answer.increment('downVotes', { 
-                where: {
-                    id
-                }
-            })
-        )
+        return await AnswerReposiory.increment(id, 'downVotes');
     },
 
     async upVote(id){
-        const answer = await Model.findByPk(id);
-        return (
-            await answer.increment('upVotes', { 
-                where: {
-                    id
-                }
-            })
-        )
+        return await AnswerReposiory.increment(id, 'upVotes');
     },
 
-    async downVote(id){
-        const answer = await Model.findByPk(id);
-        return (
-            await answer.increment('downVotes', { 
-                where: {
-                    id
-                }
-            })
-        )
+    async update(id, data){
+        return await AnswerReposiory.update(id, data);
+    },
+
+    async delete(id){
+        return await AnswerReposiory.delete(id);
+    },
+
+    async create(data){
+        return await AnswerReposiory.create(data);
     }
+
 }
 
 module.exports = Answer;
