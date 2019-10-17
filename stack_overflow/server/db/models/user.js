@@ -1,9 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../init');
 
-const Question = require('./question');
-const bindQueriesToModel = require('../queries/user');
-
 const Model = Sequelize.Model;
 class User extends Model {};
 
@@ -18,11 +15,13 @@ User.init({
     },
     userName: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     password: {
         type: Sequelize.STRING,
@@ -45,7 +44,5 @@ User.init({
     tableName: 'users',
 });
 
-User.hasMany(Question);
-bindQueriesToModel(User);
 
 module.exports = User;

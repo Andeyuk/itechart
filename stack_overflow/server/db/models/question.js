@@ -2,8 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../init')
 
 const Answer = require('./answer');
-
-const bindQueriesToModel = require('../queries/question');
+const User = require('./user');
 
 const Model = Sequelize.Model;
 class Question extends Model {};
@@ -18,7 +17,7 @@ Question.init({
         allowNull: false,
     },
     upVotes: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         defaultValue: 0,
     },
     downVotes: {
@@ -41,6 +40,8 @@ Question.init({
 });
 
 Question.hasMany(Answer);
-bindQueriesToModel(Question);
+Answer.belongsTo(Question);
+Question.belongsTo(User);
+User.hasMany(Question);
 
 module.exports = Question;

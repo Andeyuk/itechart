@@ -1,9 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../init');
 
-const Question = require('./question');
-
-const bindQueriesToModel = require('../queries/answer');
 
 const Model = Sequelize.Model;
 class Answer extends Model {};
@@ -15,6 +12,7 @@ Answer.init({
     },
     parentId: {
         type: Sequelize.INTEGER,
+        allowNull: false
     },
     answerLevel: {
         type: Sequelize.INTEGER,
@@ -25,7 +23,7 @@ Answer.init({
         allowNull: false
     },
     upVotes: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         defaultValue: 0
     },
     downVotes: {
@@ -38,10 +36,8 @@ Answer.init({
     tableName: 'answers',
 });
 
-Answer.hasMany(Answer);
-Answer.belongsToMany(Answer, { as: 'reply', through: 'AnswerReply' })
-//Answer.belongsTo(Question);
-bindQueriesToModel(Answer);
+Answer.hasMany(Answer, { as: 'reply', foreignKey: 'ParentId' });
+Answer.belongsTo(Answer, { as: 'parent', foreignKey: 'ParentId' })
 
 
 module.exports = Answer;
