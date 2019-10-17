@@ -1,31 +1,10 @@
 
 const AuthService = require('../services/auth');
+const controllerBuilder = require('../utils/controller');
 
 const AuthController = {
-    register(req, res){
-        //todo validation
-        try {
-            const json = AuthService.register(req.body);
-            res.json(json);
-        } catch (err){
-            res.status(err.status || 500).send(err);
-        }
-       
-    },
-    
-    authenticate(strategy){
-        return AuthService.authenticate(strategy)
-    },
-    
-    login(req, res){
-        try {
-           const json = AuthService.login(req.user || req.body);
-           res.json(json);
-        } catch (err){
-            res.status(err.status || 500).send(err)
-        }
-       
-    }
+    register: controllerBuilder(AuthService.register, (req) => [req.body]),
+    login: controllerBuilder(AuthService.login, (req) => [req.user || req.body]),
 }
 
 

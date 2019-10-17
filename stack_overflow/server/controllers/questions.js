@@ -1,27 +1,13 @@
 const QuestionService = require('../services/question');
+const controllerBuilder = require('../utils/controller');
+
+const ControllerContainer = require('./basicController');
+const BasicControllers = new ControllerContainer(QuestionService);
 
 const QuestionController = {
-    async getAll(req, res){
-        //todo validation
-        try {
-            const json = await QuestionService.getAll(req.body);
-            res.json(json);
-        } catch (err){
-            res.status(err.status || 500).send(err);
-        }
-       
-    },
-
-    async getById(req, res){
-        //todo validation
-        try {
-            const json = await QuestionService.getById(req.params.id);
-            res.json(json);
-        } catch (err){
-            res.status(err.status || 500).send(err);
-        }
-       
-    },
+    ...BasicControllers,
+    upVote: controllerBuilder(QuestionService.upVote, (req) => [req.params.id]),
+    downVote: controllerBuilder(QuestionService.downVote, (req) => [req.params.id]),
 }
 
 
