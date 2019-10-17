@@ -9,8 +9,6 @@ const answers = require('./routes/answers');
 const generate = require('./routes/generate');
 
 
-
-
 router.use('/auth', auth);
 router.use('/users', users);
 router.use('/questions', questions);
