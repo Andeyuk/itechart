@@ -4,22 +4,22 @@ const router = express.Router();
 const UserController = require('../controllers/users');
 const AuthMidlleware = require('../middlewares/auth');
 
-router.get('/', UserController.findAll);
+router.get('/', UserController.getAll());
 
-router.get('/:id', UserController.findById);
+router.get('/:id', UserController.getById());
 
 router.put(
     '/:id', 
     AuthMidlleware.authenticate('jwt'), 
-    AuthMidlleware.hasSameId,
-    UserController.update
+    AuthMidlleware.checkHasSameId,
+    UserController.update()
 );
 
 router.delete(
     '/:id', 
     AuthMidlleware.authenticate('jwt'), 
-    AuthMidlleware.hasSameId,
-    UserController.delete
+    AuthMidlleware.checkHasSameId,
+    UserController.delete()
 );
 
 

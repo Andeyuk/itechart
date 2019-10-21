@@ -4,6 +4,8 @@ const router = express.Router();
 const Question = require('../db/models/question');
 const Answer = require('../db/models/answer');
 
+
+
 router.get('/', (req, res) => {
     const questionArr = Array(60).fill(0).map((el, ind)=>{
         return {
@@ -14,8 +16,9 @@ router.get('/', (req, res) => {
 
     const answerArr = Array(5).fill(0).map((el,i)=>{
         return {
-            subjectId: i,
-            parentId: i,
+            QuestionId: i+1,
+            id: i+1,
+            parentId: i-1 > 0 ? i-1 : 1,
             content: `Lorem${i}`,
         }
     })
@@ -31,7 +34,7 @@ router.get('/', (req, res) => {
         .then(([ questins, answers])=>{
         })
         .then((r)=>res.send('OK'))
-        .catch(err=>res.send(err))
+        .catch(err=>res.status(err.status || 500).send(err))
 });
 
 

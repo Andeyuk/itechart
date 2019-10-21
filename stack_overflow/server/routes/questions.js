@@ -3,39 +3,41 @@ const router = express.Router();
 
 const QuestionConntroller = require('../controllers/questions');
 const AuthMidlleware = require('../middlewares/auth');
+const QuestionMiddleware = require('../middlewares/question');
 
 
 router.get(
     '/',
-    QuestionMiddleware.addViewIfNessesary,
-    QuestionConntroller.findAll)
+    //QuestionMiddleware.addViewIfNessesary,
+    QuestionConntroller.findAll())
 
-router.get('/:id', QuestionConntroller.findById);
+router.get('/:id', QuestionConntroller.getById());
 
-router.post('/', QuestionConntroller.create);
+router.post(
+    '/',
+    QuestionMiddleware.validateCreation,
+    QuestionConntroller.create());
 
 router.put(
     '/:id', 
     AuthMidlleware.authenticate('jwt'), 
-    AuthMidlleware.hasSameId, 
-    QuestionConntroller.update
+    QuestionConntroller.update()
 );
 
 router.delete(
     '/:id', 
     AuthMidlleware.authenticate('jwt'), 
-    AuthMidlleware.hasSameId, 
-    QuestionConntroller.delete
+    QuestionConntroller.delete()
 );
 
 router.put('/:id/upvote',
     AuthMidlleware.authenticate('jwt'), 
-    QuestionConntroller.upVote
+    QuestionConntroller.upVote()
 );
 
 router.put('/:id/downvote', 
     AuthMidlleware.authenticate('jwt'), 
-    QuestionConntroller.downVote
+    QuestionConntroller.downVote()
 );
 
 
