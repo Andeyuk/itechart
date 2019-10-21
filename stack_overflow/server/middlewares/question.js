@@ -1,8 +1,10 @@
-const middlewareBuilder = require('../utils/middleware');
+const middlewareBuilder = require('../utils/helpers/middlewareBuilder');
 const QuestionService = require('../services/auth');
+const QuestionValidator = require('../utils/validators/question');
 
-const AuthMiddleware = {
-    addViewIfNessesary: middlewareBuilder(QuestionService.addViewIfNessesary, (req) => [req.user])
+const QuestionMiddleware = {
+    addViewIfNessesary: middlewareBuilder(QuestionService.addViewIfNessesary, (req) => [req.user]),
+    validateCreation: middlewareBuilder(QuestionValidator.validateCreation, (req) => [req.body])
 }
 
-module.exports = AuthMiddleware;
+module.exports = QuestionMiddleware;
