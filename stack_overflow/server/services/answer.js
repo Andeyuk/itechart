@@ -1,39 +1,23 @@
 
 const AnswerReposiory = require('../repositories/answer');
+const BasicService = require('./BasicService');
 
-const Answer={
-    async findAll(options){
-        return (
-            await AnswerReposiory.findAll({
-                options
-            })
-        )
-    },
 
-    async findById(id){
-        return await AnswerReposiory.findById(id)
-    },
+class Answer extends BasicService{
+    constructor(Repository){
+        super(Repository);
+        this.Repository = Repository
+    }
 
     async downVote(id){
-        return await AnswerReposiory.increment(id, 'downVotes');
-    },
+        return await this.Reposiory.increment(id, 'downVotes');
+    }
 
     async upVote(id){
-        return await AnswerReposiory.increment(id, 'upVotes');
-    },
-
-    async update(id, data){
-        return await AnswerReposiory.update(id, data);
-    },
-
-    async delete(id){
-        return await AnswerReposiory.delete(id);
-    },
-
-    async create(data){
-        return await AnswerReposiory.create(data);
+        return await this.Reposiory.increment(id, 'upVotes');
     }
 
 }
 
-module.exports = Answer;
+
+module.exports = new Answer(AnswerReposiory);

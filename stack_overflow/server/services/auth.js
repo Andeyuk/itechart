@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const AuthUtils = require('../utils/auth');
 const UserService = require('./user');
 
+//todo auth validator
 
 function checkUserFound(user){
     if (!user) {
@@ -10,21 +11,27 @@ function checkUserFound(user){
     }
 }
 
-
 const Auth = {
     authenticate: (strategy) => (req, res, next) => {
         passport.authenticate(strategy, {session: false})(req, res, next);
     },
-        
-    hasRole: (role) => (req, res, next) => {
-        if (req.user.role !== role){
+    
+    checkHasRole: (userRole, queryRole)  => {
+        if (userRole !== queryRole){
             throw new createError.Forbidden()
         }
     },
 
-    hasSameId(userId, reqId){
+    checkHasSameId(userId, reqId){
         if (userId != reqId){
             throw new createError.Forbidden()
+        }
+    },
+
+    async checkIsOwner(userId, objId, service){
+        const object = await service.findById(objId);
+        if (userId != object.UserId){
+            throw new createError.Forbidden();
         }
     },
 
@@ -39,8 +46,15 @@ const Auth = {
         })
     },
 
-    async register(user){
-        return await UserService.create(user);
+    async register(data){
+        const user = await UserService.create(data);
+        const plainUser = user.get({
+            plain: true
+        })
+
+        AuthUtils.hideSensativeProps(plainUser, 'password');
+
+        return plainUser;
     },
 
     

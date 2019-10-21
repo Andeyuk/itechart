@@ -1,14 +1,24 @@
 const AnswerService = require('../services/answer');
-const controllerBuilder = require('../utils/controller');
+const controllerBuilder = require('../utils/helpers/controllerBuilder');
 
-const ControllerContainer = require('./basicController');
-const BasicControllers = new ControllerContainer(AnswerService);
+const BasicControllers = require('./basicController');
 
-const AnswerController = {
-    ...BasicControllers,
-    upVote: controllerBuilder(AnswerService.upVote, (req) => [req.params.id]),
-    downVote: controllerBuilder(AnswerService.downVote, (req) => [req.params.id]),
+
+class AnswerController extends  BasicControllers{
+    upVote(){
+        return controllerBuilder(
+            this.Service.upVote.bind(this.Service), 
+            (req) => [req.params.id]);
+    } 
+    downVote(){
+        return controllerBuilder(
+            this.Service.downVote.bind(this.Service), 
+            (req) => [req.params.id]);
+    } 
+    getAll(){
+        return controllerBuilder(this.Service.getAll.bind(this.Service))
+    }
 }
 
 
-module.exports = AnswerController;
+module.exports = new AnswerController(AnswerService);

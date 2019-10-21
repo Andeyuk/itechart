@@ -1,12 +1,33 @@
-const controllerBuilder = require('../utils/controller');
+const controllerBuilder = require('../utils/helpers/controllerBuilder');
 
 class ControllerContainer{
     constructor(Service){
-        this.findAll = controllerBuilder(Service.findAll, (req) => [req.query])
-        this.findById = controllerBuilder(Service.findById, (req) => [req.params.id])
-        this.update = controllerBuilder(Service.update, (req) => [req.params.id, req.body])
-        this.create = controllerBuilder(Service.create, (req) => [req.body])
-        this.delete = controllerBuilder(Service.delete, (req) => [req.params.id])
+        this.Service = Service;
+    }
+    findAll(){
+        return controllerBuilder(
+            this.Service.findAll.bind(this.Service),
+            (req) => [req.query])
+    } 
+    findById(){
+       return controllerBuilder(
+           this.Service.findById.bind(this.Service), 
+           (req) => [req.params.id])
+    }
+    update(){
+        return controllerBuilder(
+            this.Service.update.bind(this.Service), 
+            (req) => [req.params.id, req.body])
+    }
+    create(){
+        return controllerBuilder(
+            this.Service.create.bind(this.Service), 
+            (req) => [req.body])
+    }
+    delete(){
+        return controllerBuilder(
+            this.Service.delete.bind(this.Service), 
+            (req) => [req.params.id])
     }
 }
 

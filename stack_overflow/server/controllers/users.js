@@ -1,13 +1,21 @@
 
 const UserService = require('../services/user');
-const controllerBuilder = require('../utils/controller');
+const controllerBuilder = require('../utils/helpers/controllerBuilder');
 
-const ControllerContainer = require('./basicController');
-const BasicControllers = new ControllerContainer(UserService);
+const BasicControllers = require('./basicController');
 
-const UserController = {
-    ...BasicControllers
+
+class UserController extends  BasicControllers{
+    getAll(){
+        return controllerBuilder(this.Service.getAll.bind(this.Service))
+    }
+
+    getById(){
+        return controllerBuilder(
+            this.Service.getById.bind(this.Service),
+            (req) => [req.params.id])
+    }
 }
 
 
-module.exports = UserController;
+module.exports = new UserController(UserService);

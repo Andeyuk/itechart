@@ -1,6 +1,7 @@
 
 const AuthService = require('../services/auth');
-const controllerBuilder = require('../utils/controller');
+const controllerBuilder = require('../utils/helpers/controllerBuilder');
+
 
 const AuthController = {
     register: controllerBuilder(AuthService.register, (req) => [req.body]),

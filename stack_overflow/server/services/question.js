@@ -1,47 +1,31 @@
 
 const QuestionRepository = require('../repositories/question');
+const BasicService = require('./BasicService');
 
-const Question={
+
+class Question extends BasicService{
+    constructor(Repository){
+        super(Repository);
+        this.Repository = Repository
+    }
 
     async addViewIfNessesary(){
         //todo
-    },
+    }
 
-    async findAll(options){
-        return (
-            await QuestionRepository.findAll(options)
-        )
-    },
-
-    async findById(id){
-        return await QuestionRepository.findById(id)
-    },
-
-
-    async upVote(id){
-        return await QuestionRepository.increment(id, 'upVotes');
-    },
+    async getById(id){
+        return await this.Repository.getById(id)
+    }
 
     async downVote(id){
-        return await QuestionRepository.increment(id, 'downVotes');
-    },
-
-
-    async create({header, content}){
-        return await QuestionRepository.create({
-            header,
-            content
-        })
-
-    },
-
-    async delete(id){
-        return await QuestionRepository.delete(id);
-    },
-
-    async update(id, data){
-        return await QuestionRepository.update(id, data);
+        return await this.Repository.increment(id, 'downVotes');
     }
+
+    async upVote(id){
+        return await this.Repository.increment(id, 'upVotes');
+    }
+
 }
 
-module.exports = Question;
+
+module.exports = new Question(QuestionRepository);
