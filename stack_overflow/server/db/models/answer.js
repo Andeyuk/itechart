@@ -6,13 +6,12 @@ const Model = Sequelize.Model;
 class Answer extends Model {};
 
 Answer.init({
-    subjectId: {
+    QuestionId: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
     parentId: {
         type: Sequelize.INTEGER,
-        allowNull: false
     },
     answerLevel: {
         type: Sequelize.INTEGER,
@@ -34,10 +33,11 @@ Answer.init({
 }, {
     sequelize,
     tableName: 'answers',
+    modelName: 'answer',
 });
 
-Answer.hasMany(Answer, { as: 'reply', foreignKey: 'ParentId' });
-Answer.belongsTo(Answer, { as: 'parent', foreignKey: 'ParentId' })
+Answer.hasMany(Answer, { as: 'reply', foreignKey: 'parentId' });
+Answer.belongsTo(Answer, { as: 'parent', foreignKey: 'parentId' })
 
 
 module.exports = Answer;

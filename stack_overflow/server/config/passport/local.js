@@ -13,7 +13,6 @@ passport.use(new LocalStrategy({
         UserService.findByLogin(login)
         .then(user=>{
 
-            //to do check passport func
             if (!user || user.password !== password) {
                 return done(null, false);
             }

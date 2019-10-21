@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../init');
 
+const Answer = require('../models/answer');
+
 const Model = Sequelize.Model;
 class User extends Model {};
 
@@ -44,5 +46,6 @@ User.init({
     tableName: 'users',
 });
 
+User.hasMany(Answer);
 
 module.exports = User;
