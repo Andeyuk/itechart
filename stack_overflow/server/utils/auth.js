@@ -11,6 +11,11 @@ const Auth = {
             },
             JWT.secret
         )
+    },
+    hideSensativeProps(obj, prop){
+        Object.defineProperty(obj, prop, {
+            enumerable: false,
+        });
     }
 
 }

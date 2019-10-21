@@ -1,14 +1,15 @@
 
+const middlewareErrorHandler = require('../handlers/httpError');
+
 const middlewareBuilder = (promise, params) => async (req, res, next) => {
     const boundParams = params ? params(req, res) : [];
     try {
-        const result = await promise(...boundParams);
+        await promise(...boundParams);
         next();
-    } catch (err){
-        console.error(err);
-        res.status(err.status || 500).send(err);
+    } catch (error){
+        middlewareErrorHandler(error, req, res);
     }
 };
-    
+
 
 module.exports = middlewareBuilder;
