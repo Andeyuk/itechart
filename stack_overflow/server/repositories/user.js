@@ -4,6 +4,7 @@ const SequelizeErrorHandler = require('../utils/handlers/sequelizeError');
 const processErrorHelper = require('../utils/helpers/processError');
 const Op = require('sequelize').Op;
 
+// REVIEW: зачем нужна эта функция, проще сразу в attributes записать объект
 const _excludeAttributes = (arr) => {
     return {
         exclude: arr

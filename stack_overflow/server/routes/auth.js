@@ -9,12 +9,13 @@ const UserMiddleware = require('../middlewares/user');
 
 router.post(
     '/register',
+    // REVIEW: зачем выносить эту логику в middleware? чем это лучше размещения ее в сервисе?
     UserMiddleware.validateCreation,
     AuthController.register);
 
 router.post(
-    '/login', 
-    AuthServices.authenticate('local'), 
+    '/login',
+    AuthServices.authenticate('local'),
     AuthController.login
 );
 
