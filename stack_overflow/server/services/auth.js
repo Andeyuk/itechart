@@ -3,7 +3,7 @@ const createError = require('http-errors');
 const AuthUtils = require('../utils/auth');
 const UserService = require('./user');
 
-//todo auth validator
+//todo auth validator and err handler
 
 function checkUserFound(user){
     if (!user) {
