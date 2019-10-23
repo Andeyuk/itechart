@@ -4,8 +4,8 @@ import Question from './QuestionListItem';
 
 class QuestionList extends React.Component{
     render(){
-        const {QuestionsId = [1,2,3]} = this.props;
-        const questions = QuestionsId.map(id=><Question key={id} id/>)
+        const {IdList = [1,2,3]} = this.props;
+        const questions =IdList.map(id=><Question key={id} id={id}/>)
         const content = questions.length 
             ? <Grid celled>{questions}</Grid>
             : <Segment> no content</Segment>
@@ -13,7 +13,7 @@ class QuestionList extends React.Component{
             <Container>
                 <Segment>
                     <Header>All Questions</Header>
-                    <Menu compact>
+                    <Menu compact  >
                         <Menu.Item as='a'>Newest</Menu.Item>
                         <Menu.Item as='a'>Active</Menu.Item>
                     </Menu>

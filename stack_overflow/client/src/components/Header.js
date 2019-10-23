@@ -19,12 +19,14 @@ class Header extends React.Component{
                         <Menu.Item  header>
                             <Link to='/'>Project Name</Link>
                         </Menu.Item>
-                        <Menu.Item as='a'  header>
-                            <Link to='/questions'>Questions</Link>
+                        <Menu.Item as={Link} to='/questions'  header>
+                            Questions
                         </Menu.Item>
                 
                         <Menu.Item position='right'>
-                            <Modal trigger = { 
+                            <Modal 
+                            size='small'
+                            trigger = { 
                                 <Button as='a' inverted>
                                     Log in
                                 </Button>
@@ -43,7 +45,7 @@ class Header extends React.Component{
                         </Menu.Item>
                     </Container>
                 </Menu>
-                <div style={{height: '68px'}}></div>
+                <div style={{height: '48px'}}></div>
             </>
         )
     }

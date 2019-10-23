@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Container, TextArea, Form, Header, Divider, Button} from 'semantic-ui-react'
+import {Grid, Container, Item, Segment, Form, Header, Divider, Button} from 'semantic-ui-react'
 import QuestionListItem from './QuestionListItem';
 import Answers from './Answers';
 
@@ -10,16 +10,18 @@ class Question extends React.Component{
         return(
             <Container>
                 <Grid celled>
-                    <QuestionListItem id={id}/>
+                    <QuestionListItem id = {id} isTop/>
+
                 </Grid>
                 <Container>
                     <Answers id={id}/>
                 </Container>
                 <Divider></Divider>
-                <Form style={{marginTop: '20px'}}>
+                <Form reply style={{marginTop: '20px'}}>
                     <Header>Input Your Answer</Header>
-                    <TextArea style={{minHeight: '300px'}}></TextArea>
-                    <Button>Send</Button>
+                    <Form.TextArea style={{minHeight: '300px'}}/>
+                    <Button content='Add Reply' labelPosition='left' icon='edit' primary />
+
                 </Form>
             </Container>
         )

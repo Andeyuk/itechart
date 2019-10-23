@@ -23,7 +23,7 @@ class RegisterForm extends React.Component{
                     </Segment>
                 </Form>
                 <Message>
-                    Already have an account? <a href='#'>Log In</a>
+                    Already have an account? <a href='/login'>Log In</a>
                 </Message>
             </Grid.Column>
         </Grid>)

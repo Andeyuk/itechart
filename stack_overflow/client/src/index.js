@@ -14,6 +14,8 @@ import Questions from './components/QuestionList';
 import Question from './components/Question';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
+import Home from './components/Home';
+import Profile from './components/Profile';
 
 
 import * as serviceWorker from './serviceWorker';
@@ -24,10 +26,12 @@ ReactDOM.render(
     <Provider store = { store }>
         <Router history = { history }>
             <Header />
+            <Route exact path = '/' component = { Home }/>
             <Route exact path = '/questions' component = { Questions }/>
             <Route path = '/questions/:id' render = { (props) => <Question {...props}/>}/>
             <Route path = '/register' component = { RegisterForm }/>
             <Route path = '/login' component = { LoginForm }/>
+            <Route path = '/profile' component = { Profile }/>
         </Router>
     </Provider>, 
     document.getElementById('root')

@@ -26,7 +26,7 @@ class LoginForm extends React.Component{
                     </Segment>
                 </Form>
                 <Message>
-                    New to us? <a href='#'>Sign Up</a>
+                    New to us? <a href='/register'>Sign Up</a>
                 </Message>
                 </Grid.Column>
             </Grid>

@@ -1,18 +1,27 @@
 import React from 'react';
-import {Grid, Header, Segment} from 'semantic-ui-react';
+import {Grid, Header, Segment, Icon} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
 class QuestionListItem extends React.Component{
     render(){
-        const {id, rating=0, answers = 0, header = 'Header', content, username='admin'} = this.props;
+        const {id, rating=0, answers = 0, header = 'Header', content, username='admin', isTop} = this.props;
         const date = new Date;
+        const ratingContent = isTop 
+            ? <div className = 'flex-column_centered'>
+                <Icon name='angle up' style={{margin:0}} size='big'></Icon>
+                <div>{rating}</div>
+                <Icon name = 'angle down' style={{margin:0}} size='big'/>
+            </div>
+            : <>
+                {rating}
+                <div>rating</div>
+                {answers}
+                <div>answers</div>
+            </>
         return(
             <Grid.Row>
                 <Grid.Column width={2} textAlign='center' verticalAlign='middle'>
-                    {rating}
-                    <div>rating</div>
-                    {answers}
-                    <div>answers</div>
+                    {ratingContent}
                 </Grid.Column>
                 <Grid.Column width={14}>
                     <Header size='medium' >
