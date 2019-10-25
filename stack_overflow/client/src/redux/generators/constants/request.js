@@ -1,0 +1,10 @@
+
+const REQUEST = 'REQUEST';
+const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
+const REQUEST_FAIL = 'REQUEST_FAIL';
+
+export default  {
+    REQUEST,
+    REQUEST_SUCCESS,
+    REQUEST_FAIL
+}
