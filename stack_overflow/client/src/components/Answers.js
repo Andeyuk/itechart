@@ -1,22 +1,24 @@
 import React from 'react';
-import {Grid, Container, Header, Divider, Segment} from 'semantic-ui-react'
-import Answer from './Answer';
+import {Grid, Container, Header, Divider, Segment, Comment} from 'semantic-ui-react'
+//import Answer from './Answer';
+import Answer from '../containers/AnswerContainer';
 
-class AnswerList extends React.Component{
+class Answers extends React.Component{
     render(){
+        const {IdList = [1,2,3]} = this.props;
+        const answers = IdList.map(id=><Answer key={id} id={id} repliesIdList = {[10]}/>)
+        const content = answers.length 
+            ? answers
+            : <Segment> no content</Segment>
         return(
-            <>
-                <Header style={{paddingTop: '20px'}}>Answers</Header>
-                <Divider></Divider>
-                <Grid>
-                    <Answer id={1}/>
-                    <Answer id={2}/>
-                    <Answer id={3}/>
-                </Grid>
-                
-            </>
+            <Comment.Group>
+                <Header as='h3' dividing style={{paddingTop: '20px'}}>
+                    Answers
+                </Header>
+                    {content}
+            </Comment.Group>
         )
     }
 }
 
-export default  AnswerList;
+export default  Answers;

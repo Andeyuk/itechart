@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid} from 'semantic-ui-react';
+import {Grid, Segment, Header} from 'semantic-ui-react';
 import './css/modifiers.css'
 
 class PostRecord extends React.Component{

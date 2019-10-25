@@ -2,7 +2,7 @@ import React from 'react';
 import { Statistic } from 'semantic-ui-react';
 
 const UserStatistics = (props) => {
-    const {totalQuestions =22, totalAnswers =31200, answersLiked=22, answersAccepted =3} = props || {};
+    const {totalQuestions = 22, totalAnswers = 31200, answersLiked = 22, answersAccepted = 3} = props || {};
     return (
         <Statistic.Group>
             <Statistic>

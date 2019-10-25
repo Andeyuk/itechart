@@ -10,8 +10,8 @@ import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 
 import Header from './components/Header';
-import Questions from './components/QuestionList';
-import Question from './components/Question';
+import Questions from './components/Questions';
+import QuestionPage from './components/QuestionPage';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import Home from './components/Home';
@@ -28,7 +28,7 @@ ReactDOM.render(
             <Header />
             <Route exact path = '/' component = { Home }/>
             <Route exact path = '/questions' component = { Questions }/>
-            <Route path = '/questions/:id' render = { (props) => <Question {...props}/>}/>
+            <Route path = '/questions/:id' render = { (props) => <QuestionPage {...props}/>}/>
             <Route path = '/register' component = { RegisterForm }/>
             <Route path = '/login' component = { LoginForm }/>
             <Route path = '/profile' component = { Profile }/>

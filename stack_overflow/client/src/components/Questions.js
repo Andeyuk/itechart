@@ -1,11 +1,11 @@
 import React from 'react';
 import {Grid, Container, Segment, Header, Menu, Divider} from 'semantic-ui-react'
-import Question from './QuestionListItem';
+import Question from './Question';
 
-class QuestionList extends React.Component{
+class Questions extends React.Component{
     render(){
         const {IdList = [1,2,3]} = this.props;
-        const questions =IdList.map(id=><Question key={id} id={id}/>)
+        const questions = IdList.map(id=><Question key={id} id={id}/>)
         const content = questions.length 
             ? <Grid celled>{questions}</Grid>
             : <Segment> no content</Segment>
@@ -24,4 +24,4 @@ class QuestionList extends React.Component{
     }
 }
 
-export default  QuestionList;
+export default  Questions;
