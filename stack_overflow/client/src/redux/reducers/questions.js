@@ -1,10 +1,16 @@
 
+import { combineReducers } from 'redux';
+
 import createVoteReducer from '../generators/enchanters/vote';
+import createLoadEnchanter from '../generators/enchanters/load';
+
 import actionTypes from '../constants/questions';
 import {withEnchanter} from '../utils';
 
 const initialState = {
-    lol: 1
+    byId:{
+        
+    }
 }
 
 
@@ -19,4 +25,4 @@ const questionReducer = (state = initialState, action) => {
 
 const enc = withEnchanter(questionReducer, createVoteReducer('questions'))
 
-export default enc;
+export default withEnchanter(enc, createLoadEnchanter('questions'));

@@ -16,7 +16,7 @@ const voteDown = (name) => (id) => {
     return {
         type: typeGenerator(actionTypes.VOTE_DOWN, name),
         promice: RequestService.downVote(name, id),
-        payload:{
+        payload: {
             id
         }
     }

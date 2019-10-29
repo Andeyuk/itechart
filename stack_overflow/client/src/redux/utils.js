@@ -15,6 +15,7 @@ export const makeActionCreators = (name, actionCreators) => {
     }, {})
 }
 
+
 export const typeGenerator = (type, name) => `${type}_${name}`
 
 
