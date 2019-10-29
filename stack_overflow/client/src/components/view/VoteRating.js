@@ -21,9 +21,9 @@ class VoteRating extends React.Component{
             color: ratingColor
         }
         return(
-                <span style = {ratingStyle}>
-                    {rating}
-                </span>
+            <span style = {ratingStyle}>
+                {rating}
+            </span>
         )
     }
 }

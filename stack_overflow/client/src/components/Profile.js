@@ -9,7 +9,7 @@ class Profile extends React.Component{
     render(){
         const card = UserCard(this.props.userInfo);
         const rating = UserStatistics(this.props.userInfo);
-        console.log('profile');
+  
         return(
             <Container style = {{marginTop: '20px'}}>
                 <Grid>

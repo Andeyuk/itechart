@@ -1,12 +1,13 @@
 import React from 'react';
 import {Grid, Container, Header, Divider, Segment, Comment} from 'semantic-ui-react'
-//import Answer from './Answer';
-import Answer from '../containers/AnswerContainer';
+
+import Answer from '../containers/Answer';
 
 class Answers extends React.Component{
     render(){
-        const {IdList = [1,2,3]} = this.props;
-        const answers = IdList.map(id=><Answer key={id} id={id} repliesIdList = {[10]}/>)
+        const {answerIds} = this.props;
+
+        const answers = answerIds.map(id=><Answer key={id} id={id}/>)
         const content = answers.length 
             ? answers
             : <Segment> no content</Segment>

@@ -15,6 +15,7 @@
     box-sizing: content-box;
     display: inline-block;
     padding: 0 1rem;
+    margin: 0;
 }
 
 .centered{
@@ -29,4 +30,8 @@
 
 .flex-column_centered{
     align-items: center;
+}
+
+.marginless{
+    margin: 0;
 }

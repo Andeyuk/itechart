@@ -11,7 +11,11 @@ export default class Pagination extends React.Component {
         }
     }
   
-    handleItemClick = (e, { name }) => this.setState({ activeItem: +name })
+    handleItemClick = (e, props) => {
+        const {name} = props;
+        this.setState({ activeItem: +name });
+        if (this.props.onClick) this.props.onClick(props)
+    }
   
     render() {
       const { activeItem } = this.state

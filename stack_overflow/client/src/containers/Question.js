@@ -1,17 +1,20 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import {Grid, Header, Segment, Icon} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
+
 class Question extends React.Component{
     render(){
-        const {id, rating=0, answers = 0, header = 'Header', content, username='admin'} = this.props;
+        const {id, upVotes, downVotes, answersAmount = 0, header = 'Header', content, username='admin'} = this.props;
         const date = new Date;
+        const rating = upVotes - downVotes;
         return(
             <Grid.Row>
                 <Grid.Column width={2} textAlign='center' verticalAlign='middle'>
                     {rating}
                     <div>rating</div>
-                    {answers}
+                    {answersAmount}
                     <div>answers</div>
                 </Grid.Column>
                 <Grid.Column width={14}>
@@ -19,10 +22,7 @@ class Question extends React.Component{
                         <Link to={`/questions/${id}`}>{header}</Link>
                     </Header>
                     <div>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.
+                        {content}
                     </div>
                     <Grid>
                         <Grid.Column textAlign='right'>
@@ -36,4 +36,14 @@ class Question extends React.Component{
     }
 }
 
-export default  Question;
+const mapStateToProps = (state, ownProps) =>{
+    return {
+        ...state.questions.byId[ownProps.id],
+    }
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Question);
