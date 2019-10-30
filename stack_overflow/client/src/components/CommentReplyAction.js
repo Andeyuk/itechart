@@ -1,5 +1,5 @@
 import React from 'react';
-import ReplyForm from '../view/ReplyForm';
+import ReplyForm from './common/ReplyForm';
 import {Comment} from 'semantic-ui-react';
 
 class CommentReply extends React.Component {
@@ -13,10 +13,6 @@ class CommentReply extends React.Component {
         }));
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(e);
-    }
     
     render = ({isVisible} = this.state) => <>
         <Comment.Action onClick={this.handleReplyClick}>
@@ -24,7 +20,7 @@ class CommentReply extends React.Component {
         </Comment.Action>
         {   
             isVisible &&   
-            <ReplyForm onSubmit = {this.handleSubmit}/>
+            <ReplyForm {...this.props}/>
         }
     </>
 }

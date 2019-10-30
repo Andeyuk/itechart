@@ -27,7 +27,7 @@ class QuestionPage extends React.Component{
                 {
                     this.props.status === 'loading' 
                     ?  <Loader active/>
-                    : <>
+                    :  <>
                         <QuestionHeader 
                             id = {id} 
                             {...this.props.question}

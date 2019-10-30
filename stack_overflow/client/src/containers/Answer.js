@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Comment} from 'semantic-ui-react';
 
 import Reply from './Reply';
-import CommentComponent from '../components/common/CommentComponent';
+import CommentComponent from '../components/CommentComponent';
 import actionCreators from '../redux/actions/answers';
 
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import VoteRating from '../view/VoteRating';
-import VoteDownIcon from '../view/VoteDownIcon';
-import VoteUpIcon from '../view/VoteUpIcon';
+import VoteRating from './VoteRating';
+import VoteDownIcon from './VoteDownIcon';
+import VoteUpIcon from './VoteUpIcon';
 
 
 class VotePanel extends React.Component{

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Icon, Comment} from 'semantic-ui-react';
-import VotePanel from './VotePanel';
+import VotePanel from './common/VotePanel';
 import CommentReplyAction from './CommentReplyAction';
 
 const CommentComponent = (props) => {

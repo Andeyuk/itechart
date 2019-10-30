@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Comment} from 'semantic-ui-react';
 
-import CommentComponent from '../components/common/CommentComponent';
+import CommentComponent from '../components/CommentComponent';
 
 import actionCreators from '../redux/actions/replies';
 
