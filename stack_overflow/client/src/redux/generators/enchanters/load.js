@@ -30,7 +30,7 @@ const createLoadEnchanter = (name) => (state, action) => {
             return {
                 ...state,
                 status: 'error',
-                message: action.error.response.statusText
+                message: action.error.statusText
             }
         }
     }

@@ -5,7 +5,7 @@ import RequestService from '../../../services/requestService';
 const voteUp = (name) => (id) => {
     return {
         type: typeGenerator(actionTypes.VOTE_UP, name),
-        promice: RequestService.upVote(name, id),
+        promice: () => RequestService.upVote(name, id),
         payload: {
             id
         }
@@ -15,7 +15,7 @@ const voteUp = (name) => (id) => {
 const voteDown = (name) => (id) => {
     return {
         type: typeGenerator(actionTypes.VOTE_DOWN, name),
-        promice: RequestService.downVote(name, id),
+        promice: () => RequestService.downVote(name, id),
         payload: {
             id
         }

@@ -20,7 +20,6 @@ function* testPattern(){
 
 function* loadQuestions(){
     yield takeEvery(Actions.load().type, function* (action) {
-
         try {
             const response = yield action.promice();
             console.log(response);
@@ -43,6 +42,7 @@ function* loadOneQuestion(){
             const normalized = Services.normalizeEntity(response.data);
             console.log(normalized);
             const {entities: {question, answers: byId, replies}} = normalized;
+            
             yield put(Actions.loadOneSuccess(question));
             yield put(AnswerActions.setAnswers({byId}))
             yield put(ReplyActions.setReplies({byId:replies}))

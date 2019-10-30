@@ -5,7 +5,7 @@ import RequestService from '../../../services/requestService';
 const load = (name) => () => {
     return {
         type: typeGenerator(actionTypes.LOAD_REQUEST, name),
-        promice: RequestService.load(name),
+        promice: () => RequestService.load(name)(),
     }
 }
 

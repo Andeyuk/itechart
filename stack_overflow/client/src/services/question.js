@@ -1,11 +1,7 @@
-import axios from 'axios';
-import config from '../config';
+
 import {schema, normalize} from 'normalizr';
 
 const QuestionService = {
-    load:  () => axios.get(`${config.server.host}/questions`),
-    upVote:  (id) => axios.put(`${config.server.host}/questions/${id}/upvote`),
-    downVote: (id) => axios.put(`${config.server.host}/questions/${id}/downvote`),
     normalizeArray: (array) => {
         const questionSchema = new schema.Entity('byId');
         const questionListSchema = [questionSchema];
