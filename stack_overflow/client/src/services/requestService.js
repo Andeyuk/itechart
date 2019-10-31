@@ -4,9 +4,10 @@ import authService from './authService';
 
 
 const RequestService = {
-    load: (name) => (id) => authService.axios('get', `${config.server.host}/${name}/${id ? id : ''}`),
-    upVote:  (name, id) => authService.axios('put', `${config.server.host}/${name}/${id}/upvote`),
-    downVote: (name, id) => authService.axios('put', `${config.server.host}/${name}/${id}/downvote`),
+    load: (path) => (id) => authService.axios('get', `${path}/${id ? id : ''}`),
+    post: (path) => (data) => authService.axios('post', path, data),
+    upVote:  (path, id) => authService.axios('put', `/${path}/${id}/upvote`),
+    downVote: (path, id) => authService.axios('put', `/${path}/${id}/downvote`),
 }
 
 export default RequestService;

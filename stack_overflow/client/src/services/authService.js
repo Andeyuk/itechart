@@ -29,14 +29,15 @@ const AuthService = {
             })
     ),
 
-    axios(method, url, config = {}){
+    axios(method, url, data, options = {}){
         return axios({
             method,
-            url,
+            url: `${config.server.host}/${url}`,
             headers:{
                 Authorization: this.getToken()
             },
-            ...config
+            data,
+            ...options
         })
     },
 

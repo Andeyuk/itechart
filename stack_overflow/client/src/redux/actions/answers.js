@@ -5,11 +5,6 @@ import answerTypes from '../constants/answers';
 const VoteActions = voteActionsGenerator('answers');
 const LoadActions = loadActionsGenerator('answers');
 
-const ownAction = () => {
-    return {
-        type: 'TEST_ANSWERS'
-    }
-}
 
 const setAnswers = (answers) => {
     return{
@@ -18,8 +13,8 @@ const setAnswers = (answers) => {
     }
 }
 
+
 export default  {
-    ownAction,
     setAnswers,
     ...VoteActions,
     ...LoadActions,
