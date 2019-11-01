@@ -1,8 +1,8 @@
 
 
-const test = 'test';
+const SET_QUESTIONS = 'SET_QUESTIONS'
 
 
 export default  {
-    test,
+    SET_QUESTIONS
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import ReplyForm from './common/ReplyForm';
+import ReplyForm from '../containers/ReplyAnswerFormConnected';
 import {Comment} from 'semantic-ui-react';
 
-class CommentReply extends React.Component {
+class CommentReplyAction extends React.Component {
     state = {
         isVisible: false
     }
@@ -25,4 +25,4 @@ class CommentReply extends React.Component {
     </>
 }
 
-export default CommentReply;
+export default CommentReplyAction;

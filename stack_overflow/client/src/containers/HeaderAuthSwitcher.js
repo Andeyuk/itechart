@@ -8,8 +8,6 @@ import AuthService from '../services/authService';
 
 class AuthSwitcher extends React.Component{
     render(){
-        const {user} = this.props;
-        console.log('switcher rendered',AuthService.isLogged(), AuthService.getUser())
         return(
             <>
                 {

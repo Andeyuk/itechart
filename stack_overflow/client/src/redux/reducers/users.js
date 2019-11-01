@@ -1,27 +1,58 @@
-
-import actionTypes from '../constants/user';
-
-const initialState = {
-
-}
+import {combineReducers} from 'redux';
 
 
-const userReducer = (state = initialState, action) => {
+import actionTypes from '../constants/users';
+
+
+
+const usersReducer = (state = {}, action) => {
     switch(action.type){
-        case actionTypes.LOGIN_REQUEST: {
-            return {...state, status: 'loading'}
-        }
-        case actionTypes.LOGIN_SUCCESS: {
-            return {...state, status: 'success'}
-        }
-        case actionTypes.LOGIN_FAIL: {
 
-            return {
-                ...state,
-                status: 'error',
-                message: action.error.statusText
-            }
-        }   
+        case actionTypes.SET_USERS: {
+            return {...state, ...action.payload}
+        }
+        case actionTypes.REPLY_ANSWER_SUCCESS: {
+            return {...state, [action.payload.id]: action.payload}
+        }
+
         default: return state;
     }
 }
+
+
+const asyncReducer = (state = {}, action) => {
+    switch(action.type){
+        case actionTypes.REPLY_ANSWER_REQUEST: {
+            return {
+                ...state,
+                [`${action.payload.parentId}-${action.payload.questionId}`]: {
+                    status: 'loading'
+                }
+            }
+        }
+        case actionTypes.REPLY_ANSWER_SUCCESS: {
+            return {
+                ...state,
+                [`${action.payload.parentId}-${action.payload.questionId}`]: {
+                    status: 'loaded'
+                }
+            }
+        }
+        case actionTypes.REPLY_ANSWER_FAIL: {
+            return {
+                ...state,
+                [`${action.payload.parentId}-${action.payload.questionId}`]: {
+                    status:'error',
+                    message: action.error.statusText,
+                }
+            }
+        }
+        default: return state;
+    }
+}
+
+
+export default combineReducers({
+    byId: usersReducer,
+    status: asyncReducer,
+})

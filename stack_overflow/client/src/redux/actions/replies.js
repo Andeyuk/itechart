@@ -16,28 +16,30 @@ const setReplies = (replies) => {
     }
 }
 
-const replyAnswerRequest = (path) => (QuestionId, content, parentId, UserId) => {
+const replyAnswerRequest = (path) => (questionId, content, parentId, UserId) => {
     return {
         type: replyTypes.REPLY_ANSWER_REQUEST,
         payload:{
             parentId,
-            QuestionId
+            questionId
         },
-        promice: () => Services.post(path)({QuestionId, content, parentId, UserId})
+        promice: () => Services.post(path)({questionId, content, parentId, UserId})
     }
 }
 
-const replyAnswerSuccess = (response) => {
+const replyAnswerSuccess = (response, id) => {
     return {
         type: replyTypes.REPLY_ANSWER_SUCCESS,
-        payload: response
+        payload: response,
+        id
     }
 }
 
-const replyAnswerFail = (error) => {
+const replyAnswerFail = (error, id) => {
     return {
         type: replyTypes.REPLY_ANSWER_FAIL,
-        error
+        error,
+        id
     }
 }
 

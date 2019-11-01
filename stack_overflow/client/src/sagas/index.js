@@ -2,6 +2,7 @@ import { select, takeEvery, fork } from 'redux-saga/effects';
 import questionSaga from './questions';
 import authSaga from './auth';
 import replySaga from './replies';
+import answerSaga from './answers';
 
 function* testPattern(){
     yield takeEvery('*', function* logger(action) {
@@ -26,4 +27,5 @@ export default function* root(){
     yield fork(questionSaga)
     yield fork(authSaga)
     yield fork(replySaga)
+    yield fork(answerSaga)
 }

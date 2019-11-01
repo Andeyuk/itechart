@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid, Container, Header, Divider, Segment, Card, Statistic, Image, Icon, Menu, MenuItem} from 'semantic-ui-react'
-import PostRecords from './PostRecords';
+import PostRecords from './PostRecordList';
 import UserCard from './UserCard';
 import UserStatistics from './UserStatistics';
 

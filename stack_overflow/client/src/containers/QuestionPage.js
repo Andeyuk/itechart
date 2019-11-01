@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {Grid, Container, Item, Segment, Form, Header, Divider, Button, Loader, Message} from 'semantic-ui-react';
 
 import QuestionHeader from '../components/QuestionHeader';
-import Answers from '../components/Answers';
-
+import Answers from '../components/AnswerList';
+import ReplyQuestionFormCommected from './ReplyQuestionForm';
 import questionActions from '../redux/actions/questions';
 
 class QuestionPage extends React.Component{
@@ -38,11 +38,9 @@ class QuestionPage extends React.Component{
                             <Answers questionId={id} answerIds={answerIds}/>
                         </Container>
                         <Divider></Divider>
-                        <Form reply style={{marginTop: '20px'}}>
+                        <ReplyQuestionFormCommected questionId={id}>
                             <Header>Input Your Answer</Header>
-                            <Form.TextArea style={{minHeight: '300px'}}/>
-                            <Button content='Add Answer' labelPosition='left' icon='edit' primary />
-                        </Form>
+                        </ReplyQuestionFormCommected>
                     </>
                 }
             </Container>

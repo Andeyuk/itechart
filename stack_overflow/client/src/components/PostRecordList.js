@@ -2,7 +2,7 @@ import React from 'react';
 import {Menu, Segment, Grid, Divider} from 'semantic-ui-react';
 import PostRecord from './PostRecord'; 
 
-class UserPosts extends React.Component{
+class PostRecordList extends React.Component{
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     render(){
         const { activeItem = 'All'} = this.state || {};
@@ -46,5 +46,5 @@ class UserPosts extends React.Component{
     }
 }
 
-export default UserPosts;
+export default PostRecordList;
 

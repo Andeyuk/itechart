@@ -41,11 +41,13 @@ function* loadOneQuestion(){
             console.log(response);
             const normalized = Services.normalizeEntity(response.data);
             console.log(normalized);
-            const {entities: {question, answers: byId, replies}} = normalized;
+            const {entities: {question, answers, replies}} = normalized;
 
-            yield put(Actions.loadOneSuccess(question));
-            yield put(AnswerActions.setAnswers({byId}))
             yield put(ReplyActions.setReplies(replies))
+            yield put(AnswerActions.setAnswers(answers))
+            yield put(Actions.loadOneSuccess(question));
+            
+           
         } catch(error) {
             console.log(error);
             yield put(Actions.loadOneFail(error))

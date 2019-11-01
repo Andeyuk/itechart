@@ -1,17 +1,19 @@
 import voteActionsGenerator from '../generators/actions/vote';
 import loadActionsGenerator from '../generators/actions/load';
+import questionTypes from '../constants/questions';
 
 const VoteActions = voteActionsGenerator('questions');
 const LoadActions = loadActionsGenerator('questions');
 
-const ownAction = () => {
+const setQuestions = (questions) => {
     return {
-        type: 'TEST_QUESTIONS'
+        type: questionTypes.SET_QUESTIONS,
+        payload: questions
     }
 }
 
 export default  {
-    ownAction,
+    setQuestions,
     ...VoteActions,
     ...LoadActions
 }

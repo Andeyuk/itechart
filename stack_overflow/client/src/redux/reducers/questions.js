@@ -16,8 +16,8 @@ const initialState = {
 
 const questionReducer = (state = initialState, action) => {
     switch(action.type){
-        case actionTypes.test: {
-            return {...state, test: 'test triggered'}
+        case actionTypes.SET_QUESTIONS: {
+            return {...state, ...action.payload}
         }
         default: return state;
     }
@@ -25,4 +25,7 @@ const questionReducer = (state = initialState, action) => {
 
 const enc = withEnchanter(questionReducer, createVoteReducer('questions'))
 
-export default withEnchanter(enc, createLoadEnchanter('questions'));
+export default combineReducers({
+    byId: withEnchanter(enc, createLoadEnchanter('questions'))
+
+})

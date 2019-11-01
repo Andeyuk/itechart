@@ -22,7 +22,7 @@ const createLoadEnchanter = (name) => (state, action) => {
             return {
                 ...state, 
                 status: 'loaded',
-                byId: {...state.byId,  ...action.payload}
+               ...action.payload
             }
         }
         case typeGenerator(RequestTypes.LOAD_ONE_FAIL, name):
@@ -36,5 +36,6 @@ const createLoadEnchanter = (name) => (state, action) => {
     }
     //no default because it won't be used on it own
 }
+
 
 export default createLoadEnchanter;

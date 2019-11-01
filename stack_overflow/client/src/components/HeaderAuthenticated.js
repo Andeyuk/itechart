@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 
 const HeaderAuthenticated = (props) => {
     const {userName} = props; 
-    console.log(props);
     return(
         <Menu.Item as={Link} to='/profile' position='right'>
             <Icon name='user'/>

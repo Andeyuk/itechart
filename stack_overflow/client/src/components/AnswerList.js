@@ -1,9 +1,9 @@
 import React from 'react';
-import {Grid, Container, Header, Divider, Segment, Comment} from 'semantic-ui-react'
+import {Header, Segment, Comment} from 'semantic-ui-react'
 
 import Answer from '../containers/Answer';
 
-class Answers extends React.Component{
+class AnswerList extends React.Component{
     render(){
         const {answerIds} = this.props;
 
@@ -22,4 +22,4 @@ class Answers extends React.Component{
     }
 }
 
-export default  Answers;
+export default  AnswerList;

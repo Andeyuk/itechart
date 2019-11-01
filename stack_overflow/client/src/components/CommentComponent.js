@@ -4,7 +4,7 @@ import VotePanel from './common/VotePanel';
 import CommentReplyAction from './CommentReplyAction';
 
 const CommentComponent = (props) => {
-    const {rating, id, username, date, content, renderReplies, toggleForm, ...rest} = props;
+    const {rating, id, username, date, content, renderReplies, toggleForm, questionId, ...rest} = props;
     return(
         <Comment>
             <Comment.Content>
@@ -20,7 +20,7 @@ const CommentComponent = (props) => {
                     {content}
                 </Comment.Text>
                 <Comment.Actions>
-                    <CommentReplyAction />
+                    <CommentReplyAction questionId={questionId} id={id}/>
                 </Comment.Actions>
             </Comment.Content>
             {renderReplies}

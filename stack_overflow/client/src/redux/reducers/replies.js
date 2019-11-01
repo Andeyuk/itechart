@@ -14,7 +14,7 @@ const repliesReducer = (state = {}, action) => {
             return {...state, ...action.payload}
         }
         case actionTypes.REPLY_ANSWER_SUCCESS: {
-            return {...state, [action.payload.id]: action.payload}
+            return {...state, ...action.payload}
         }
 
         default: return state;
@@ -27,15 +27,16 @@ const asyncReducer = (state = {}, action) => {
         case actionTypes.REPLY_ANSWER_REQUEST: {
             return {
                 ...state,
-                [`${action.payload.parentId}-${action.payload.QuestionId}`]: {
-                    status: 'loading'
+                [action.payload.parentId]: {
+                    status: 'loading',
+
                 }
             }
         }
         case actionTypes.REPLY_ANSWER_SUCCESS: {
             return {
                 ...state,
-                [`${action.payload.parentId}-${action.payload.QuestionId}`]: {
+                [action.id]: {
                     status: 'loaded'
                 }
             }
@@ -43,8 +44,8 @@ const asyncReducer = (state = {}, action) => {
         case actionTypes.REPLY_ANSWER_FAIL: {
             return {
                 ...state,
-                [`${action.payload.parentId}-${action.payload.QuestionId}`]: {
-                    status:'error',
+                [action.id]: {
+                    status: 'error',
                     message: action.error.statusText,
                 }
             }
@@ -52,6 +53,7 @@ const asyncReducer = (state = {}, action) => {
         default: return state;
     }
 }
+
 
 
 export default combineReducers({

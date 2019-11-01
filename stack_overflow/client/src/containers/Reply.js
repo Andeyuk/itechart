@@ -9,7 +9,7 @@ import actionCreators from '../redux/actions/replies';
 
 class Reply extends React.Component{
     renderReplies(idList){
-        const replies = idList.map(id=><Reply key={id} id={id}/>);
+        const replies = idList.map(id=><ConnectedReply key={id} id={id}/>);
         return replies.length 
             ? <Comment.Group>{replies}</Comment.Group>
             : <></>
@@ -36,4 +36,5 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Reply);
+var ConnectedReply =  connect(mapStateToProps, mapDispatchToProps)(Reply);
+export default ConnectedReply; 
