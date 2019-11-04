@@ -1,4 +1,4 @@
-const SequelizeErrorHandler = require('../utils/handlers/sequelizeError');
+const SequelizeThrowError = require('../utils/helpers/throwSequelizeError');
 const processErrorHelper = require('../utils/helpers/processError');
 
 class Repository{
@@ -7,63 +7,73 @@ class Repository{
     }
 
     async create(object, options){
-        return await processErrorHelper(
-            this.Model.create.bind(this.Model),
-            SequelizeErrorHandler,
-            object, options);
+        try {
+            return await this.Model.create(object, options)
+        } catch (error) {
+            SequelizeThrowError(error)
+        }
     }
 
     async update(id, data){
         const where = {id}
-        return await processErrorHelper(
-            this.Model.update.bind(this.Model), 
-            SequelizeErrorHandler,
-            data, {where});
+        try {
+            return await this.Model.update(data, {where});
+        } catch (error) {
+            SequelizeThrowError(error)
+        }
+
     }
 
     async delete(id){
         const where = {id}
-        return await processErrorHelper(
-            this.Model.destroy.bind(this.Model), 
-            SequelizeErrorHandler,
-            {where});
+        try {
+            return await this.Model.destroy(data, {where});
+        } catch (error) {
+            SequelizeThrowError(error)
+        }
+
     }
 
     async findById(id, options){
-        return await processErrorHelper(
-            this.Model.findByPk.bind(this.Model), 
-            SequelizeErrorHandler,
-            id, options);
+        try {
+            return await this.Model.findByPk(id, options);
+        } catch (error) {
+            SequelizeThrowError(error)
+        }
     }
 
     async findAll(options){
-        return await processErrorHelper(
-            this.Model.findAll.bind(this.Model), 
-            SequelizeErrorHandler,
-            options);
+        try {
+            return await this.Model.findAll( options);
+        } catch (error) {
+            SequelizeThrowError(error)
+        }
     }
 
     async findOne(options){
-        return await processErrorHelper(
-            this.Model.findOne.bind(this.Model), 
-            SequelizeErrorHandler,
-            options);
+        try {
+            return await this.Model.findOne(options);
+        } catch (error) {
+            SequelizeThrowError(error)
+        }
     }
 
     async increment(id, column){
         const where = {id};
-        return await processErrorHelper(
-            this.Model.increment.bind(this.Model),
-            SequelizeErrorHandler,
-            column, {where});
+        try {
+            return await this.Model.increment(column, {where});
+        } catch (error) {
+            SequelizeThrowError(error)
+        }
     }
 
     async decrement(id, column){
         const where = {id};
-        return await processErrorHelper(
-            this.Model.decrement.bind(this.Model),
-            SequelizeErrorHandler,
-            column, {where});
+        try {
+            return await this.Model.decrement(column, {where});
+        } catch (error) {
+            SequelizeThrowError(error)
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 
 const AnswerReposiory = require('../repositories/answer');
+const QuestionRepository = require('../repositories/question');
 const BasicService = require('./BasicService');
 
 
@@ -11,11 +12,22 @@ class Answer extends BasicService{
     }
 
     async downVote(id){
-        return await this.Reposiory.increment(id, 'downVotes');
+        return await this.Repository.increment(id, 'downVotes');
     }
 
     async upVote(id){
-        return await this.Reposiory.increment(id, 'upVotes');
+        return await this.Repository.increment(id, 'upVotes');
+    }
+
+    async create(data){
+        const answer = await this.Repository.create(data, {raw: true});
+        if (answer.parentId) return await this.Repository.getById(answer.parentId);
+
+        return QuestionRepository.getById(answer.questionId);
+    }
+
+    async findByQuestionId(id){
+        return await this.Repository.findByQuestionId(id)
     }
 
 }

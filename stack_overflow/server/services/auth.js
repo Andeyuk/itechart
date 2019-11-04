@@ -24,15 +24,17 @@ const Auth = {
 
     checkHasSameId(userId, reqId){
         if (userId != reqId){
-            throw new createError.Forbidden()
+            throw new createError.Forbidden(`${userId}/${reqId}`)
         }
+        return true;
     },
 
     async checkIsOwner(userId, objId, service){
         const object = await service.findById(objId);
-        if (userId != object.UserId){
+        if (userId != object.userId){
             throw new createError.Forbidden();
         }
+        return true;
     },
 
     login(user){

@@ -1,6 +1,6 @@
 const BasicRepository = require('./basicRepository');
 const Model = require('../db/models/user');
-const SequelizeErrorHandler = require('../utils/handlers/sequelizeError');
+const SequelizeErrorHandler = require('../utils/helpers/throwSequelizeError');
 const processErrorHelper = require('../utils/helpers/processError');
 const Op = require('sequelize').Op;
 

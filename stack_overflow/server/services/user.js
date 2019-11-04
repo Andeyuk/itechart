@@ -1,6 +1,7 @@
 const UserRepository = require('../repositories/user');
 const BasicService = require('./BasicService');
 
+
 class User extends BasicService{
     constructor(Repository){
         super(Repository);

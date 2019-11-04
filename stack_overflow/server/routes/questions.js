@@ -2,45 +2,59 @@ const express = require('express');
 const router = express.Router();
 
 const QuestionConntroller = require('../controllers/questions');
-const AuthMidlleware = require('../middlewares/auth');
-const QuestionMiddleware = require('../middlewares/question');
+const AnswerController = require('../controllers/answers');
+const AuthController = require('../controllers/auth');
 
 router.get(
     '/',
-    //QuestionMiddleware.addViewIfNessesary,
-    QuestionConntroller.findAll())
+    (req,res) => QuestionConntroller.findAll(req,res)
+)
 
-router.get('/:id', QuestionConntroller.getById());
+router.get('/:id', 
+    (req,res) => QuestionConntroller.getById(req,res)
+);
+
+router.get(
+    '/:id/answers',
+    (req,res) => AnswerController.findByQuestionId(req,res)
+)
 
 router.post(
     '/',
     // REVIEW: зачем выносить эту логику в middleware? чем это лучше размещения ее в сервисе?
-    QuestionMiddleware.validateCreation,
+
     // REVIEW: разве тут нужен вызов метода? при старте проекта у меня рурается нода
     // Route.put() requires a callback function but got a [object Undefined]
     // как у тебя получается запустить проект? :)
-    QuestionConntroller.create());
+    AuthController.authenticate('jwt'),
+    (req,res) => QuestionConntroller.create(req,res));
 
 router.put(
     '/:id',
-    AuthMidlleware.authenticate('jwt'),
-    QuestionConntroller.update()
+    AuthController.authenticate('jwt'),
+    (req,res) => QuestionConntroller.update(req,res)
+);
+
+router.put(
+    '/:id/accept',
+    AuthController.authenticate('jwt'),
+    (req,res) => QuestionConntroller.acceptAnswer(req, res)
 );
 
 router.delete(
     '/:id',
-    AuthMidlleware.authenticate('jwt'),
-    QuestionConntroller.delete()
+    AuthController.authenticate('jwt'),
+    (req,res) => QuestionConntroller.delete(req,res)
 );
 
 router.put('/:id/upvote',
-    AuthMidlleware.authenticate('jwt'),
-    QuestionConntroller.upVote()
+    AuthController.authenticate('jwt'),
+    (req,res) => QuestionConntroller.upVote(req,res)
 );
 
 router.put('/:id/downvote',
-    AuthMidlleware.authenticate('jwt'),
-    QuestionConntroller.downVote()
+    AuthController.authenticate('jwt'),
+    (req,res) => QuestionConntroller.downVote(req,res)
 );
 
 

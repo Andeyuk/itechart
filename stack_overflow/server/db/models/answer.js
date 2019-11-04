@@ -6,7 +6,7 @@ const Model = Sequelize.Model;
 class Answer extends Model {};
 
 Answer.init({
-    QuestionId: {
+    questionId: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -29,11 +29,15 @@ Answer.init({
         type: Sequelize.INTEGER,
         defaultValue: 0
     },
+    isAccepted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    }
 
 }, {
     sequelize,
     tableName: 'answers',
-    modelName: 'answer',
+    modelName: 'answers',
 });
 
 Answer.hasMany(Answer, { as: 'reply', foreignKey: 'parentId' });

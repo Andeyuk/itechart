@@ -2,37 +2,44 @@ const express = require('express');
 const router = express.Router();
 
 const AnswerController = require('../controllers/answers');
-const AuthMidlleware = require('../middlewares/auth');
+const AuthController = require('../controllers/auth');
 
 router.get(
     '/',
-    AnswerController.findAll());
+    (req,res) => AnswerController.findAll(req,res));
 
 router.get(
     '/:id',
-    AnswerController.findById());
+    (req,res) => AnswerController.findById(req,res)
+);
 
 router.post(
     '/',
-    AnswerController.create());
+    AuthController.authenticate('jwt'), 
+    (req,res) => AnswerController.create(req,res)
+);
 
 router.put('/:id', 
-    AuthMidlleware.authenticate('jwt'), 
-    AnswerController.update());
+    AuthController.authenticate('jwt'), 
+    (req,res) => AnswerController.update(req,res)
+);
 
 router.delete('/:id', 
-    AuthMidlleware.authenticate('jwt'), 
-    AnswerController.delete());
+    AuthController.authenticate('jwt'), 
+    (req,res) =>  AnswerController.delete(req,res)
+);
 
 router.put(
     '/:id/upvote', 
-    AuthMidlleware.authenticate('jwt'), 
-    AnswerController.upVote());
+    AuthController.authenticate('jwt'), 
+    (req,res) => AnswerController.upVote(req,res)
+);
 
 router.put(
     '/:id/downvote',
-    AuthMidlleware.authenticate('jwt'), 
-    AnswerController.downVote());
+    AuthController.authenticate('jwt'), 
+    (req,res) => AnswerController.downVote(req,res)
+);
 
 
 module.exports = router;

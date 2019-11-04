@@ -1,33 +1,54 @@
-const controllerBuilder = require('../utils/helpers/controllerBuilder');
+
+const httpErrorHandler = require('../utils/handlers/httpError');
 
 class ControllerContainer{
     constructor(Service){
         this.Service = Service;
     }
-    findAll(){
-        return controllerBuilder(
-            this.Service.findAll.bind(this.Service),
-            (req) => [req.query])
+
+    async findAll(req, res){
+        try {
+            const json = await this.Service.findAll(req.query);
+            res.json(json);
+        } catch(error) {
+            httpErrorHandler(error);
+        }
     } 
-    findById(){
-       return controllerBuilder(
-           this.Service.findById.bind(this.Service), 
-           (req) => [req.params.id])
+
+    async findById(req, res){
+        try {
+            const json = await this.Service.findById(req.params.id);
+            res.json(json);
+        } catch(error) {
+            httpErrorHandler(error);
+        }
     }
-    update(){
-        return controllerBuilder(
-            this.Service.update.bind(this.Service), 
-            (req) => [req.params.id, req.body])
+
+    async update(req, res){
+        try {
+            const json = await this.Service.update(req.params.id, req.body);
+            res.json(json);
+        } catch(error) {
+            httpErrorHandler(error);
+        }
     }
-    create(){
-        return controllerBuilder(
-            this.Service.create.bind(this.Service), 
-            (req) => [req.body])
+
+    async create(req, res){
+        try {
+            const json = await this.Service.create({...req.body, userId: req.user.id});
+            res.json(json);
+        } catch(error) {
+            httpErrorHandler(error, res);
+        }
     }
-    delete(){
-        return controllerBuilder(
-            this.Service.delete.bind(this.Service), 
-            (req) => [req.params.id])
+
+    async delete(req, res){
+        try {
+            const json = await this.Service.delete(req.params.id);
+            res.json(json);
+        } catch(error) {
+            httpErrorHandler(error, res);
+        }
     }
 }
 

@@ -1,19 +1,27 @@
 
 const UserService = require('../services/user');
-const controllerBuilder = require('../utils/helpers/controllerBuilder');
+const httpErrorHandler = require('../utils/handlers/httpError');
 
 const BasicControllers = require('./basicController');
 
 
 class UserController extends  BasicControllers{
-    getAll(){
-        return controllerBuilder(this.Service.getAll.bind(this.Service))
+    async getAll(req, res){
+        try {
+            const answers = await this.Service.getAll();
+            res.json(answers);
+        } catch(error) {
+            httpErrorHandler(error);
+        }
     }
 
-    getById(){
-        return controllerBuilder(
-            this.Service.getById.bind(this.Service),
-            (req) => [req.params.id])
+    async getById(req, res){
+        try {
+            const question = await this.Service.getById(res.params.id);
+            res.json(question);
+        } catch(error) {
+            httpErrorHandler(error, res);
+        }
     }
 }
 

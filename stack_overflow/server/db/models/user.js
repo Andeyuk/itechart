@@ -44,8 +44,10 @@ User.init({
 }, {
     sequelize,
     tableName: 'users',
+    modelName: 'users'
 });
 
 User.hasMany(Answer);
+Answer.belongsTo(User);
 
 module.exports = User;

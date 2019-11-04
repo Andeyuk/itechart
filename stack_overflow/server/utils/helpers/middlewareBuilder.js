@@ -7,7 +7,7 @@ const middlewareBuilder = (promise, params) => async (req, res, next) => {
         await promise(...boundParams);
         next();
     } catch (error){
-        middlewareErrorHandler(error, req, res);
+        middlewareErrorHandler(error, res);
     }
 };
 

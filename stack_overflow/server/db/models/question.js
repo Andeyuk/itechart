@@ -37,6 +37,7 @@ Question.init({
 }, {
     sequelize,
     tableName: 'questions',
+    modelName: 'questions'
 });
 
 Question.hasMany(Answer);

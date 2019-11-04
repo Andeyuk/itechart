@@ -3,23 +3,47 @@ const controllerBuilder = require('../utils/helpers/controllerBuilder');
 
 const BasicControllers = require('./basicController');
 
+const httpErrorHandler = require('../utils/handlers/httpError');
 
 class AnswerController extends  BasicControllers{
-    upVote(){
-        // По сути эта обертка лишь делает try-catch, в чем плюс ее использования?
-        // откуда ты взял такой подход?
-        return controllerBuilder(
-            this.Service.upVote.bind(this.Service),
-            (req) => [req.params.id]);
+    async upVote(req, res){
+        try {
+            const answer = await this.Service.upVote()
+            res.json(answer);
+        } catch(error) {
+            httpErrorHandler(error);
+        }
     }
-    downVote(){
-        return controllerBuilder(
-            this.Service.downVote.bind(this.Service),
-            (req) => [req.params.id]);
+
+    async downVote(req, res){
+        try {
+            const answer = await this.Service.downVote(req.params.id)
+            res.json(answer);
+        } catch(error) {
+            httpErrorHandler(error);
+        }
     }
-    getAll(){
-        return controllerBuilder(this.Service.getAll.bind(this.Service))
+
+    async getAll(req, res){
+        try {
+            const answers = await this.Service.getAll(req.query);
+            res.json(answers);
+        } catch(error) {
+            httpErrorHandler(error);
+        }
     }
+
+    async findByQuestionId(req, res){
+        try {
+            const answer = await AnswerService.findByQuestionId(req.params.id);
+            console.log(answer);
+            res.json(answer);
+        } catch(error) {
+            httpErrorHandler(error, res);
+        }
+    }
+
+
 }
 
 
