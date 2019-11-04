@@ -1,3 +1,4 @@
+import authService from './authService';
 
 import {schema, normalize} from 'normalizr';
 
@@ -12,7 +13,12 @@ const AnswerService = {
     },
     isAnswer(response){
         return response.parentId ? false : true
-    }
+    },
+    load: (id) => authService.axios('get', `answers/${id ? id : ''}`),
+    loadOne:  (id) => authService.axios('get', `answers/${id ? id : ''}`),
+    post: (data) => authService.axios('post', 'answers', data),
+    upVote:  (id) => authService.axios('put', `/answers/${id}/upvote`),
+    downVote: (id) => authService.axios('put', `/answers/${id}/downvote`),
 }
 
 export default AnswerService;

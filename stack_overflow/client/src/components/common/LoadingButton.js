@@ -3,7 +3,6 @@ import {Button, Loader} from 'semantic-ui-react';
 
 const LoadingButton = (props) => {
     const {status, content, children, ...rest} = props;
-    console.log(status, props, rest);
     return (
         <Button
             content={<>

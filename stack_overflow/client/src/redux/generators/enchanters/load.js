@@ -2,40 +2,38 @@ import RequestTypes from '../constants/load';
 import {typeGenerator} from '../../utils';
 
 
-const createLoadEnchanter = (name) => (state, action) => {
-    switch (action.type){
-        case typeGenerator(RequestTypes.LOAD_ONE_REQUEST, name):
-        case typeGenerator(RequestTypes.LOAD_REQUEST, name): {
+const createLoadReducer = (types) => (state={}, action) => {
+    switch (action.type) {
+        case types.LOAD_ONE_REQUEST:
+        case types.LOAD_REQUEST: {
             return {
                 ...state, 
                 status: 'loading'
             }
         }
-        case typeGenerator(RequestTypes.LOAD_SUCCESS, name): {
+        case types.LOAD_SUCCESS: {
             return {
                 ...state,
                 status: 'loaded',
-                ...action.payload,
             }
         }
-        case typeGenerator(RequestTypes.LOAD_ONE_SUCCESS, name): {
+        case types.LOAD_ONE_SUCCESS: {
             return {
                 ...state, 
                 status: 'loaded',
-               ...action.payload
             }
         }
-        case typeGenerator(RequestTypes.LOAD_ONE_FAIL, name):
-        case typeGenerator(RequestTypes.LOAD_FAIL, name): {
+        case types.LOAD_ONE_FAIL:
+        case types.LOAD_FAIL: {
+            console.log(action.error)
             return {
                 ...state,
                 status: 'error',
-                message: action.error.statusText
+                message: action.error.statusText || action.error.message
             }
         }
+        default: return state;
     }
-    //no default because it won't be used on it own
 }
 
-
-export default createLoadEnchanter;
+export default createLoadReducer;

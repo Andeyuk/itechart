@@ -1,9 +1,11 @@
 import { takeEvery, fork , take, put} from 'redux-saga/effects';
 import Actions from '../redux/actions/questions';
+import ActionTypes from '../redux/constants/questions';
 import AnswerActions from '../redux/actions/answers';
 import ReplyActions from '../redux/actions/replies';
-import Services from '../services/question';
-import { batch } from 'react-redux';
+import UserActions from '../redux/actions/users';
+import Services from '../services/questionService';
+
 
 function* testPattern(){
     yield take('VOTE_UP_REQUEST', function* (action) {
@@ -19,12 +21,16 @@ function* testPattern(){
 
 
 function* loadQuestions(){
-    yield takeEvery(Actions.load().type, function* (action) {
+    yield takeEvery(ActionTypes.LOAD_REQUEST, function* (action) {
         try {
-            const response = yield action.promice();
+            const response = yield Services.load();
             console.log(response);
             const normalized = Services.normalizeArray(response.data);
-            yield put(Actions.loadSuccess(normalized));
+            const {entities:{questions, users}, result} = normalized;
+            console.log(normalized);
+
+            yield put(UserActions.setUsers(users));
+            yield put(Actions.loadSuccess(questions, result));
         } catch(error) {
             console.log(error);
             yield put(Actions.loadFail(error))
@@ -34,15 +40,18 @@ function* loadQuestions(){
 
 
 function* loadOneQuestion(){
-    yield takeEvery(Actions.loadOne().type, function* (action) {
+    yield takeEvery(ActionTypes.LOAD_ONE_REQUEST, function* (action) {
 
         try {
-            const response = yield action.promice();
+            const response = yield Services.loadOne(action.payload.id);
             console.log(response);
+            if (!response.data) throw new Error('Not Found');
+
             const normalized = Services.normalizeEntity(response.data);
             console.log(normalized);
-            const {entities: {question, answers, replies}} = normalized;
+            const {entities: {question, answers, replies, users}} = normalized;
 
+            yield put(UserActions.setUsers(users));
             yield put(ReplyActions.setReplies(replies))
             yield put(AnswerActions.setAnswers(answers))
             yield put(Actions.loadOneSuccess(question));

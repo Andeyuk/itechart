@@ -13,7 +13,7 @@ const repliesReducer = (state = {}, action) => {
         case actionTypes.SET_REPLIES: {
             return {...state, ...action.payload}
         }
-        case actionTypes.REPLY_ANSWER_SUCCESS: {
+        case actionTypes.CREATE_REPLY_SUCCESS: {
             return {...state, ...action.payload}
         }
 
@@ -24,7 +24,7 @@ const repliesReducer = (state = {}, action) => {
 
 const asyncReducer = (state = {}, action) => {
     switch(action.type){
-        case actionTypes.REPLY_ANSWER_REQUEST: {
+        case actionTypes.CREATE_REPLY_REQUEST: {
             return {
                 ...state,
                 [action.payload.parentId]: {
@@ -33,7 +33,7 @@ const asyncReducer = (state = {}, action) => {
                 }
             }
         }
-        case actionTypes.REPLY_ANSWER_SUCCESS: {
+        case actionTypes.CREATE_REPLY_SUCCESS: {
             return {
                 ...state,
                 [action.id]: {
@@ -41,7 +41,7 @@ const asyncReducer = (state = {}, action) => {
                 }
             }
         }
-        case actionTypes.REPLY_ANSWER_FAIL: {
+        case actionTypes.CREATE_REPLY_FAIL: {
             return {
                 ...state,
                 [action.id]: {

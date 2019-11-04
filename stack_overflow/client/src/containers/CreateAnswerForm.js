@@ -6,7 +6,7 @@ import ReplyFrom from '../components/ReplyForm';
 import AnswerActions from '../redux/actions/answers';
 
 
-class ReplyQuestionFormConnected extends React.Component{
+class CreateAnswerForm extends React.Component{
     handleSubmit = (e) =>{
         e.preventDefault();
         const {questionId} = this.props;
@@ -25,14 +25,14 @@ class ReplyQuestionFormConnected extends React.Component{
                         {errorMessage}
                     </Message>
                 }
-                <ReplyFrom onSubmit = {this.handleSubmit} {...this.props}/>
+                <ReplyFrom onSubmit = {this.handleSubmit} content={'Create Answer'} {...this.props}/>
             </>
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) =>{
-    const {status, message} = state.answers.status[ownProps.id] || {};
+    const {status, message} = state.answers.status[ownProps.questionId] || {};
     return{
         status,
         errorMessage: message,
@@ -40,7 +40,7 @@ const mapStateToProps = (state, ownProps) =>{
 }
 
 const mapDispatchToProps = {
-    reply: AnswerActions.answerQuestionRequest
+    reply: AnswerActions.createAnswerRequest
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReplyQuestionFormConnected);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAnswerForm);

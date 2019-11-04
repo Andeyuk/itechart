@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Comment} from 'semantic-ui-react';
+import {Comment, Message} from 'semantic-ui-react';
 
 import CommentComponent from '../components/CommentComponent';
 
@@ -16,23 +16,31 @@ class Reply extends React.Component{
     }
 
     render(){
-        const {upVotes, downVotes, createdAt:date, username = 'admin', reply:replyIds = [], ...rest} = this.props;
+        const {upVotes, downVotes, createdAt:date, reply:replyIds = [], ...rest} = this.props.reply;
+        const {userName} = this.props.user;
         const rating = upVotes - downVotes;
         const replies = this.renderReplies(replyIds);
 
-        return <CommentComponent rating = {rating} date = {date} username={username} renderReplies={replies} {...rest}/>
+        return <>
+            <CommentComponent rating = {rating} date = {date} username={userName} renderReplies={replies} {...rest}/>
+        </>
     }
 }
 
 const mapStateToProps = (state, ownProps) =>{
+    const reply = state.replies.byId[ownProps.id];
+    console.log(reply, state.users.byId)
     return {
-        ...state.replies.byId[ownProps.id]
+        reply,
+        user:  state.users.byId[reply.userId],
+        errorMessage: state.replies.status[ownProps.questionId]
     }
 }
 
 
 const mapDispatchToProps = {
-    ...actionCreators
+    voteUp: actionCreators.voteUp,
+    voteDown: actionCreators.voteDown,
 }
 
 

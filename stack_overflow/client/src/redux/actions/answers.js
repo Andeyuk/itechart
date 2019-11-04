@@ -1,11 +1,12 @@
 import voteActionsGenerator from '../generators/actions/vote';
 import loadActionsGenerator from '../generators/actions/load';
+
 import answerTypes from '../constants/answers';
 
 import Services from '../../services/requestService';
 
 const VoteActions = voteActionsGenerator('answers');
-const LoadActions = loadActionsGenerator('answers');
+const LoadActions = loadActionsGenerator(answerTypes);
 
 
 const setAnswers = (answers) => {
@@ -15,9 +16,9 @@ const setAnswers = (answers) => {
     }
 }
 
-const answerQuestionRequest = (path) => (questionId, content, userId) => {
+const createAnswerRequest = (path) => (questionId, content, userId) => {
     return {
-        type: answerTypes.ANSWER_QUESTION_REQUEST,
+        type: answerTypes.CREATE_ANSWER_REQUEST,
         payload:{
             questionId
         },
@@ -26,26 +27,26 @@ const answerQuestionRequest = (path) => (questionId, content, userId) => {
 }
 
 
-const answerQuestionSuccess = (response, id) => {
+const createAnswerSuccess = (response, id) => {
     return {
-        type: answerTypes.ANSWER_QUESTION_SUCCESS,
+        type: answerTypes.CREATE_ANSWER_SUCCESS,
         payload: response,
         id
     }
 }
 
-const answerQuestionFail = (error, id) => {
+const createAnswerFail = (error, id) => {
     return {
-        type: answerTypes.ANSWER_QUESTION_FAIL,
+        type: answerTypes.CREATE_ANSWER_FAIL,
         error,
         id
     }
 }
 
 export default  {
-    answerQuestionRequest: answerQuestionRequest('answers'),
-    answerQuestionSuccess,
-    answerQuestionFail,
+    createAnswerRequest: createAnswerRequest('answers'),
+    createAnswerSuccess,
+    createAnswerFail,
     setAnswers,
     ...VoteActions,
     ...LoadActions,

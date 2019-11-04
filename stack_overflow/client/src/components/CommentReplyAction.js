@@ -1,5 +1,5 @@
 import React from 'react';
-import ReplyForm from '../containers/ReplyAnswerFormConnected';
+import ReplyForm from '../containers/CreateReplyFormConnected';
 import {Comment} from 'semantic-ui-react';
 
 class CommentReplyAction extends React.Component {

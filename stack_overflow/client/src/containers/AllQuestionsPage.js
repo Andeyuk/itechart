@@ -15,8 +15,8 @@ class QuestionsPage extends React.Component{
 
 const mapStateToProps = (state) =>{
     return {
-       Ids: state.questions.Ids,
-       status: state.questions.status
+       Ids: state.questions.allIds,
+       status: state.questions.status.status
     }
 }
 

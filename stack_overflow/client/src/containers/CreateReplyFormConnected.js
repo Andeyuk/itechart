@@ -39,7 +39,7 @@ const mapStateToProps = (state, ownProps) =>{
 }
 
 const mapDispatchToProps = {
-    reply: ReplyActions.replyAnswerRequest
+    reply: ReplyActions.createReplyRequest
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReplyAnswerFormConnected);

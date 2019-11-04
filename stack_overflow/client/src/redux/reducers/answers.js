@@ -1,6 +1,6 @@
 
 import createVoteReducer from '../generators/enchanters/vote';
-import createLoadEnchanter from '../generators/enchanters/load';
+
 import {combineReducers } from 'redux';
 import actionTypes from '../constants/answers';
 
@@ -16,8 +16,12 @@ const answersReducer = (state = initialState, action) => {
         case actionTypes.SET_ANSWERS: {
             return {...state, ...action.payload}
         }
-        case actionTypes.ANSWER_QUESTION_SUCCESS: {
+        case actionTypes.CREATE_ANSWER_SUCCESS: {
             return {...state, ...action.payload}
+        }
+        case actionTypes.LOAD_SUCCESS:
+        case actionTypes.LOAD_ONE_SUCCESS: {
+            return {...state, ...action.payload.byId}
         }
 
         default: return state;
@@ -27,16 +31,16 @@ const answersReducer = (state = initialState, action) => {
 
 const asyncReducer = (state = {}, action) => {
     switch(action.type){
-        case actionTypes.ANSWER_QUESTION_REQUEST: {
+        case actionTypes.CREATE_ANSWER_REQUEST: {
             return {
                 ...state,
-                [action.payload.parentId]: {
+                [action.payload.questionId]: {
                     status: 'loading',
 
                 }
             }
         }
-        case actionTypes.ANSWER_QUESTION_SUCCESS: {
+        case actionTypes.CREATE_ANSWER_SUCCESS: {
             return {
                 ...state,
                 [action.id]: {
@@ -44,7 +48,7 @@ const asyncReducer = (state = {}, action) => {
                 }
             }
         }
-        case actionTypes.ANSWER_QUESTION_FAIL: {
+        case actionTypes.CREATE_ANSWER_FAIL: {
             return {
                 ...state,
                 [action.id]: {
@@ -62,6 +66,6 @@ const asyncReducer = (state = {}, action) => {
 const enc = withEnchanter(answersReducer, createVoteReducer('answers'))
 
 export default combineReducers({
-    byId: withEnchanter(enc, createLoadEnchanter('answers')),
+    byId: answersReducer,
     status: asyncReducer,
 })

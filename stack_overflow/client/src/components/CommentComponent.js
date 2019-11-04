@@ -1,17 +1,25 @@
 import React from 'react';
-import {Icon, Comment} from 'semantic-ui-react';
+import {Icon, Comment, Message} from 'semantic-ui-react';
 import VotePanel from './common/VotePanel';
 import CommentReplyAction from './CommentReplyAction';
 
 const CommentComponent = (props) => {
-    const {rating, id, username, date, content, renderReplies, toggleForm, questionId, ...rest} = props;
+    const {rating, id, username, date, content, renderReplies, questionId, status, errorMessage, isOwner, ...rest} = props;
     return(
         <Comment>
+            {   
+                status === 'error' &&
+                <Message error> {errorMessage}</Message>
+            }
             <Comment.Content>
                 <Comment.Author>
+                    {
+                        isOwner &&
+                        <Icon name='star' color='grey' style={{margin: '0'}}></Icon>
+                    }
                     <VotePanel rating = {rating} id = {id} {...rest}></VotePanel>
                     <Icon name='user' color='grey' style={{margin: '0'}}></Icon>
-                    {username + id}
+                    {username}
                 </Comment.Author>
                 <Comment.Metadata>
                     <div>{date}</div>
@@ -20,7 +28,7 @@ const CommentComponent = (props) => {
                     {content}
                 </Comment.Text>
                 <Comment.Actions>
-                    <CommentReplyAction questionId={questionId} id={id}/>
+                    <CommentReplyAction questionId={questionId} id={id} status = {status}/>
                 </Comment.Actions>
             </Comment.Content>
             {renderReplies}

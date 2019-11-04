@@ -16,28 +16,28 @@ const setReplies = (replies) => {
     }
 }
 
-const replyAnswerRequest = (path) => (questionId, content, parentId, UserId) => {
+const createReplyRequest = (path) => (questionId, content, parentId) => {
     return {
-        type: replyTypes.REPLY_ANSWER_REQUEST,
+        type: replyTypes.CREATE_REPLY_REQUEST,
         payload:{
             parentId,
             questionId
         },
-        promice: () => Services.post(path)({questionId, content, parentId, UserId})
+        promice: () => Services.post(path)({questionId, content, parentId})
     }
 }
 
-const replyAnswerSuccess = (response, id) => {
+const createReplySuccess = (response, id) => {
     return {
-        type: replyTypes.REPLY_ANSWER_SUCCESS,
+        type: replyTypes.CREATE_REPLY_SUCCESS,
         payload: response,
         id
     }
 }
 
-const replyAnswerFail = (error, id) => {
+const createReplyFail = (error, id) => {
     return {
-        type: replyTypes.REPLY_ANSWER_FAIL,
+        type: replyTypes.CREATE_REPLY_FAIL,
         error,
         id
     }
@@ -45,9 +45,9 @@ const replyAnswerFail = (error, id) => {
 
 
 export default  {
-    replyAnswerRequest: replyAnswerRequest('answers'),
-    replyAnswerSuccess,
-    replyAnswerFail,
+    createReplyRequest: createReplyRequest('answers'),
+    createReplySuccess,
+    createReplyFail,
     setReplies,
     ...VoteActions,
 //    ...LoadActions,

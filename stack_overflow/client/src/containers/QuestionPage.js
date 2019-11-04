@@ -4,7 +4,7 @@ import {Grid, Container, Item, Segment, Form, Header, Divider, Button, Loader, M
 
 import QuestionHeader from '../components/QuestionHeader';
 import Answers from '../components/AnswerList';
-import ReplyQuestionFormCommected from './ReplyQuestionForm';
+import CreateAnswerForm from './CreateAnswerForm';
 import questionActions from '../redux/actions/questions';
 
 class QuestionPage extends React.Component{
@@ -18,11 +18,13 @@ class QuestionPage extends React.Component{
         const {id} = this.props.match.params || this.props;
 
         const {answers:answerIds=[]} = this.props.question || {};
+        const {errorMessage} = this.props;
+        console.log(this.props.question, id);
         return(
             <Container>
                 {
                     this.props.status === 'error' &&
-                    <Message error>error</Message>      
+                    <Message error>{errorMessage}</Message>      
                 }
                 {
                     this.props.status === 'loading' 
@@ -38,9 +40,9 @@ class QuestionPage extends React.Component{
                             <Answers questionId={id} answerIds={answerIds}/>
                         </Container>
                         <Divider></Divider>
-                        <ReplyQuestionFormCommected questionId={id}>
+                        <CreateAnswerForm questionId={id}>
                             <Header>Input Your Answer</Header>
-                        </ReplyQuestionFormCommected>
+                        </CreateAnswerForm>
                     </>
                 }
             </Container>
@@ -50,10 +52,12 @@ class QuestionPage extends React.Component{
 
 const mapStateToProps = (state, ownProps) =>{
     const {id} = ownProps.match.params;
-    const data = state.questions.byId || {}
+    const data = state.questions.byId || {};
+    const {message} = state.questions.status || {};
     return {
         question: data[id],
-        status: state.questions.status,
+        status: state.questions.status.status,
+        errorMessage: message,
     }
 }
 

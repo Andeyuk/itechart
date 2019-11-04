@@ -1,18 +1,19 @@
 import {combineReducers} from 'redux';
 
+import createLoadReducer from '../generators/enchanters/load';
 
 import actionTypes from '../constants/users';
 
 
 
+
+
 const usersReducer = (state = {}, action) => {
     switch(action.type){
-
-        case actionTypes.SET_USERS: {
-            return {...state, ...action.payload}
-        }
-        case actionTypes.REPLY_ANSWER_SUCCESS: {
-            return {...state, [action.payload.id]: action.payload}
+        case actionTypes.SET_USERS:
+        case actionTypes.LOAD_SUCCESS:
+        case actionTypes.LOAD_ONE_SUCCESS: {
+            return {...state, ...action.payload.byId}
         }
 
         default: return state;
@@ -20,39 +21,23 @@ const usersReducer = (state = {}, action) => {
 }
 
 
-const asyncReducer = (state = {}, action) => {
+
+const allUsersReducer = (state = [], action) => {
     switch(action.type){
-        case actionTypes.REPLY_ANSWER_REQUEST: {
-            return {
-                ...state,
-                [`${action.payload.parentId}-${action.payload.questionId}`]: {
-                    status: 'loading'
-                }
-            }
-        }
-        case actionTypes.REPLY_ANSWER_SUCCESS: {
-            return {
-                ...state,
-                [`${action.payload.parentId}-${action.payload.questionId}`]: {
-                    status: 'loaded'
-                }
-            }
-        }
-        case actionTypes.REPLY_ANSWER_FAIL: {
-            return {
-                ...state,
-                [`${action.payload.parentId}-${action.payload.questionId}`]: {
-                    status:'error',
-                    message: action.error.statusText,
-                }
-            }
+        case actionTypes.LOAD_SUCCESS:
+        case actionTypes.LOAD_ONE_SUCCESS: 
+        case actionTypes.SET_QUESTIONS: {
+            console.log(action.payload.allIds);
+            return state.filter(id => !action.payload.allIds.includes(id)).concat(action.payload.allIds)
         }
         default: return state;
     }
 }
+
 
 
 export default combineReducers({
     byId: usersReducer,
-    status: asyncReducer,
+    allIds: allUsersReducer,
+    status: createLoadReducer(actionTypes),
 })

@@ -2,53 +2,58 @@ import { typeGenerator, makeActionCreators} from "../../utils";
 import actionTypes from '../constants/load';
 import RequestService from '../../../services/requestService';
 
-const load = (name) => () => {
+const load = (types) => () => {
     return {
-        type: typeGenerator(actionTypes.LOAD_REQUEST, name),
-        promice: () => RequestService.load(name)(),
+        type: types.LOAD_REQUEST,
+        //promice: () => RequestService.load(name)(),
     }
 }
 
-const loadOne = (name) => (id) => {
+const loadOne = (types) => (id) => {
     return {
-        type: typeGenerator(actionTypes.LOAD_ONE_REQUEST, name),
-        promice: () => RequestService.load(name)(id),
+        type: types.LOAD_ONE_REQUEST,
+        //promice: () => RequestService.load(name)(id),
         payload: {
             id
         }
     }
 }
 
-const loadSuccess = (name) => (response) => {
+const loadSuccess = (types) => (byId, allIds) => {
     return {
-        type: typeGenerator(actionTypes.LOAD_SUCCESS, name),
-        payload: response
+        type: types.LOAD_SUCCESS,
+        payload: {
+            byId, 
+            allIds
+        }
     }
 }
 
-const loadOneSuccess = (name) => (data) => {
+const loadOneSuccess = (types) => (byId, allIds) => {
     return {
-        type: typeGenerator(actionTypes.LOAD_ONE_SUCCESS, name),
-        payload: data
+        type: types.LOAD_ONE_SUCCESS,
+        payload: {
+            byId, allIds
+        }
     }
 }
 
-const loadFail = (name) => (error) => {
+const loadFail = (types) => (error) => {
     return {
-        type: typeGenerator(actionTypes.LOAD_FAIL, name),
+        type: types.LOAD_FAIL,
         error,
     }
 }
 
-const loadOneFail = (name) => (error) => {
+const loadOneFail = (types) => (error) => {
     return {
-        type: typeGenerator(actionTypes.LOAD_ONE_FAIL, name),
+        type: types.LOAD_ONE_FAIL,
         error,
     }
 }
 
-const loadActionsGenerator = (name) => makeActionCreators(
-    name,
+const loadActionsGenerator = (types) => makeActionCreators(
+    types,
     {
         loadOne,
         loadOneSuccess,

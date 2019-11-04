@@ -15,6 +15,13 @@ export const makeActionCreators = (name, actionCreators) => {
     }, {})
 }
 
+export const makeTypeGenerators = (name, types) => {
+    return Object.keys(types).reduce((result, key)=>{
+        result[key] = typeGenerator(key, name);
+        return result;
+    }, {})
+}
+
 
 export const typeGenerator = (type, name) => `${type}_${name}`
 
