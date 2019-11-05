@@ -1,4 +1,4 @@
-
+const createError = require('http-errors');
 const AnswerReposiory = require('../repositories/answer');
 const QuestionRepository = require('../repositories/question');
 const BasicService = require('./BasicService');
@@ -23,11 +23,29 @@ class Answer extends BasicService{
         const answer = await this.Repository.create(data, {raw: true});
         if (answer.parentId) return await this.Repository.getById(answer.parentId);
 
-        return QuestionRepository.getById(answer.questionId);
+        const question = await QuestionRepository.getById(answer.questionId);
+
+        if(question.status !== 'closed')
+            return question
+
+        await this.Repository.delete(answer.id);
+        throw new createError.BadRequest(`Question is ${question.status}`)
     }
 
     async findByQuestionId(id){
         return await this.Repository.findByQuestionId(id)
+    }
+
+    async getById(id){
+        return await this.Repository.getById(id)
+    }
+
+    async voteUp(answerId, userId){
+        return await this.Repository.voteUp(answerId, userId)
+    }
+
+    async voteDown(answerId, userId){
+        return await this.Repository.voteDown(answerId, userId)
     }
 
 }

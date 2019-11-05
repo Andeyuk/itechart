@@ -11,7 +11,7 @@ class UserController extends  BasicControllers{
             const answers = await this.Service.getAll();
             res.json(answers);
         } catch(error) {
-            httpErrorHandler(error);
+            httpErrorHandler(error, res);
         }
     }
 

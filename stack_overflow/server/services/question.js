@@ -17,14 +17,6 @@ class Question extends BasicService{
         return await this.Repository.getById(id)
     }
 
-    async downVote(id){
-        return await this.Repository.increment(id, 'downVotes');
-    }
-
-    async upVote(id){
-        return await this.Repository.increment(id, 'upVotes');
-    }
-
     async acceptAnswer(id, answerId, userId){
         //todo: move validation
         const question = await this.Repository.getById(id);
@@ -41,19 +33,13 @@ class Question extends BasicService{
         //if (answer.isAccepted !== false) throw new createError.BadRequest(`This Answer is already accepted`);
     
         
-        const acceptedAnswer = AnswerService.update(answerId, {isAccepted: true});
-        const answeredQuestion = this.Repository.update(id, {status: 'answered'});
-
-        await Promise.all([acceptedAnswer, answeredQuestion]);
-
-        const outDatedAnswer = question.answers.find(answer => answer.dataValues.id === +answerId);
-        outDatedAnswer.isAccepted = true;
+       await this.Repository.update(id, {status: 'answered', acceptedId: answerId});
         question.status = 'answered';
-
+        question.acceptedId = answerId;
         return question;
     }
 
-    async closeAnswer(id){
+    async closeQuestion(id){
         //todo: move validation
         const question = await this.Repository.getById(id);
         if (!question) throw new createError.BadRequest(`No such a question`);
@@ -63,6 +49,14 @@ class Question extends BasicService{
         question.status = 'closed';
 
         return question;
+    }
+
+    async voteUp(answerId, userId){
+        return await this.Repository.voteUp(answerId, userId)
+    }
+
+    async voteDown(answerId, userId){
+        return await this.Repository.voteDown(answerId, userId)
     }
 }
 

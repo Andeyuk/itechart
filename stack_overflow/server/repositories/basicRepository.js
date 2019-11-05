@@ -27,7 +27,7 @@ class Repository{
     async delete(id){
         const where = {id}
         try {
-            return await this.Model.destroy(data, {where});
+            return await this.Model.destroy({where});
         } catch (error) {
             SequelizeThrowError(error)
         }

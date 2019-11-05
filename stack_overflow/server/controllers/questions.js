@@ -10,25 +10,25 @@ class QuestionController extends  BasicControllers{
             const question = await this.Service.getById(req.params.id);
             res.json(question);
         } catch(error) {
-            httpErrorHandler(error);
+            httpErrorHandler(error, res);
         }
     }
 
-    async upVote(req, res){
+    async voteUp(req, res){
         try {
-            const question = await this.Service.upVote(req.params.id)
+            const question = await this.Service.voteUp(req.params.id)
             res.json(question);
         } catch(error) {
-            httpErrorHandler(error);
+            httpErrorHandler(error, res);
         }
     }
 
-    async downVote(req, res){
+    async voteDown(req, res){
         try {
             const question = await this.Service.downVote(req.params.id)
             res.json(question);
         } catch(error) {
-            httpErrorHandler(error);
+            httpErrorHandler(error, res);
         }
     }
 
@@ -39,6 +39,15 @@ class QuestionController extends  BasicControllers{
             res.json(question);
         } catch (error) {
             httpErrorHandler(error, res);
+        }
+    }
+
+    async closeQuestion(req, res){
+        try {
+            const question = await this.Service.closeQuestion(req.params.id);
+            res.json(question);
+        } catch (error){
+            httpErrorHandler(error, res)
         }
     }
 

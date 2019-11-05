@@ -41,6 +41,13 @@ router.put(
     (req,res) => QuestionConntroller.acceptAnswer(req, res)
 );
 
+router.put(
+    '/:id/close',
+    AuthController.authenticate('jwt'),
+    AuthController.checkHasRole('admin'),
+    (req,res) => QuestionConntroller.closeQuestion(req, res)
+);
+
 router.delete(
     '/:id',
     AuthController.authenticate('jwt'),
@@ -49,12 +56,12 @@ router.delete(
 
 router.put('/:id/upvote',
     AuthController.authenticate('jwt'),
-    (req,res) => QuestionConntroller.upVote(req,res)
+    (req,res) => QuestionConntroller.voteUp(req,res)
 );
 
 router.put('/:id/downvote',
     AuthController.authenticate('jwt'),
-    (req,res) => QuestionConntroller.downVote(req,res)
+    (req,res) => QuestionConntroller.voteDown(req,res)
 );
 
 

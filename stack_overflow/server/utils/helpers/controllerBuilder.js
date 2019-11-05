@@ -10,7 +10,7 @@ const controllerBuilder = (promise, params) => async (req, res) => {
         // Надо из сервиса сразу возвращать результат json
         res.json(json)
     } catch (error){
-        controllerErrorHandler(error, req, res);
+        controllerErrorHandler(error, res);
     }
 };
 

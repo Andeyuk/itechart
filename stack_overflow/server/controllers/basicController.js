@@ -11,7 +11,7 @@ class ControllerContainer{
             const json = await this.Service.findAll(req.query);
             res.json(json);
         } catch(error) {
-            httpErrorHandler(error);
+            httpErrorHandler(error, res);
         }
     } 
 
@@ -20,7 +20,7 @@ class ControllerContainer{
             const json = await this.Service.findById(req.params.id);
             res.json(json);
         } catch(error) {
-            httpErrorHandler(error);
+            httpErrorHandler(error, res);
         }
     }
 
@@ -29,7 +29,7 @@ class ControllerContainer{
             const json = await this.Service.update(req.params.id, req.body);
             res.json(json);
         } catch(error) {
-            httpErrorHandler(error);
+            httpErrorHandler(error, res);
         }
     }
 

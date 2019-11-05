@@ -21,6 +21,9 @@ Answer.init({
         type: Sequelize.STRING,
         allowNull: false
     },
+    votesId:{
+        type: Sequelize.INTEGER,
+    },
     upVotes: {
         type: Sequelize.INTEGER,
         defaultValue: 0
@@ -28,12 +31,7 @@ Answer.init({
     downVotes: {
         type: Sequelize.INTEGER,
         defaultValue: 0
-    },
-    isAccepted: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
     }
-
 }, {
     sequelize,
     tableName: 'answers',

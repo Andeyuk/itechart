@@ -16,10 +16,11 @@ const Auth = {
         passport.authenticate(strategy, {session: false})(req, res, next);
     },
     
-    checkHasRole: (userRole, queryRole)  => {
+    checkHasRole: (userRole, queryRole) => {
         if (userRole !== queryRole){
             throw new createError.Forbidden()
         }
+        return true;
     },
 
     checkHasSameId(userId, reqId){

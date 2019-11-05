@@ -10,7 +10,7 @@ router.get(
 
 router.get(
     '/:id',
-    (req,res) => AnswerController.findById(req,res)
+    (req,res) => AnswerController.getById(req,res)
 );
 
 router.post(
@@ -32,13 +32,13 @@ router.delete('/:id',
 router.put(
     '/:id/upvote', 
     AuthController.authenticate('jwt'), 
-    (req,res) => AnswerController.upVote(req,res)
+    (req,res) => AnswerController.voteUp(req,res)
 );
 
 router.put(
     '/:id/downvote',
     AuthController.authenticate('jwt'), 
-    (req,res) => AnswerController.downVote(req,res)
+    (req,res) => AnswerController.voteDown(req,res)
 );
 
 

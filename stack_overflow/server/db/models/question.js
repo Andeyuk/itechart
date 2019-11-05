@@ -12,7 +12,7 @@ Question.init({
         type: Sequelize.STRING,
         allowNull: false,
     },
-    content:{
+    content: {
         type: Sequelize.STRING,
         allowNull: false,
     },
@@ -28,6 +28,9 @@ Question.init({
         type: Sequelize.ENUM,
         values: ['closed', 'answered', 'active'],
         defaultValue: 'active',
+    },
+    acceptedId: {
+        type: Sequelize.INTEGER,
     },
     views: {
         type: Sequelize.INTEGER,

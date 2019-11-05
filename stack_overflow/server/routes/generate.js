@@ -3,8 +3,8 @@ const router = express.Router();
 
 const Question = require('../db/models/question');
 const Answer = require('../db/models/answer');
-
-
+const AnswerVotes = require('../db/models/answerVotes');
+const User = require('../db/models/user');
 
 router.get('/', async (req, res) => {
     try {
@@ -34,11 +34,16 @@ router.get('/', async (req, res) => {
             }
         })
 
+        //await User.create({firstName: 'a', lastName: 'b', userName: 'user', email: 'emaill@mail.com', password: 'a', workingPosition: 'a', role: 'admin', seniority: 'a'})
+
         const questins = await Question.bulkCreate(questionArr)
 
         const answers = await Answer.bulkCreate(answerArr)
 
         const replies = await Answer.bulkCreate(replyArr)
+
+        await AnswerVotes.create({userId:1, answerId:1, vote: 1});
+
         res.send('OK')
 
     } catch (error){
