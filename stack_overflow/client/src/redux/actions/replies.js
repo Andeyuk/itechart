@@ -4,8 +4,8 @@ import replyTypes from '../constants/replies';
 
 import Services from '../../services/requestService';
 
-const VoteActions = voteActionsGenerator('answers');
-//const LoadActions = loadActionsGenerator('answers');
+const VoteActions = voteActionsGenerator(replyTypes);
+const LoadActions = loadActionsGenerator(replyTypes);
 
 
 
@@ -50,5 +50,5 @@ export default  {
     createReplyFail,
     setReplies,
     ...VoteActions,
-//    ...LoadActions,
+    ...LoadActions,
 }

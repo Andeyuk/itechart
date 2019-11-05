@@ -5,9 +5,9 @@ import Answer from '../containers/Answer';
 
 class AnswerList extends React.Component{
     render(){
-        const {answerIds} = this.props;
+        const {answerIds, isQuestionOwner, acceptedId} = this.props;
 
-        const answers = answerIds.map(id=><Answer key={id} id={id}/>)
+        const answers = answerIds.map(id=><Answer key={id} id={id} isQuestionOwner={isQuestionOwner} isAccepted={acceptedId===id}/>)
         const content = answers.length 
             ? answers
             : <Segment> no content</Segment>

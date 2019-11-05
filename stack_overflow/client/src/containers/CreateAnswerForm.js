@@ -15,9 +15,9 @@ class CreateAnswerForm extends React.Component{
     }
 
     render(){
-        const {status, errorMessage, children} = this.props;
-        return(
-            <>
+        const {status, errorMessage, children, questionStatus} = this.props;
+        return questionStatus === 'active'
+            ? <>
                 {children}
                 {   
                     status==='error' &&
@@ -26,8 +26,9 @@ class CreateAnswerForm extends React.Component{
                     </Message>
                 }
                 <ReplyFrom onSubmit = {this.handleSubmit} content={'Create Answer'} {...this.props}/>
+            
             </>
-        )
+            : <Message>Question {questionStatus}</Message>
     }
 }
 

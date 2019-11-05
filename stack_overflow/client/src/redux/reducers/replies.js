@@ -57,6 +57,9 @@ const asyncReducer = (state = {}, action) => {
 
 
 export default combineReducers({
-    byId: withEnchanter(repliesReducer, createVoteReducer('answers')),
-    status: asyncReducer,
+    byId: repliesReducer,
+    status: combineReducers({
+        create: asyncReducer,
+        vote: createVoteReducer(actionTypes)
+    })
 })

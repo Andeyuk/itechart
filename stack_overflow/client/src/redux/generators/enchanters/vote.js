@@ -1,23 +1,41 @@
-import VoteTypes from '../constants/vote';
-import {typeGenerator} from '../../utils';
 
 
-const createVoteEnchanter = (name) => (state, action) => {
+const createVoteReducer = (types) => (state = {}, action) => {
     switch (action.type){
-        case typeGenerator(VoteTypes.VOTE_DOWN, name): {
+        case types.VOTE_DOWN_REQUEST: {
             return {
                 ...state,
-                downVotes: (state.downVotes || 0) + 1
+                status: 'loading'
             }
         }
-        case typeGenerator(VoteTypes.VOTE_UP, name): {
+        case types.VOTE_DOWN_SUCCESS: {
             return {
                 ...state,
-                upVotes: (state.upVotes || 0) + 1
+                status: 'loaded',
             }
         }
+        case types.VOTE_UP_REQUEST: {
+            return {
+                ...state,
+                status: 'loading'
+            }
+        }
+        case types.VOTE_UP_SUCCESS: {
+            return {
+                ...state,
+                status: 'loaded',
+            }
+        }
+        case types.VOTE_UP_FAIL:
+        case types.VOTE_DOWN_FAIL: {
+            return {
+                ...state,
+                status: 'error',
+                message: action.error.statusText || action.error.message
+            }
+        }
+        default: return state
     }
-    //no default because it won't be used on it own
 }
 
-export default createVoteEnchanter;
+export default createVoteReducer;

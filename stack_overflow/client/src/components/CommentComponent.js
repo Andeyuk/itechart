@@ -1,10 +1,12 @@
 import React from 'react';
 import {Icon, Comment, Message} from 'semantic-ui-react';
-import VotePanel from './common/VotePanel';
+import VotePanel from './VotePanel';
 import CommentReplyAction from './CommentReplyAction';
+import AcceptAnswer from './AcceptAnswer';
+
 
 const CommentComponent = (props) => {
-    const {rating, id, username, date, content, renderReplies, questionId, status, errorMessage, isOwner, ...rest} = props;
+    const {rating, id, username, date, content, questionId, status, errorMessage, isQuestionOwner, isAccepted, children, acceptAnswer, ...rest} = props;
     return(
         <Comment>
             {   
@@ -14,8 +16,8 @@ const CommentComponent = (props) => {
             <Comment.Content>
                 <Comment.Author>
                     {
-                        isOwner &&
-                        <Icon name='star' color='grey' style={{margin: '0'}}></Icon>
+                        isQuestionOwner &&
+                        <AcceptAnswer id={id} questionId={questionId} acceptAnswer={acceptAnswer} active = {isAccepted}></AcceptAnswer>
                     }
                     <VotePanel rating = {rating} id = {id} {...rest}></VotePanel>
                     <Icon name='user' color='grey' style={{margin: '0'}}></Icon>
@@ -31,7 +33,7 @@ const CommentComponent = (props) => {
                     <CommentReplyAction questionId={questionId} id={id} status = {status}/>
                 </Comment.Actions>
             </Comment.Content>
-            {renderReplies}
+            {children}
         </Comment>  
     )
 }

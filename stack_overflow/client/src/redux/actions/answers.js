@@ -5,7 +5,7 @@ import answerTypes from '../constants/answers';
 
 import Services from '../../services/requestService';
 
-const VoteActions = voteActionsGenerator('answers');
+const VoteActions = voteActionsGenerator(answerTypes);
 const LoadActions = loadActionsGenerator(answerTypes);
 
 

@@ -1,19 +1,19 @@
 import React from 'react';
 
-import VoteRating from './VoteRating';
-import VoteDownIcon from './VoteDownIcon';
-import VoteUpIcon from './VoteUpIcon';
+import VoteRating from './common/VoteRating';
+import VoteDownIcon from './common/VoteDownIcon';
+import VoteUpIcon from './common/VoteUpIcon';
 
 
 class VotePanel extends React.Component{
     state = {
-        activeId: null,
+        active: null,
     }
-    
     handleVoteUpClick = (e, {id, name}) => {
         this.setState({
             active: name
         })
+
         this.props.voteUp(id);
     }
 
@@ -24,17 +24,17 @@ class VotePanel extends React.Component{
         this.props.voteDown(id);
     }
 
-    render = ({rating, id} = this.props) =>{
+    render = ({rating, id, active} = this.props) =>{
         return <>
             <VoteRating rating = {rating}/>
             <VoteUpIcon 
                 id = {id}
-                isClicked = {this.state.active === 'angle up'}
+                active = {this.state.active === 'angle up'}
                 onClick={this.handleVoteUpClick}
             ></VoteUpIcon>
             <VoteDownIcon
                 id = {id}
-                isClicked = {this.state.active === 'angle down'}
+                active = {this.state.active === 'angle down'}
                 onClick={this.handleVoteDownClick}
             ></VoteDownIcon>
         </>

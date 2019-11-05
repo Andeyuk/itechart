@@ -4,7 +4,7 @@ import {Comment, Message} from 'semantic-ui-react';
 
 import CommentComponent from '../components/CommentComponent';
 
-import actionCreators from '../redux/actions/replies';
+import replyActions from '../redux/actions/replies';
 
 
 class Reply extends React.Component{
@@ -16,31 +16,40 @@ class Reply extends React.Component{
     }
 
     render(){
-        const {upVotes, downVotes, createdAt:date, reply:replyIds = [], ...rest} = this.props.reply;
+        const {reply:{upVotes, downVotes, createdAt:date, reply:replyIds = [], ...restReply}, voteUp, voteDown} = this.props;
         const {userName} = this.props.user;
         const rating = upVotes - downVotes;
         const replies = this.renderReplies(replyIds);
 
         return <>
-            <CommentComponent rating = {rating} date = {date} username={userName} renderReplies={replies} {...rest}/>
+            <CommentComponent 
+                rating = {rating} 
+                date = {date} 
+                username={userName} 
+                {...restReply} 
+                voteUp={voteUp} 
+                voteDown={voteDown}
+            >
+                {replies}
+            </CommentComponent>
         </>
     }
 }
 
 const mapStateToProps = (state, ownProps) =>{
-    const reply = state.replies.byId[ownProps.id];
+    const reply = state.replies.byId[ownProps.id] || {};
     console.log(reply, state.users.byId)
     return {
         reply,
-        user:  state.users.byId[reply.userId],
+        user:  state.users.byId[reply.userId] || {},
         errorMessage: state.replies.status[ownProps.questionId]
     }
 }
 
 
 const mapDispatchToProps = {
-    voteUp: actionCreators.voteUp,
-    voteDown: actionCreators.voteDown,
+    voteUp: replyActions.voteUpRequest,
+    voteDown: replyActions.voteDownRequest,
 }
 
 

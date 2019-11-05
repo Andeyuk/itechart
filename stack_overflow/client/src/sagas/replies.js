@@ -3,15 +3,15 @@ import Actions from '../redux/actions/replies';
 import ActionTypes from '../redux/constants/replies';
 import AnswerActions from '../redux/actions/answers';
 import UserActions from '../redux/actions/users';
+import ReplyActions from '../redux/actions/replies';
 
 import answerService from '../services/answerService';
 
-function* testPattern(){
-    yield take('VOTE_UP_REQUEST', function* (action) {
-
+function* voteUp(){
+    yield take(ActionTypes.VOTE_UP_REQUEST, function* (action) {
         try {
-            const response = yield action.promice();
-            
+            const response = yield answerService.voteUp(action.payload.id);
+            yield put(ReplyActions.voteUpSuccess(response.data));
         } catch(error) {
             console.log(error.response)
         }
@@ -47,4 +47,5 @@ function* replyAnswer(){
 
 export default function* root() {
     yield fork(replyAnswer)
+    yield fork(voteUp)
 }

@@ -7,19 +7,21 @@ import Answers from '../components/AnswerList';
 import CreateAnswerForm from './CreateAnswerForm';
 import questionActions from '../redux/actions/questions';
 
+
 class QuestionPage extends React.Component{
     componentDidMount(){
-        if (!this.props.header){
-            console.log(this.props.loadOne())
-        }
+        // if (!this.props.question.id){
+        //     this.props.loadOne()
+        // }
+        this.props.loadOne()
     }
 
     render(){
         const {id} = this.props.match.params || this.props;
+        const {answers:answerIds=[], userId, acceptedId, status:questionStatus} = this.props.question || {};
+        const {errorMessage, user:{id:authedUserId, userName, ...restUserProps}} = this.props;
 
-        const {answers:answerIds=[]} = this.props.question || {};
-        const {errorMessage} = this.props;
-        console.log(this.props.question, id);
+        const isQuestionOwner = authedUserId === userId ? true : false;
         return(
             <Container>
                 {
@@ -31,16 +33,17 @@ class QuestionPage extends React.Component{
                     ?  <Loader active/>
                     :  <>
                         <QuestionHeader 
-                            id = {id} 
+                            {...restUserProps}
+                            username={userName}
                             {...this.props.question}
                             onError = {this.props.status === 'error' ?  <Message error/> : null}
                             onLoading = {this.props.status === 'loading' ?  <Loader active/> : null}
                         />
                         <Container>
-                            <Answers questionId={id} answerIds={answerIds}/>
+                            <Answers isQuestionOwner={isQuestionOwner} questionId={id} answerIds={answerIds} acceptedId={acceptedId}/>
                         </Container>
                         <Divider></Divider>
-                        <CreateAnswerForm questionId={id}>
+                        <CreateAnswerForm questionId={id} questionStatus = {questionStatus}>
                             <Header>Input Your Answer</Header>
                         </CreateAnswerForm>
                     </>
@@ -52,10 +55,11 @@ class QuestionPage extends React.Component{
 
 const mapStateToProps = (state, ownProps) =>{
     const {id} = ownProps.match.params;
-    const data = state.questions.byId || {};
+    const question = (state.questions.byId || {})[id] || {};
     const {message} = state.questions.status || {};
     return {
-        question: data[id],
+        question,
+        user: (state.users.byId[question.userId] || {}),
         status: state.questions.status.status,
         errorMessage: message,
     }
@@ -64,7 +68,8 @@ const mapStateToProps = (state, ownProps) =>{
 const mapDispatchToProps = (dispatch, ownProps) => {
     const {id} = ownProps.match.params;
     return { 
-       loadOne: () => dispatch(questionActions.loadOne(id))
+       loadOne: () => dispatch(questionActions.loadOne(id)),
+       
     }
 }
 

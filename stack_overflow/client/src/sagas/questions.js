@@ -7,8 +7,8 @@ import UserActions from '../redux/actions/users';
 import Services from '../services/questionService';
 
 
-function* testPattern(){
-    yield take('VOTE_UP_REQUEST', function* (action) {
+function* voteUp(){
+    yield take(ActionTypes, function* (action) {
 
         try {
             const response = yield action.promice();
@@ -55,8 +55,7 @@ function* loadOneQuestion(){
             yield put(ReplyActions.setReplies(replies))
             yield put(AnswerActions.setAnswers(answers))
             yield put(Actions.loadOneSuccess(question));
-            
-           
+
         } catch(error) {
             console.log(error);
             yield put(Actions.loadOneFail(error))
@@ -64,7 +63,30 @@ function* loadOneQuestion(){
     })
 }
 
+function* acceptAnswer(){
+    yield takeEvery(ActionTypes.ACCEPT_ANSWER_REQUEST, function* (action) {
+        try {
+            const response = yield Services.acceptAnswer(action.payload.questionId, action.payload.answerId);
+            console.log(response);
+            if (!response.data) throw new Error('Not Found');
+
+            const normalized = Services.normalizeEntity(response.data);
+            console.log(normalized);
+            const {entities: {question, answers, replies, users}} = normalized;
+
+            yield put(UserActions.setUsers(users));
+            yield put(ReplyActions.setReplies(replies))
+            yield put(AnswerActions.setAnswers(answers))
+            yield put(Actions.acceptAnswerSuccess(question));
+        } catch (error) {
+            console.log(error);
+            yield put(Actions.acceptAnswerFail(error.response));
+        }
+    })
+}
+
 export default function* root() {
     yield fork(loadQuestions)
     yield fork(loadOneQuestion)
+    yield fork(acceptAnswer)
 }

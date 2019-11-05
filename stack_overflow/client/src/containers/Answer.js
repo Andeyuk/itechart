@@ -4,8 +4,10 @@ import {Comment} from 'semantic-ui-react';
 
 import Reply from './Reply';
 import CommentComponent from '../components/CommentComponent';
-import actionCreators from '../redux/actions/answers';
 import AuthService from '../services/authService';
+
+import answerActions from '../redux/actions/answers';
+import questionActions from '../redux/actions/questions';
 
 class Answer extends React.Component{
     renderReplies(idList){
@@ -16,13 +18,25 @@ class Answer extends React.Component{
     }
 
     render(){
-        const {upVotes, downVotes, createdAt:date, reply:replyIds = [], ...rest} = this.props.answer;
-        const {userName, id} = this.props.user;
+        const {
+            answer:{upVotes, downVotes, createdAt:date, reply:replyIds = [], userId, ...answerRest},
+            user:{userName},
+            ...rest
+        } = this.props;
         const rating = upVotes - downVotes;
         const replies = this.renderReplies(replyIds);
-        const isOwner = AuthService.isLogged() && AuthService.getUser().id === id ? true : false;
+        const isAnswerOwner = this.props.user.id === userId ? true : false;
         return <>
-            <CommentComponent rating = {rating} date = {date} username={userName} renderReplies={replies} {...rest} isOwner={isOwner}/>
+            <CommentComponent 
+                rating = {rating} 
+                date = {date} 
+                username={userName} 
+                isOwner = {isAnswerOwner} 
+                {...rest} 
+                {...answerRest}
+            >
+                {replies}
+            </CommentComponent>
         </>
     }
 }
@@ -37,6 +51,12 @@ const mapStateToProps = (state, ownProps) =>{
     }
 }
 
+const mapDispatchToProps = {
+    acceptAnswer: questionActions.acceptAnswerRequest,
+    voteUp: answerActions.voteUpRequest,
+    voteDown: answerActions.voteDownRequest,
+}
 
 
-export default connect(mapStateToProps)(Answer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Answer);

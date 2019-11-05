@@ -1,8 +1,7 @@
 import React from 'react';
 import {Icon} from 'semantic-ui-react';
 
-
-const VoteDownIcon = (props) => {
+const AcceptAnswerIcon = (props) => {
     const {
         active,
         ...rest
@@ -14,12 +13,12 @@ const VoteDownIcon = (props) => {
 
     return (
         <Icon 
-            name = {'angle down'}
+            name = {'star'}
             style = {style}
-            color = {active ? 'red' : 'grey'}
+            color = {active ? 'green' : 'grey'}
             {...rest}
         />
     )
 }
 
-export default VoteDownIcon;
+export default AcceptAnswerIcon;

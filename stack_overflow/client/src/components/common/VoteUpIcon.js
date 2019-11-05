@@ -4,7 +4,7 @@ import {Icon} from 'semantic-ui-react';
 
 const VoteUpIcon = (props) => {
     const {
-        isClicked,
+       active,
         ...rest
     } = props;
 
@@ -16,7 +16,7 @@ const VoteUpIcon = (props) => {
         <Icon 
             name = {'angle up'}
             style = {style}
-            color = {isClicked ? 'green' : 'grey'}
+            color = {active ? 'green' : 'grey'}
             {...rest}
         />
     )

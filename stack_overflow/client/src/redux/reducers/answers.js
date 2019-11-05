@@ -4,8 +4,6 @@ import createVoteReducer from '../generators/enchanters/vote';
 import {combineReducers } from 'redux';
 import actionTypes from '../constants/answers';
 
-import {withEnchanter} from '../utils';
-
 const initialState = {
 
 }
@@ -63,9 +61,11 @@ const asyncReducer = (state = {}, action) => {
 
 
 
-const enc = withEnchanter(answersReducer, createVoteReducer('answers'))
 
 export default combineReducers({
     byId: answersReducer,
-    status: asyncReducer,
+    status: combineReducers({
+        create: asyncReducer,
+        vote: createVoteReducer(actionTypes)
+    })
 })

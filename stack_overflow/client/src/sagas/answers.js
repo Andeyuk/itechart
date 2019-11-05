@@ -8,12 +8,12 @@ import UserActions from '../redux/actions/users';
 import answerService from '../services/answerService';
 import questionService from '../services/questionService';
 
-function* testPattern(){
-    yield take('VOTE_UP_REQUEST', function* (action) {
-
+function* voteUp(){
+    yield take(ActionTypes.VOTE_UP_REQUEST, function* (action) {
         try {
-            const response = yield action.promice();
-            
+            console.log('fired')
+            const response = yield answerService.voteUp(action.payload.id);
+            yield put(AnswerActions.voteUpSuccess(response.data));
         } catch(error) {
             console.log(error.response)
         }
@@ -47,4 +47,5 @@ function* answerQuestion(){
 
 export default function* root() {
     yield fork(answerQuestion)
+    yield fork(voteUp)
 }

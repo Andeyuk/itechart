@@ -1,8 +1,5 @@
-import RequestTypes from '../constants/load';
-import {typeGenerator} from '../../utils';
 
-
-const createLoadReducer = (types) => (state={}, action) => {
+const createLoadReducer = (types) => (state = {}, action) => {
     switch (action.type) {
         case types.LOAD_ONE_REQUEST:
         case types.LOAD_REQUEST: {

@@ -17,8 +17,8 @@ const AnswerService = {
     load: (id) => authService.axios('get', `answers/${id ? id : ''}`),
     loadOne:  (id) => authService.axios('get', `answers/${id ? id : ''}`),
     post: (data) => authService.axios('post', 'answers', data),
-    upVote:  (id) => authService.axios('put', `/answers/${id}/upvote`),
-    downVote: (id) => authService.axios('put', `/answers/${id}/downvote`),
+    voteUp:  (id) => authService.axios('put', `/answers/${id}/upvote`),
+    voteDown: (id) => authService.axios('put', `/answers/${id}/downvote`),
 }
 
 export default AnswerService;

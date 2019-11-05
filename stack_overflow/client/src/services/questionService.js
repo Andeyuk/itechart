@@ -26,11 +26,12 @@ const QuestionService = {
         const normalizedData = normalize(array, question);
         return normalizedData;
     },
-    load: (id) => authService.axios('get', `questions/${id ? id : ''}`),
+    acceptAnswer: (questionId, answerId) => authService.axios('put', `questions/${questionId}/accept`, {answerId}),
+    load: () => authService.axios('get', `questions/`),
     loadOne:  (id) => authService.axios('get', `questions/${id ? id : ''}`),
     post: (data) => authService.axios('post', 'questions', data),
-    upVote:  (id) => authService.axios('put', `/questions/${id}/upvote`),
-    downVote: (id) => authService.axios('put', `/questions/${id}/downvote`),
+    voteUp:  (id) => authService.axios('put', `/questions/${id}/upvote`),
+    voteDown: (id) => authService.axios('put', `/questions/${id}/downvote`),
 
 }
 

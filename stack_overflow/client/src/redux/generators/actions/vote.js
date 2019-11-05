@@ -1,32 +1,65 @@
-import { typeGenerator, makeActionCreators} from "../../utils";
-import actionTypes from '../constants/vote';
-import RequestService from '../../../services/requestService';
+import {makeActionCreators} from "../../utils";
 
-const voteUp = (name) => (id) => {
+const voteUpRequest = (types) => (id) => {
     return {
-        type: typeGenerator(actionTypes.VOTE_UP, name),
-        promice: () => RequestService.upVote(name, id),
+        type: types.VOTE_UP_REQUEST,
         payload: {
             id
         }
     }
 }
 
-const voteDown = (name) => (id) => {
+const voteDownRequest = (types) => (id) => {
     return {
-        type: typeGenerator(actionTypes.VOTE_DOWN, name),
-        promice: () => RequestService.downVote(name, id),
+        type: types.VOTE_DOWN_REQUEST,
         payload: {
             id
         }
     }
 }
+
+const voteUpSuccess = (types) => (id) => {
+    return {
+        type: types.VOTE_UP_SUCCESS,
+        payload: {
+            id
+        }
+    }
+}
+
+const voteDownSucess = (types) => (id) => {
+    return {
+        type: types.VOTE_DOWN_SUCCESS,
+        payload: {
+            id
+        }
+    }
+}
+
+const voteUpFail = (types) => (error) => {
+    return {
+        type: types.VOTE_UP_FAIL,
+        error
+    }
+}
+
+const voteDownFail = (types) => (error) => {
+    return {
+        type: types.VOTE_DOWN_FAIL,
+        error
+    }
+}
+
 
 const voteActionsGenerator = (name) => makeActionCreators(
     name,
     {
-        voteUp,
-        voteDown
+        voteUpRequest,
+        voteUpSuccess,
+        voteUpFail,
+        voteDownRequest,
+        voteDownSucess,
+        voteDownFail
     }
 )
 

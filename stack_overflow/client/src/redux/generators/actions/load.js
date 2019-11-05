@@ -1,18 +1,14 @@
-import { typeGenerator, makeActionCreators} from "../../utils";
-import actionTypes from '../constants/load';
-import RequestService from '../../../services/requestService';
+import { makeActionCreators} from "../../utils";
 
 const load = (types) => () => {
     return {
         type: types.LOAD_REQUEST,
-        //promice: () => RequestService.load(name)(),
     }
 }
 
 const loadOne = (types) => (id) => {
     return {
         type: types.LOAD_ONE_REQUEST,
-        //promice: () => RequestService.load(name)(id),
         payload: {
             id
         }

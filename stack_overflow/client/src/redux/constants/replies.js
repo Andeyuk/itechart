@@ -1,3 +1,4 @@
+import voteTypesGenerator from '../generators/constants/vote';
 
 const SET_REPLIES = 'SET_REPLIES';
 const CREATE_REPLY_REQUEST = 'CREATE_REPLY_REQUEST';
@@ -8,5 +9,6 @@ export default  {
     SET_REPLIES,
     CREATE_REPLY_REQUEST,
     CREATE_REPLY_SUCCESS,
-    CREATE_REPLY_FAIL
+    CREATE_REPLY_FAIL,
+    ...voteTypesGenerator('replies')
 }
