@@ -11,13 +11,6 @@ class Answer extends BasicService{
         this.Repository = Repository
     }
 
-    async downVote(id){
-        return await this.Repository.increment(id, 'downVotes');
-    }
-
-    async upVote(id){
-        return await this.Repository.increment(id, 'upVotes');
-    }
 
     async create(data){
         const answer = await this.Repository.create(data, {raw: true});
@@ -32,6 +25,10 @@ class Answer extends BasicService{
         throw new createError.BadRequest(`Question is ${question.status}`)
     }
 
+    async findRepliesByQuestionId(id){
+        return await this.Repository.findRepliesByQuestionId(id)
+    }
+
     async findByQuestionId(id){
         return await this.Repository.findByQuestionId(id)
     }
@@ -41,11 +38,13 @@ class Answer extends BasicService{
     }
 
     async voteUp(answerId, userId){
-        return await this.Repository.voteUp(answerId, userId)
+        await this.Repository.voteUp(answerId, userId);
+        return this.Repository.findById(answerId);
     }
 
     async voteDown(answerId, userId){
-        return await this.Repository.voteDown(answerId, userId)
+        await this.Repository.voteDown(answerId, userId);
+        return this.Repository.findById(answerId);
     }
 
 }

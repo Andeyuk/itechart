@@ -1,5 +1,6 @@
 
 import createVoteReducer from '../generators/enchanters/vote';
+import createLoadReducer from '../generators/enchanters/load';
 
 import {combineReducers } from 'redux';
 import actionTypes from '../constants/answers';
@@ -18,7 +19,9 @@ const answersReducer = (state = initialState, action) => {
             return {...state, ...action.payload}
         }
         case actionTypes.LOAD_SUCCESS:
-        case actionTypes.LOAD_ONE_SUCCESS: {
+        case actionTypes.LOAD_ONE_SUCCESS:
+        case actionTypes.VOTE_UP_SUCCESS:
+        case actionTypes.VOTE_DOWN_SUCCESS: {
             return {...state, ...action.payload.byId}
         }
 
@@ -66,6 +69,7 @@ export default combineReducers({
     byId: answersReducer,
     status: combineReducers({
         create: asyncReducer,
-        vote: createVoteReducer(actionTypes)
+        vote: createVoteReducer(actionTypes),
+        load: createLoadReducer(actionTypes)
     })
 })

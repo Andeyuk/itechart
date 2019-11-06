@@ -18,20 +18,20 @@ const voteDownRequest = (types) => (id) => {
     }
 }
 
-const voteUpSuccess = (types) => (id) => {
+const voteUpSuccess = (types) => (byId) => {
     return {
         type: types.VOTE_UP_SUCCESS,
         payload: {
-            id
+            byId
         }
     }
 }
 
-const voteDownSucess = (types) => (id) => {
+const voteDownSuccess = (types) => (byId) => {
     return {
         type: types.VOTE_DOWN_SUCCESS,
         payload: {
-            id
+            byId
         }
     }
 }
@@ -58,7 +58,7 @@ const voteActionsGenerator = (name) => makeActionCreators(
         voteUpSuccess,
         voteUpFail,
         voteDownRequest,
-        voteDownSucess,
+        voteDownSuccess,
         voteDownFail
     }
 )

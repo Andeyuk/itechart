@@ -35,3 +35,15 @@
 .marginless{
     margin: 0;
 }
+
+@keyframes spin { 
+    from { 
+        transform: rotate(0deg); 
+    } to { 
+        transform: rotate(360deg); 
+    }
+}
+.rotate{
+    animation: spin .6s infinite linear;
+   
+}

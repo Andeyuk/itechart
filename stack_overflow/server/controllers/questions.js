@@ -16,7 +16,7 @@ class QuestionController extends  BasicControllers{
 
     async voteUp(req, res){
         try {
-            const question = await this.Service.voteUp(req.params.id)
+            const question = await this.Service.voteUp(req.params.id, req.user.id)
             res.json(question);
         } catch(error) {
             httpErrorHandler(error, res);
@@ -25,7 +25,7 @@ class QuestionController extends  BasicControllers{
 
     async voteDown(req, res){
         try {
-            const question = await this.Service.downVote(req.params.id)
+            const question = await this.Service.downVote(req.params.id, req.user.id)
             res.json(question);
         } catch(error) {
             httpErrorHandler(error, res);

@@ -6,6 +6,7 @@ import QuestionHeader from '../components/QuestionHeader';
 import Answers from '../components/AnswerList';
 import CreateAnswerForm from './CreateAnswerForm';
 import questionActions from '../redux/actions/questions';
+import answerActions from '../redux/actions/answers';
 
 
 class QuestionPage extends React.Component{
@@ -13,7 +14,8 @@ class QuestionPage extends React.Component{
         // if (!this.props.question.id){
         //     this.props.loadOne()
         // }
-        this.props.loadOne()
+        this.props.loadOne();
+        this.props.loadAnswers();
     }
 
     render(){
@@ -60,7 +62,7 @@ const mapStateToProps = (state, ownProps) =>{
     return {
         question,
         user: (state.users.byId[question.userId] || {}),
-        status: state.questions.status.status,
+        status: state.questions.status.load,
         errorMessage: message,
     }
 }
@@ -69,7 +71,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const {id} = ownProps.match.params;
     return { 
        loadOne: () => dispatch(questionActions.loadOne(id)),
-       
+       loadAnswers: () => dispatch(answerActions.load(id))
     }
 }
 

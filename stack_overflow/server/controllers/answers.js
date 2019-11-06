@@ -25,6 +25,15 @@ class AnswerController extends  BasicControllers{
     }
 
 
+    async findRepliesByQuestionId(req, res){
+        try {
+            const answer = await AnswerService.findRepliesByQuestionId(req.params.id);
+            res.json(answer);
+        } catch(error) {
+            httpErrorHandler(error, res);
+        }
+    }
+
     async findByQuestionId(req, res){
         try {
             const answer = await AnswerService.findByQuestionId(req.params.id);

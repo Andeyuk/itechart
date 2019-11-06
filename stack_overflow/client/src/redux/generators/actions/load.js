@@ -1,8 +1,11 @@
 import { makeActionCreators} from "../../utils";
 
-const load = (types) => () => {
+const load = (types) => (id) => {
     return {
         type: types.LOAD_REQUEST,
+        payload:{
+            id
+        }
     }
 }
 
@@ -29,7 +32,8 @@ const loadOneSuccess = (types) => (byId, allIds) => {
     return {
         type: types.LOAD_ONE_SUCCESS,
         payload: {
-            byId, allIds
+            byId, 
+            allIds
         }
     }
 }

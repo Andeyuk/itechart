@@ -17,12 +17,11 @@ class Question extends BasicService{
         return await this.Repository.getById(id)
     }
 
-    async acceptAnswer(id, answerId, userId){
+    async acceptAnswer(id, answerId){
         //todo: move validation
         const question = await this.Repository.getById(id);
         if (!question) throw new createError.BadRequest(`No such a question`);
-        if (question.userId !== userId) throw new createError.Forbidden();
-        //if (question.status !== 'active') throw new createError.BadRequest(`This Question is ${question.status}`);
+        if (question.status === 'closed') throw new createError.BadRequest(`This Question is closed`);
 
         const answer = await AnswerService.findById(answerId, {raw: true});
 
@@ -31,12 +30,21 @@ class Question extends BasicService{
         if (answer.questionId !== +id) throw new createError.BadRequest(`This Answer(${answer.content}) is not related to the question(${question.header})`);
         if (answer.parrentId) throw new createError.BadRequest(`Replies can't be chosen as answers`);
         //if (answer.isAccepted !== false) throw new createError.BadRequest(`This Answer is already accepted`);
-    
-        
-       await this.Repository.update(id, {status: 'answered', acceptedId: answerId});
-        question.status = 'answered';
-        question.acceptedId = answerId;
-        return question;
+        console.log(question.status==='active', question.status=='active')
+        if (question.status == 'active'){
+            await question.update({
+                status: 'answered',
+                acceptedId: answerId
+            });
+            console.log(question.status)
+        } else {
+            await question.update({
+                status: 'active',
+                acceptedId: null
+            });
+        }
+
+        return await question.save();
     }
 
     async closeQuestion(id){
@@ -51,12 +59,15 @@ class Question extends BasicService{
         return question;
     }
 
-    async voteUp(answerId, userId){
-        return await this.Repository.voteUp(answerId, userId)
+    async voteUp(questionId, userId){
+        await this.Repository.voteUp(questionId, userId);
+        console.log(userId);
+        return await this.Repository.findById(questionId);
     }
 
-    async voteDown(answerId, userId){
-        return await this.Repository.voteDown(answerId, userId)
+    async voteDown(questionId, userId){
+        await this.Repository.voteDown(questionId, userId)
+        return await this.Repository.findById(questionId);
     }
 }
 

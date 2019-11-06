@@ -15,6 +15,11 @@ router.get('/:id',
 );
 
 router.get(
+    '/:id/replies',
+    (req,res) => AnswerController.findRepliesByQuestionId(req,res)
+)
+
+router.get(
     '/:id/answers',
     (req,res) => AnswerController.findByQuestionId(req,res)
 )

@@ -1,4 +1,5 @@
 const sequelize = require('../db/init');
+const Op = require('sequelize').Op;
 
 const BasicRepository = require('./basicRepository');
 const Model = require('../db/models/answer');
@@ -15,7 +16,7 @@ class AnswerRepository extends BasicRepository{
         this.Model = Model;
         this.VoteModel = VoteModel;
     }
-    async findByQuestionId(id){
+    async findRepliesByQuestionId(id){
         try {
             return await this.Model.findAll({
                 attributes: {
@@ -26,16 +27,59 @@ class AnswerRepository extends BasicRepository{
                     }, {
                         model: AnswerVotes,
                         attributes: []
-                    }
+                    },
                 ],
                 where: {
-                    questionId: id
-                }
+                    questionId: id,
+                    parentId: {
+                        [Op.ne]: null
+                    }
+                },
+                group: ['answers.id', 'user.id']
             })
         } catch (error){
             throwSequelizeError(error)
         }
     }
+
+    async findByQuestionId(id){
+        try {
+            return await this.Model.findAll({
+                attributes: {
+                    include: [[sequelize.fn('SUM', sequelize.col('answer_votes.vote')), 'rating']]
+                },
+                include: [{
+                        model: UserModel,
+                    }, {
+                        model: Model,
+                        as: 'reply',
+                        attributes: {
+                            include: [[sequelize.fn('SUM', sequelize.col('reply.answer_votes.vote')), 'rating']]
+                        },
+                        include: [{
+                                model: UserModel,
+                            }, {
+                                model: AnswerVotes,
+                                attributes: []
+                            }
+                        ]
+                    }, {
+                        model: AnswerVotes,
+                        attributes: []
+                    }
+                ],
+                where: {
+                    questionId: id,
+                    parentId: null
+                },
+                group: ['answers.id', 'user.id', 'reply.id', 'reply->user.id']
+            })
+        } catch (error){
+            throwSequelizeError(error)
+        }
+    }
+
+
     
     async getById(id){
         try {
@@ -69,21 +113,44 @@ class AnswerRepository extends BasicRepository{
         }
     }
 
+    async findById(id){
+        try {
+            return await this.Model.findByPk(id, {
+                attributes: {
+                    include: [[sequelize.fn('SUM', sequelize.col('answer_votes.vote')), 'rating']]
+                },
+                include: [{
+                    model: UserModel,
+                }, {
+                    model: AnswerVotes,
+                    attributes: []
+                }],
+                group: ['answers.id', 'user.id']
+            })
+        } catch (error){
+            throwSequelizeError(error)
+        }
+    }
+
     async vote(answerId, userId, value){
         try {
-            const [instance, created] = await this.VoteModel.findOrBuild({
+            const instance = await this.VoteModel.findOne({
                 where:  {
                     userId, 
                     answerId, 
-                    vote: 1
                 }
             });
 
-            if (created) return await instance.save();
+
+            if (!instance) return this.VoteModel.create({
+                userId, 
+                answerId,
+                vote: value
+            })
 
             instance.vote == value
                 ? instance.destroy()
-                : instance.vote = 1
+                : instance.vote = value
 
             return await instance.save()
         } catch (error){
@@ -96,7 +163,7 @@ class AnswerRepository extends BasicRepository{
     }
 
     async voteDown(answerId, userId){
-        return this.vote(answerId, userId, 1)
+        return this.vote(answerId, userId, -1)
     }
 }
 

@@ -1,11 +1,13 @@
+const sequelize = require('../db/init');
 
 const BasicRepository = require('./basicRepository');
 const Model = require('../db/models/question');
 const AnswerModel = require('../db/models/answer');
 const UserModel = require('../db/models/user');
 const QuestionVotes = require('../db/models/questionVotes');
+const AnswerVotes = require('../db/models/answerVotes');
 
-const SequelizeErrorHandler = require('../utils/helpers/throwSequelizeError');
+const throwSequelizeError = require('../utils/helpers/throwSequelizeError');
 
 
 class QuestionsRepository extends BasicRepository{
@@ -21,30 +23,69 @@ class QuestionsRepository extends BasicRepository{
                         model: UserModel,
                     }, {
                         model: AnswerModel,
-                        where:{
-                            parentId: null,
-                            
+                        as: 'answers',
+                        attributes: {
+                              include: [[sequelize.fn('SUM', sequelize.col('answers->answer_votes.vote')), 'rating']]
                         },
                         include: [
                             {
+                                model: AnswerVotes,
+                                attributes: []
+                            },{
                                 model: UserModel,
-                            }, {
-                                model: AnswerModel,
-                                as: 'reply',
-                                include: {
-                                    model: UserModel,
-                                }
-                            }
+                            }, 
                         ],
+                        where:{
+                            parentId: null,
+                        },
+                        // include: [{
+                        //         model: UserModel,
+                        //     }, {
+                        //         model: AnswerModel,
+                        //         as: 'reply',
+                        //         attributes: {
+                        //               include: [[sequelize.fn('SUM', sequelize.col('answers->reply->answer_votes.vote')), 'rating']]
+                        //         },
+                        //         include: [{
+                        //                 model: UserModel,
+                        //             }, {
+                        //                 model: AnswerVotes,
+                        //                 attributes: []
+                        //             }
+                        //         ]
+                        //     }
+                        // ],
                         required: false,
                     }
                 ],
+                group: ['questions.id', 'user.id', 'answers.id', 'answers->user.id',], //'answers->reply.id', 'answers->reply->user.id'],
                 ...options
             })
         } catch (error){
-            SequelizeErrorHandler(error)
+            throwSequelizeError(error)
         }
     }
+
+    async findById(id, options){
+        try {
+            return await this.Model.findByPk(id, {
+                 attributes: {
+                     include: [[sequelize.fn('SUM', sequelize.col('question_votes.vote')), 'rating']]
+                },
+                include: [{
+                    model: UserModel,
+                }, {
+                    model: QuestionVotes,
+                    attributes: []
+                }],
+                group: ['questions.id', 'user.id'],
+                ...options
+        })
+        } catch (error){
+            throwSequelizeError(error)
+        }
+    }
+
 
     async findAll(){
         try {
@@ -55,25 +96,29 @@ class QuestionsRepository extends BasicRepository{
                 order:['createdAt']
             })
         } catch (error){
-            SequelizeErrorHandler(error)
+            throwSequelizeError(error)
         }
     }
 
-    async vote(answerId, userId, value){
+    async vote(questionId, userId, value){
         try {
-            const [instance, created] = await this.VoteModel.findOrBuild({
+            const instance = await this.VoteModel.findOne({
                 where:  {
                     userId, 
-                    answerId, 
-                    vote: 1
+                    questionId, 
                 }
             });
 
-            if (created) return await instance.save();
+
+            if (!instance) return this.VoteModel.create({
+                userId, 
+                questionId,
+                vote: value
+            })
 
             instance.vote == value
                 ? instance.destroy()
-                : instance.vote = 1
+                : instance.vote = value
 
             return await instance.save()
         } catch (error){
@@ -81,12 +126,12 @@ class QuestionsRepository extends BasicRepository{
         }
     }
 
-    async voteUp(answerId, userId){
-        return this.vote(answerId, userId, 1)
+    async voteUp(questionId, userId){
+        return await this.vote(questionId, userId, 1)
     }
 
-    async voteDown(answerId, userId){
-        return this.vote(answerId, userId, 1)
+    async voteDown(questionId, userId){
+        return await this.vote(questionId, userId, -1)
     }
 }
 

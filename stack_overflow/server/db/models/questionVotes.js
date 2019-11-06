@@ -30,7 +30,7 @@ QuestionVotes.init({
     modelName: 'question_votes',
 });
 
-User.hasMany(QuestionVotes, { as: 'users'});
+User.hasMany(QuestionVotes);
 Question.hasMany(QuestionVotes);
 
 

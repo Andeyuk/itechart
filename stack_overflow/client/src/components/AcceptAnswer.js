@@ -23,6 +23,7 @@ class AcceptAnswer extends React.Component{
             <AcceptAnswerIcon 
                 onClick={this.handleClick}
                 active={active}
+                //className={isClicked ? 'rotate' : ''}
             />
         </>
     }

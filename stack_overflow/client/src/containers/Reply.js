@@ -38,7 +38,6 @@ class Reply extends React.Component{
 
 const mapStateToProps = (state, ownProps) =>{
     const reply = state.replies.byId[ownProps.id] || {};
-    console.log(reply, state.users.byId)
     return {
         reply,
         user:  state.users.byId[reply.userId] || {},
